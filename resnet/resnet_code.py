@@ -7,6 +7,9 @@ from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.applications.resnet import ResNet50
 import matplotlib.pyplot as plt
 from keras.layers import MaxPooling2D
+from keras.layers import Input,Dense, Dropout
+from keras.models import Sequential
+
 
 # read dataset
 
@@ -61,15 +64,27 @@ X_val_images = X_val_images / 255.0
 X_test_images = X_test_images / 255.0
 
 # Step 5: Compile the ResNet model
-model = ResNet50(input_shape=(32, 32, 3), include_top= False, classes=6) # it accepts min 32 size and 3 channel
-model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+from keras.optimizers import SGD
+opt = SGD(lr=0.01)
+
+
+model = Sequential()
+
+model.add(ResNet50(input_shape=(32, 32, 3), include_top= False, pooling='avg', weights = None, classes=6))
+model.add(Dropout(0.5))
+#model = ResNet50(input_shape=(32, 32, 3), include_top= True, pooling='avg', weights = None, classes=6) # it accepts min 32 size and 3 channel
+model.add(Dense(60,activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(6,activation='softmax'))
+model.summary()
+model.compile(loss='sparse_categorical_crossentropy', optimizer=opt, metrics=['accuracy'])
 
 print('inputshape', X_train_images.shape)
 print('outputshape', y_train.shape)
 
 # Step 6: Train the ResNet model
 history = model.fit(X_train_images, y_train,
-                    batch_size=32, epochs=30,
+                    batch_size=32, epochs=10,
                     validation_data=(X_val_images, y_val))
 
 # Step 7: Evaluate the performance of the trained ResNet model
