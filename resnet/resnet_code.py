@@ -44,7 +44,7 @@ def reshape_3channel(img):
     :param img: imag array
     :return:
     """
-    return cv2.cvtColor(cv2.resize(img.astype(np.uint8), (32,32), interpolation = cv2.INTER_AREA),cv2.COLOR_GRAY2BGR)
+    return cv2.cvtColor(cv2.resize(img.astype(np.uint8), (100,100), interpolation = cv2.INTER_AREA),cv2.COLOR_GRAY2BGR)
 
 X_train_images = X_train.reshape(X_train.shape[0],28, 28,1)
 X_train_images = np.array([reshape_3channel(img) for img in X_train_images])
@@ -70,7 +70,7 @@ opt = SGD(lr=0.01)
 
 model = Sequential()
 
-model.add(ResNet50(input_shape=(32, 32, 3), include_top= False, pooling='avg', weights = None, classes=6))
+model.add(ResNet50(input_shape=(100, 100, 3), include_top= False, pooling='avg', weights = None, classes=6))
 model.add(Dropout(0.5))
 #model = ResNet50(input_shape=(32, 32, 3), include_top= True, pooling='avg', weights = None, classes=6) # it accepts min 32 size and 3 channel
 model.add(Dense(60,activation='relu'))
