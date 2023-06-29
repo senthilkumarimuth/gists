@@ -12,4 +12,4 @@ def read_root():
 def read_item(item_id: int):
     return {"item_id": item_id}
 
-# run the code in command prompt using:     uvicorn main:app --reload
+# run the code in command prompt using:     uvicorn myapp:app --reload
