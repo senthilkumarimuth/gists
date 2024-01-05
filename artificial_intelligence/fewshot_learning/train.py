@@ -13,7 +13,7 @@ print('dataset is loaded..')
 # Load a SetFit model from Hub
 model = SetFitModel.from_pretrained(
     "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-    cache_dir="./models/"
+    cache_dir="models/"
 )
 print('pretrained model is loaded')
 # Create trainer
@@ -30,7 +30,8 @@ trainer = SetFitTrainer(
 )
 
 # Train and evaluate
-print('Training in progress')
+print('Training in p'
+      'rogress')
 trainer.train()
 print('Evaluation in progress')
 metrics = trainer.evaluate()

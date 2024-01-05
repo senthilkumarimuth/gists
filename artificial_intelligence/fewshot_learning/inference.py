@@ -1,6 +1,6 @@
 from setfit import SetFitModel
 
-model = SetFitModel.from_pretrained("./output/", local_files_only=True)
+model = SetFitModel.from_pretrained("output/", local_files_only=True)
 
 sentiment_dict = {"non-ml": 0, "ml": 1}
 inverse_dict = {value: key for (key, value) in sentiment_dict.items()}
