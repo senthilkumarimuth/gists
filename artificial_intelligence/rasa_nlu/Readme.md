@@ -1,0 +1,1 @@
+This project is based on https://medium.com/data-science-community-srm/developing-chatbots-with-rasa-intuition-to-implementation-39c1dd34274c
