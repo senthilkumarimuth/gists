@@ -1,1 +1,1 @@
-select * from Album limit 2
+select * from Album
