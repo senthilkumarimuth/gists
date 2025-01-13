@@ -1,63 +1,19 @@
-import pandas as pd
+from fpdf import FPDF
+import os
 
-df = pd. read_csv(r"C:\\Users\\senthil.marimuthu\\Downloads\\cell imbalance output.csv")
-df =  df[['actual_km_failure', "Surv_prob_at_failure"]]
-print(len(df))
+def images_to_pdf(image_folder, output_folder):
+    # Get all image files in the specified folder
+    images = [img for img in os.listdir(image_folder) if img.lower().endswith(('.png', '.jpg', '.jpeg'))]
+    images.sort()  # Sort images if needed
 
-from sklearn.model_selection import train_test_split
+    for index, image in enumerate(images):
+        pdf = FPDF()
+        pdf.set_auto_page_break(0)
+        pdf.add_page()
+        pdf.image(os.path.join(image_folder, image), x=0, y=0, w=210, h=297)  # A4 size in mm
+        output_pdf_path = os.path.join(output_folder, f'output_{index + 1}.pdf')  # Create a unique output file for each image
+        pdf.output(output_pdf_path, 'F')
 
-
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import accuracy_score
-
-# Prepare the data
-y = df['Surv_prob_at_failure'].values
-X = df['actual_km_failure'].values
-
-
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-from sklearn.preprocessing import PolynomialFeatures
-
-# Transform X with polynomial features
-poly = PolynomialFeatures(degree=2)  # You can change the degree as needed
-X_train_poly = poly.fit_transform(X_train.reshape(-1, 1))
-
-# Create a logistic regression model
-model = LinearRegression()
-
-# Fit the model
-model.fit(X_train_poly, y_train)
-
-# Make predictions
-y_pred = model.predict(poly.transform(X_test.reshape(-1,1)))
-
-from sklearn.metrics import mean_squared_error
-
-# Calculate Mean Squared Error
-mse = mean_squared_error(y_test, y_pred)
-print(f'Mean Squared Error: {mse}')
-
-
-import matplotlib.pyplot as plt
-
-# Visualize the fit
-plt.scatter(X_test, y_test, color='blue', label='Actual Data')
-plt.scatter(X_test, y_pred, color='red', label='Predicted Data')
-plt.title('Actual vs Predicted_test')
-plt.xlabel('Surv_prob_at_failure')
-plt.ylabel('actual_km_failure')
-plt.legend()
-plt.show()
-
-y_train_pred = model.predict(X_train_poly)
-
-# Visualize the fit - TRAIN
-plt.scatter(X_train, y_train, color='blue', label='Actual Data')
-plt.scatter(X_train, y_train_pred, color='red', label='Predicted Data')
-plt.title('Actual vs Predicted_train')
-plt.xlabel('Surv_prob_at_failure')
-plt.ylabel('actual_km_failure')
-plt.legend()
-plt.show()
+# Example usage
+output_path = input("Please enter the output folder path: ")
+images_to_pdf(r"C:\Users\senthil.marimuthu\OneDrive - HTC Global Services, Inc\HTC\HR\2024_2025\images", r"C:\Users\senthil.marimuthu\OneDrive - HTC Global Services, Inc\HTC\HR\2024_2025\images")
