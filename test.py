@@ -1,19 +1,18 @@
-from fpdf import FPDF
 import os
+import glob
+import pandas as pd
+from ydata_profiling import ProfileReport
 
-def images_to_pdf(image_folder, output_folder):
-    # Get all image files in the specified folder
-    images = [img for img in os.listdir(image_folder) if img.lower().endswith(('.png', '.jpg', '.jpeg'))]
-    images.sort()  # Sort images if needed
 
-    for index, image in enumerate(images):
-        pdf = FPDF()
-        pdf.set_auto_page_break(0)
-        pdf.add_page()
-        pdf.image(os.path.join(image_folder, image), x=0, y=0, w=210, h=297)  # A4 size in mm
-        output_pdf_path = os.path.join(output_folder, f'output_{index + 1}.pdf')  # Create a unique output file for each image
-        pdf.output(output_pdf_path, 'F')
 
-# Example usage
-output_path = input("Please enter the output folder path: ")
-images_to_pdf(r"C:\Users\senthil.marimuthu\OneDrive - HTC Global Services, Inc\HTC\HR\2024_2025\images", r"C:\Users\senthil.marimuthu\OneDrive - HTC Global Services, Inc\HTC\HR\2024_2025\images")
+# Read the CSV file into a DataFrame
+df = pd.read_csv(r"C:\Users\senthil.marimuthu\Downloads\derating_eda.csv")
+
+# Generate the pandas profiling report
+profile = ProfileReport(df, title="Pandas Profiling Report", explorative=True)
+
+# Save the report to an HTML file in the Downloads folder
+report_path = os.path.join(downloads_path, "pandas_profiling_report.html")
+profile.to_file(report_path)
+
+print(f"Profiling report saved to: {report_path}")
