@@ -1,0 +1,117 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ac69f73d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Cosine-Distance">Cosine Distance<a class="anchor-link" href="#Cosine-Distance">¶</a></h2><p>The <strong>cosine distance</strong> is a measure of dissimilarity between two non-zero vectors of an inner product space. It is derived from the cosine similarity, which measures the cosine of the angle between two vectors.</p>
+<ul>
+<li><p><strong>Cosine similarity</strong> is defined as:</p>
+<p>$$
+\text{cosine similarity} = \cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|}
+$$</p>
+</li>
+<li><p><strong>Cosine distance</strong> is:</p>
+<p>$$
+\text{cosine distance} = 1 - \text{cosine similarity}
+$$</p>
+</li>
+</ul>
+<p>Cosine distance ranges from 0 (identical direction) to 2 (opposite direction), but for non-negative data, it typically ranges from 0 to 1.</p>
+<p>Cosine distance is commonly used in text analysis and information retrieval, where the magnitude of the vectors may not be as important as their orientation.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2c82c530">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Pros-and-Cons-of-Cosine-Distance">Pros and Cons of Cosine Distance<a class="anchor-link" href="#Pros-and-Cons-of-Cosine-Distance">¶</a></h4><p><strong>Pros:</strong></p>
+<ul>
+<li><strong>Insensitive to Magnitude:</strong> Cosine distance focuses on the orientation (direction) of vectors, making it useful when the magnitude is not important, such as in text analysis (e.g., word counts).</li>
+<li><strong>Effective for Sparse Data:</strong> It works well with high-dimensional, sparse data, which is common in information retrieval and natural language processing.</li>
+<li><strong>Scale Invariance:</strong> Since it measures the angle between vectors, it is not affected by the scale of the data.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li><strong>Ignores Magnitude:</strong> If the magnitude of vectors carries important information, cosine distance may not be appropriate.</li>
+<li><strong>Not a True Metric:</strong> Cosine distance does not always satisfy the triangle inequality, so it is not a true metric in the mathematical sense.</li>
+<li><strong>Requires Non-zero Vectors:</strong> It cannot be computed if one or both vectors are zero.</li>
+<li><strong>Less Interpretable for Negative Values:</strong> When data contains negative values, interpreting cosine distance can be less straightforward.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51c9d28c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Euclidean-Distance">Euclidean Distance<a class="anchor-link" href="#Euclidean-Distance">¶</a></h2><p>The <strong>Euclidean distance</strong> is the straight-line distance between two points in Euclidean space. It is the most common distance metric and is derived from the Pythagorean theorem.</p>
+<ul>
+<li><p><strong>Euclidean distance</strong> between two points $\mathbf{A} = (a_1, a_2, ..., a_n)$ and $\mathbf{B} = (b_1, b_2, ..., b_n)$ is defined as:</p>
+<p>$$
+d(\mathbf{A}, \mathbf{B}) = \sqrt{(a_1 - b_1)^2 + (a_2 - b_2)^2 + \cdots + (a_n - b_n)^2}
+$$</p>
+</li>
+</ul>
+<p>Euclidean distance is always non-negative and equals zero only when the two points are identical.</p>
+<p>It is widely used in clustering, classification, and many other machine learning and statistical applications.</p>
+<h4 id="Pros-and-Cons-of-Euclidean-Distance">Pros and Cons of Euclidean Distance<a class="anchor-link" href="#Pros-and-Cons-of-Euclidean-Distance">¶</a></h4><p><strong>Pros:</strong></p>
+<ul>
+<li><strong>Intuitive:</strong> It corresponds to our everyday notion of physical distance.</li>
+<li><strong>Metric Properties:</strong> It satisfies all the properties of a metric (non-negativity, identity, symmetry, triangle inequality).</li>
+<li><strong>Widely Applicable:</strong> Useful in many algorithms, such as k-nearest neighbors and k-means clustering.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li><strong>Sensitive to Scale:</strong> Features with larger scales can dominate the distance; data often needs to be normalized.</li>
+<li><strong>Affected by Outliers:</strong> Outliers can have a large impact on the distance.</li>
+<li><strong>Not Suitable for Categorical Data:</strong> It is only meaningful for continuous numerical data.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=883cdd2e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Chi-Square-Distance">Chi-Square Distance<a class="anchor-link" href="#Chi-Square-Distance">¶</a></h2><p>The <strong>Chi-Square distance</strong> is a measure commonly used to compare two binned distributions or histograms, especially in fields like image analysis and text mining. It is particularly useful when comparing frequency counts or probability distributions.</p>
+<ul>
+<li><p><strong>Chi-Square distance</strong> between two vectors $\mathbf{A} = (a_1, a_2, ..., a_n)$ and $\mathbf{B} = (b_1, b_2, ..., b_n)$ is defined as:</p>
+<p>$$
+d(\mathbf{A}, \mathbf{B}) = \frac{1}{2} \sum_{i=1}^n \frac{(a_i - b_i)^2}{a_i + b_i}
+$$</p>
+<p>where the sum is taken over all bins where $a_i + b_i &gt; 0$.</p>
+</li>
+</ul>
+<p>The Chi-Square distance is always non-negative and equals zero only when the two distributions are identical.</p>
+<p>It is widely used for comparing histograms, contingency tables, and other types of frequency data.</p>
+<h4 id="Pros-and-Cons-of-Chi-Square-Distance">Pros and Cons of Chi-Square Distance<a class="anchor-link" href="#Pros-and-Cons-of-Chi-Square-Distance">¶</a></h4><p><strong>Pros:</strong></p>
+<ul>
+<li><strong>Sensitive to Distribution Differences:</strong> Highlights differences in relative frequencies between distributions.</li>
+<li><strong>Useful for Histograms:</strong> Well-suited for comparing binned data or categorical distributions.</li>
+<li><strong>Scale Normalization:</strong> The denominator normalizes for the scale of the counts.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li><strong>Undefined for Zero Sums:</strong> If $a_i + b_i = 0$ for any bin, the term is undefined (usually skipped).</li>
+<li><strong>Sensitive to Small Counts:</strong> Can be unstable when counts are very small or zero.</li>
+<li><strong>Not a True Metric:</strong> Does not always satisfy the triangle inequality.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

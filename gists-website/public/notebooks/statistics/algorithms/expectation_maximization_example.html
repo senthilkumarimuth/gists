@@ -1,0 +1,99 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Expectation-Maximization-(EM)-Algorithm">Expectation Maximization (EM) Algorithm<a class="anchor-link" href="#Expectation-Maximization-(EM)-Algorithm">¶</a></h1><p>The Expectation Maximization (EM) algorithm is a powerful iterative method used for finding maximum likelihood or maximum a posteriori (MAP) estimates of parameters in statistical models, especially when the model depends on unobserved latent variables. It is widely used in machine learning, data mining, and statistical analysis.</p>
+<p>Key features of the EM algorithm:</p>
+<ol>
+<li>It's particularly useful for problems involving incomplete or missing data.</li>
+<li>The algorithm alternates between two steps: Expectation (E) step and Maximization (M) step.</li>
+<li>It's guaranteed to converge to a local optimum.</li>
+</ol>
+<p>The EM algorithm consists of two main steps:</p>
+<ol>
+<li><p>Expectation (E) step: Estimate the expected value of the log-likelihood function, using the current estimate for the parameters.</p>
+</li>
+<li><p>Maximization (M) step: Find the parameter values that maximize the expected log-likelihood found in the E step.</p>
+</li>
+</ol>
+<p>These steps are repeated until the algorithm converges to a local maximum of the likelihood function.</p>
+<p>Common applications of the EM algorithm include:</p>
+<ul>
+<li>Gaussian Mixture Models</li>
+<li>Hidden Markov Models</li>
+<li>Latent variable models in general</li>
+</ul>
+<p>In the following notebook, we'll implement a simple example of the EM algorithm to demonstrate its workings.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Generate some example data with missing values</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">,</span> <span class="mf">14.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">18.0</span><span class="p">])</span>
+
+<span class="c1"># Initialize parameters</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">initialize_parameters_with_missing_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">X</span><span class="p">)],</span> <span class="n">k</span><span class="p">)</span>  <span class="c1"># randomly choose means from observed values</span>
+    <span class="k">return</span> <span class="n">means</span>
+
+<span class="c1"># E-step: Fill in missing values with current mean estimates</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">expectation_step_with_missing_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">means</span><span class="p">):</span>
+    <span class="n">X_filled</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+            <span class="n">X_filled</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">means</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>  <span class="c1"># Replace missing values with the mean of means</span>
+    <span class="k">return</span> <span class="n">X_filled</span>
+
+<span class="c1"># M-step: Update means based on the filled data</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">maximization_step_with_missing_data</span><span class="p">(</span><span class="n">X_filled</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">X_filled</span><span class="p">),</span> <span class="n">k</span><span class="p">)</span>  <span class="c1"># Simple 1D clustering based on sorting</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span> <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">means</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Number of clusters</span>
+<span class="n">means</span> <span class="o">=</span> <span class="n">initialize_parameters_with_missing_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>  <span class="c1"># Iterate EM algorithm</span>
+    <span class="n">X_filled</span> <span class="o">=</span> <span class="n">expectation_step_with_missing_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">means</span><span class="p">)</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">maximization_step_with_missing_data</span><span class="p">(</span><span class="n">X_filled</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Estimated means:"</span><span class="p">,</span> <span class="n">means</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Filled data:"</span><span class="p">,</span> <span class="n">X_filled</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Estimated means: [ 7.20001575 12.80003149]
+Filled data: [ 2.         10.00007873  6.          8.         10.00007873 10.
+ 12.         14.         10.00007873 18.        ]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

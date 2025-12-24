@@ -1,0 +1,428 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90c1d0a7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="What-is-FastAPI">What is FastAPI<a class="anchor-link" href="#What-is-FastAPI">¶</a></h2><p>FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints.
+It is designed to be easy to use and to help developers create robust and production-ready web APIs quickly.
+FastAPI automatically generates interactive API documentation and provides features like data validation, authentication, and more.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44d54861">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Use-Cases-of-FastAPI">Use Cases of FastAPI<a class="anchor-link" href="#Use-Cases-of-FastAPI">¶</a></h2><ul>
+<li>Building RESTful APIs for web and mobile applications</li>
+<li>Creating backend services for machine learning and data science projects</li>
+<li>Developing microservices architectures</li>
+<li>Real-time data processing and streaming APIs</li>
+<li>Rapid prototyping of web applications</li>
+<li>Integrating with databases and external services</li>
+<li>Serving interactive API documentation (Swagger UI, ReDoc)</li>
+<li>Implementing authentication and authorization systems</li>
+<li>Building GraphQL APIs (with additional libraries)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bca2f68c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="How-to-install">How to install<a class="anchor-link" href="#How-to-install">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3861bc07-0de7-4cc3-ae60-a7e2dd9bc175">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>fastapi<span class="w"> </span>uvicorn
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Collecting fastapi
+  Downloading fastapi-0.118.0-py3-none-any.whl.metadata (28 kB)
+Collecting uvicorn
+  Downloading uvicorn-0.37.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting starlette&lt;0.49.0,&gt;=0.40.0 (from fastapi)
+  Downloading starlette-0.48.0-py3-none-any.whl.metadata (6.3 kB)
+Collecting pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,&lt;3.0.0,&gt;=1.7.4 (from fastapi)
+  Using cached pydantic-2.11.9-py3-none-any.whl.metadata (68 kB)
+Requirement already satisfied: typing-extensions&gt;=4.8.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from fastapi) (4.15.0)
+Collecting annotated-types&gt;=0.6.0 (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,&lt;3.0.0,&gt;=1.7.4-&gt;fastapi)
+  Using cached annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.33.2 (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,&lt;3.0.0,&gt;=1.7.4-&gt;fastapi)
+  Downloading pydantic_core-2.33.2-cp312-cp312-macosx_11_0_arm64.whl.metadata (6.8 kB)
+Collecting typing-inspection&gt;=0.4.0 (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,&lt;3.0.0,&gt;=1.7.4-&gt;fastapi)
+  Using cached typing_inspection-0.4.1-py3-none-any.whl.metadata (2.6 kB)
+Requirement already satisfied: anyio&lt;5,&gt;=3.6.2 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from starlette&lt;0.49.0,&gt;=0.40.0-&gt;fastapi) (4.11.0)
+Requirement already satisfied: idna&gt;=2.8 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from anyio&lt;5,&gt;=3.6.2-&gt;starlette&lt;0.49.0,&gt;=0.40.0-&gt;fastapi) (3.10)
+Requirement already satisfied: sniffio&gt;=1.1 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from anyio&lt;5,&gt;=3.6.2-&gt;starlette&lt;0.49.0,&gt;=0.40.0-&gt;fastapi) (1.3.1)
+Collecting click&gt;=7.0 (from uvicorn)
+  Using cached click-8.3.0-py3-none-any.whl.metadata (2.6 kB)
+Requirement already satisfied: h11&gt;=0.8 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from uvicorn) (0.16.0)
+Downloading fastapi-0.118.0-py3-none-any.whl (97 kB)
+Using cached pydantic-2.11.9-py3-none-any.whl (444 kB)
+Downloading pydantic_core-2.33.2-cp312-cp312-macosx_11_0_arm64.whl (1.8 MB)
+   <span class="ansi-black-intense-fg">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-green-fg">1.8/1.8 MB</span> <span class="ansi-red-fg">9.0 MB/s</span>  <span class="ansi-yellow-fg">0:00:00</span>
+Downloading starlette-0.48.0-py3-none-any.whl (73 kB)
+Downloading uvicorn-0.37.0-py3-none-any.whl (67 kB)
+Using cached annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Using cached click-8.3.0-py3-none-any.whl (107 kB)
+Using cached typing_inspection-0.4.1-py3-none-any.whl (14 kB)
+Installing collected packages: typing-inspection, pydantic-core, click, annotated-types, uvicorn, starlette, pydantic, fastapi
+   <span class="ansi-black-intense-fg">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-green-fg">8/8</span> [fastapi]m7/8 [fastapi]]]
+Successfully installed annotated-types-0.7.0 click-8.3.0 fastapi-0.118.0 pydantic-2.11.9 pydantic-core-2.33.2 starlette-0.48.0 typing-inspection-0.4.1 uvicorn-0.37.0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0ce020bd-a558-47cf-9b94-5560b4753bda">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Request</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.responses</span><span class="w"> </span><span class="kn">import</span> <span class="n">JSONResponse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">uvicorn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nest_asyncio</span>      
+<span class="n">nest_asyncio</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>          <span class="c1"># To handle jupyter notebook error 'RuntimeError: asyncio.run() cannot be called from a running event loop'</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">"Hello"</span><span class="p">:</span> <span class="s2">"World"</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/items/</span><span class="si">{item_id}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">read_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>   <span class="c1"># here async is to wait untile the parameter item_id is found, otherwise it is not found.</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">"item_id"</span><span class="p">:</span> <span class="n">item_id</span><span class="p">}</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="c1"># handle all exceptions</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">unicorn_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exc</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="n">exc</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
+        <span class="n">content</span><span class="o">=</span><span class="p">{</span><span class="s2">"message"</span><span class="p">:</span> <span class="n">exc</span><span class="o">.</span><span class="n">message</span><span class="p">},</span>
+    <span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">"0.0.0.0"</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8900</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="s2">"info"</span><span class="p">)</span>  <span class="c1"># use /docs to get swagger UI for front end. Use localhost/8900 to access the url. 127.0.0.1:8900 doesn't work</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>INFO:     Started server process [34004]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8900 (Press CTRL+C to quit)
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>INFO:     127.0.0.1:51807 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51807 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51808 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51808 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51880 - "GET / HTTP/1.1" 200 OK
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [34004]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3db1583c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Authentication-in-FastAPI">Authentication in FastAPI<a class="anchor-link" href="#Authentication-in-FastAPI">¶</a></h2><p>FastAPI provides several ways to implement authentication and authorization, including:</p>
+<ul>
+<li><strong>OAuth2 (with Password and Bearer):</strong> Built-in support for OAuth2 flows, including password and bearer token authentication.</li>
+<li><strong>API Key:</strong> You can use API keys via headers, query parameters, or cookies.</li>
+<li><strong>HTTP Basic Auth:</strong> Simple username/password authentication.</li>
+<li><strong>Custom Authentication:</strong> You can implement your own authentication logic using dependencies.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51acf46e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Middleware-Support-in-FastAPI">Middleware Support in FastAPI<a class="anchor-link" href="#Middleware-Support-in-FastAPI">¶</a></h2><p>FastAPI provides robust support for middleware, allowing you to process requests and responses globally before they reach your endpoints or after they leave them.</p>
+<p><strong>What is Middleware?</strong></p>
+<ul>
+<li>Middleware is a function that runs before and/or after each request.</li>
+<li>It can be used for tasks like logging, CORS, authentication, modifying requests/responses, etc.</li>
+</ul>
+<p><strong>How to Add Middleware in FastAPI</strong></p>
+<p>You can add middleware using the <code>@app.middleware("http")</code> decorator or by using the <code>add_middleware</code> method for built-in or third-party middleware classes.</p>
+<p><strong>Example: Custom Middleware</strong></p>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Request</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">middleware</span><span class="p">(</span><span class="s2">"http"</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_process_time_header</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">call_next</span><span class="p">):</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">call_next</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="n">process_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">"X-Process-Time"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">process_time</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+<p><strong>Example: Using Built-in Middleware (CORS)</strong></p>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.middleware.cors</span><span class="w"> </span><span class="kn">import</span> <span class="n">CORSMiddleware</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span>
+    <span class="n">CORSMiddleware</span><span class="p">,</span>
+    <span class="n">allow_origins</span><span class="o">=</span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span>
+    <span class="n">allow_credentials</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">allow_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span>
+    <span class="n">allow_headers</span><span class="o">=</span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+<p><strong>Summary:</strong></p>
+<ul>
+<li>Middleware in FastAPI is simple and powerful.</li>
+<li>Use it for cross-cutting concerns like logging, security, CORS, etc.</li>
+<li>You can stack multiple middleware, and their order matters.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b6828cb8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Comparison:-FastAPI-vs-Flask-vs-Django">Comparison: FastAPI vs Flask vs Django<a class="anchor-link" href="#Comparison:-FastAPI-vs-Flask-vs-Django">¶</a></h2><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>FastAPI</th>
+<th>Flask</th>
+<th>Django</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Performance</strong></td>
+<td>Very high (async support, modern stack)</td>
+<td>Good (sync, WSGI-based)</td>
+<td>Good (sync, WSGI-based)</td>
+</tr>
+<tr>
+<td><strong>Ease of Use</strong></td>
+<td>Intuitive, type hints, modern Python</td>
+<td>Simple, minimal, easy for beginners</td>
+<td>Steeper learning curve, more "magic"</td>
+</tr>
+<tr>
+<td><strong>Async Support</strong></td>
+<td>Native (async/await)</td>
+<td>Limited (requires extensions)</td>
+<td>Limited (native async since 3.1, partial)</td>
+</tr>
+<tr>
+<td><strong>Automatic Docs</strong></td>
+<td>Yes (Swagger UI, ReDoc out of the box)</td>
+<td>No (manual or via extensions)</td>
+<td>No (manual or via extensions)</td>
+</tr>
+<tr>
+<td><strong>Data Validation</strong></td>
+<td>Built-in (Pydantic)</td>
+<td>Manual or via extensions</td>
+<td>Built-in (Forms, Models)</td>
+</tr>
+<tr>
+<td><strong>ORM</strong></td>
+<td>No (use external, e.g., SQLAlchemy)</td>
+<td>No (use external, e.g., SQLAlchemy)</td>
+<td>Yes (Django ORM)</td>
+</tr>
+<tr>
+<td><strong>Admin Interface</strong></td>
+<td>No</td>
+<td>No</td>
+<td>Yes (built-in)</td>
+</tr>
+<tr>
+<td><strong>Community/Ecosystem</strong></td>
+<td>Growing, smaller than Flask/Django</td>
+<td>Large, mature</td>
+<td>Very large, mature</td>
+</tr>
+<tr>
+<td><strong>Best For</strong></td>
+<td>Modern APIs, async, microservices</td>
+<td>Simple web apps, microservices, APIs</td>
+<td>Full-stack web apps, rapid prototyping</td>
+</tr>
+<tr>
+<td><strong>Deployment</strong></td>
+<td>ASGI (Uvicorn, Hypercorn)</td>
+<td>WSGI (Gunicorn, uWSGI)</td>
+<td>WSGI (Gunicorn, uWSGI)</td>
+</tr>
+<tr>
+<td><strong>Type Safety</strong></td>
+<td>Yes (type hints enforced)</td>
+<td>No</td>
+<td>Partial (forms/models)</td>
+</tr>
+<tr>
+<td><strong>Built-in Features</strong></td>
+<td>Minimal, add as needed</td>
+<td>Minimal, add as needed</td>
+<td>Many (auth, admin, ORM, forms, etc.)</td>
+</tr>
+<tr>
+<td><strong>Learning Curve</strong></td>
+<td>Moderate (esp. async concepts)</td>
+<td>Low</td>
+<td>Moderate to high</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9cd2ae52">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="What-is-ASGI-and-WSGI?">What is ASGI and WSGI?<a class="anchor-link" href="#What-is-ASGI-and-WSGI?">¶</a></h2><p><strong>WSGI (Web Server Gateway Interface):</strong></p>
+<ul>
+<li>WSGI is a standard interface between web servers and Python web applications or frameworks.</li>
+<li>It was designed for synchronous applications, where each request is handled one at a time.</li>
+<li>Popular frameworks like Flask and Django (before version 3.1) use WSGI.</li>
+<li>WSGI is widely supported and stable, but it does not natively support asynchronous code.</li>
+</ul>
+<p><strong>ASGI (Asynchronous Server Gateway Interface):</strong></p>
+<ul>
+<li>ASGI is a newer standard designed to support both synchronous and asynchronous Python web applications.</li>
+<li>It allows for handling multiple requests concurrently, making it suitable for modern, high-performance web applications.</li>
+<li>Frameworks like FastAPI and newer versions of Django (3.1+) support ASGI.</li>
+<li>ASGI enables features like WebSockets, background tasks, and long-lived connections, which are difficult or impossible with WSGI.</li>
+</ul>
+<p><strong>Summary:</strong></p>
+<ul>
+<li>Use WSGI for traditional, synchronous web apps.</li>
+<li>Use ASGI for modern, asynchronous apps that need high concurrency or real-time features.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2a74ed63-c545-4122-aeb8-60a6129e3284">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Pros-and-Cons-of-FastAPI">Pros and Cons of FastAPI<a class="anchor-link" href="#Pros-and-Cons-of-FastAPI">¶</a></h2><p><strong>Pros:</strong></p>
+<ul>
+<li><strong>High Performance:</strong> FastAPI is one of the fastest Python frameworks available, thanks to its use of Starlette and Pydantic.</li>
+<li><strong>Easy to Use:</strong> Its syntax is intuitive and similar to Python type hints, making it easy to learn and use.</li>
+<li><strong>Automatic Documentation:</strong> FastAPI automatically generates interactive API documentation (Swagger UI and ReDoc).</li>
+<li><strong>Type Safety:</strong> Built-in support for data validation and type checking using Python type hints.</li>
+<li><strong>Asynchronous Support:</strong> Native support for async and await, allowing for high concurrency.</li>
+<li><strong>Modern Features:</strong> Supports OAuth2, JWT, CORS, and other modern web standards out of the box.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li><strong>Young Ecosystem:</strong> FastAPI is relatively new, so its ecosystem and community are smaller compared to older frameworks like Django or Flask.</li>
+<li><strong>Learning Curve for Async:</strong> Developers unfamiliar with asynchronous programming may face a learning curve.</li>
+<li><strong>Limited Built-in Tools:</strong> Lacks some built-in features (like admin interfaces or ORM) that are present in frameworks like Django.</li>
+<li><strong>Deployment Complexity:</strong> Deploying async applications can be more complex, especially for beginners.</li>
+<li><strong>Documentation Gaps:</strong> While the core documentation is good, some advanced use cases may lack detailed guides or examples.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=596ce36e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20d0b407">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

@@ -1,0 +1,53 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5eb74a44">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="REST-APIs">REST APIs<a class="anchor-link" href="#REST-APIs">¶</a></h2><p>A REST API (Representational State Transfer Application Programming Interface) is a way for different software systems to communicate over the web using standard HTTP methods like GET, POST, PUT, and DELETE. REST APIs are designed to be simple, scalable, and stateless.</p>
+<h4 id="Properties-of-REST-APIs:">Properties of REST APIs:<a class="anchor-link" href="#Properties-of-REST-APIs:">¶</a></h4><ul>
+<li><strong>Statelessness:</strong> Each request from a client to the server must contain all the information needed to understand and process the request. The server does not store any client context between requests.</li>
+<li><strong>Client-Server Architecture:</strong> The client and server are separate entities that interact through requests and responses.</li>
+<li><strong>Uniform Interface:</strong> REST APIs use a consistent, standardized way to interact with resources, typically using URLs and standard HTTP methods.</li>
+<li><strong>Cacheability:</strong> Responses from the server can be marked as cacheable or non-cacheable to improve performance.</li>
+<li><strong>Layered System:</strong> REST APIs can be composed of multiple layers, with each layer only interacting with the adjacent ones, improving scalability and security.</li>
+<li><strong>Code on Demand (optional):</strong> Servers can provide executable code (like JavaScript) to clients when needed.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a393dbe9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Stateful-APIs">Stateful APIs<a class="anchor-link" href="#Stateful-APIs">¶</a></h2><p>A Stateful API is an API where the server maintains information about the client's state across multiple requests. This means that each request from the client may rely on data stored on the server from previous interactions.</p>
+<h4 id="Properties-of-Stateful-APIs:">Properties of Stateful APIs:<a class="anchor-link" href="#Properties-of-Stateful-APIs:">¶</a></h4><ul>
+<li><strong>State Retention:</strong> The server keeps track of the client's session or context, allowing for continuity between requests.</li>
+<li><strong>Session Management:</strong> Often uses mechanisms like cookies, tokens, or session IDs to identify and manage client sessions.</li>
+<li><strong>Tighter Coupling:</strong> The client and server are more tightly coupled, as the server must remember previous interactions.</li>
+<li><strong>Complexity:</strong> Can be more complex to scale and maintain, as session data must be stored and managed.</li>
+<li><strong>Use Cases:</strong> Useful for applications where user context is important, such as shopping carts, user authentication, or workflows that span multiple steps.</li>
+</ul>
+<p>In contrast to RESTful (stateless) APIs, stateful APIs are less scalable but can provide a more seamless experience for certain types of applications.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=73ee8fa8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="NOTE">NOTE<a class="anchor-link" href="#NOTE">¶</a></h2><p>FastAPI, flask, Django can be implemented in both statefull or stateless(REST). It depends on requirement,but these API frameworks are supporting both</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

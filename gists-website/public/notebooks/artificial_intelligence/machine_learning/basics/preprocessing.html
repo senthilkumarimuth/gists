@@ -1,0 +1,162 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=162e64bd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Why-Scaling?">Why Scaling?<a class="anchor-link" href="#Why-Scaling?">¶</a></h2><p>Scaling is an essential step in data preprocessing for machine learning. Different features in a dataset may have different units, scales, or ranges (for example, age may range from 0–100, whereas income can range from thousands to millions). When features are on different scales, many machine learning algorithms may perform poorly or take much longer to converge because:</p>
+<ul>
+<li>Algorithms that use distances (such as k-nearest neighbors, K-means clustering, and support vector machines) can be dominated by features with larger numerical values.</li>
+<li>Algorithms that use gradient-based optimization (such as neural networks and logistic regression) may take longer to train because features of varying scales can lead to unstable gradients.</li>
+<li>Many machine learning models assume that all features are centered around zero and have equal variance.</li>
+</ul>
+<p>Scaling ensures that the features contribute equally to the result, speeding up learning and improving model accuracy.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ed33911d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Standard-Scaling">Standard Scaling<a class="anchor-link" href="#Standard-Scaling">¶</a></h2><p>Standard Scaling (also called z-score normalization) is a preprocessing technique used to standardize the features of your data to given range (-1,1) so that they have the properties of a standard normal distribution (mean = 0 and standard deviation = 1).</p>
+<p>You can apply standard scaling using Scikit-learn's <code>StandardScaler</code>:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># X is your data matrix</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e6140326">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Typical use cases:</strong></p>
+<ul>
+<li>Preprocessing continuous input features for classification and regression models.</li>
+<li><ul>
+<li>Feature engineering pipelines in ML workflows where standardized inputs speed up model convergence and improve numerical stability.</li>
+</ul>
+</li>
+<li>Preparing data for clustering algorithms, such as K-Means, so that all features contribute equally to the calculation of cluster distances.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ad52410b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="formula:">formula:<a class="anchor-link" href="#formula:">¶</a></h4><p>z = (x - μ) / σ</p>
+<p>Where:</p>
+<ul>
+<li>x: original feature value</li>
+<li>μ: mean of the feature</li>
+<li>σ: standard deviation of the feature</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2ef73a75">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Pros-and-Cons-of-Standard-Scaling">Pros and Cons of Standard Scaling<a class="anchor-link" href="#Pros-and-Cons-of-Standard-Scaling">¶</a></h3><p><strong>Pros:</strong></p>
+<ul>
+<li>Helps many machine learning algorithms (like SVM, KNN, logistic regression) perform better by normalizing the range of features.</li>
+<li>Accelerates convergence when training neural networks.</li>
+<li>Reduces the impact of features with larger scales, making models less sensitive to feature scaling.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Sensitive to outliers, since the mean and standard deviation can be affected by extreme values.</li>
+<li>The transformed data loses its original units, which may reduce interpretability.</li>
+<li>Not always necessary for tree-based algorithms (like Random Forest or Decision Trees), where scaling usually doesn't impact performance.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1c5097df">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Min-Max-Normalization">Min-Max Normalization<a class="anchor-link" href="#Min-Max-Normalization">¶</a></h2><p>Min-Max Normalization (also known as Min-Max scaling) is a technique used to transform features to a given range, typically [0, 1]. This ensures that all features have the same scale, which can improve the performance of many machine learning algorithms.</p>
+<p>You can apply Min-Max Normalization using Scikit-learn's <code>MinMaxScaler</code>:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">X_normalized</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># X is your data matrix</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=daae426b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Use-Cases-of-Normalization">Use Cases of Normalization<a class="anchor-link" href="#Use-Cases-of-Normalization">¶</a></h3><p>Normalization is commonly used in the following scenarios:</p>
+<ul>
+<li><strong>Neural Networks</strong>: Neural networks often perform better when input features are on a similar scale, especially when using activation functions like sigmoid or tanh.</li>
+<li><strong>K-Nearest Neighbors (KNN)</strong>: Distance-based algorithms are sensitive to the scale of features, so normalization ensures that all features contribute equally to the distance computation.</li>
+<li><strong>Principal Component Analysis (PCA)</strong>: Since PCA relies on the variance of features, normalization guarantees that variables with larger ranges don't dominate others.</li>
+<li><strong>Gradient Descent Optimization</strong>: Many algorithms use gradient descent, which converges faster when features are scaled similarly.</li>
+<li><strong>Image Processing</strong>: Pixel intensities are often normalized to improve learning and convergence.</li>
+<li><strong>Clustering Algorithms</strong>: Methods like K-Means use distance measures and benefit from normalization to prevent features with larger scales from dominating the clustering process.</li>
+</ul>
+<p>Normalization is essential whenever differences in feature scales can impact model performance or interpretation.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b44ab748">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Formula:">Formula:<a class="anchor-link" href="#Formula:">¶</a></h4><p>x_norm = (x - min) / (max - min)</p>
+<p>Where:</p>
+<ul>
+<li>x: original feature value</li>
+<li>min: minimum value of the feature</li>
+<li>max: maximum value of the feature</li>
+</ul>
+<h3 id="Pros-and-Cons-of-Min-Max-Normalization">Pros and Cons of Min-Max Normalization<a class="anchor-link" href="#Pros-and-Cons-of-Min-Max-Normalization">¶</a></h3><p><strong>Pros:</strong></p>
+<ul>
+<li>Scales all features to exactly fall within the specified range, commonly [0, 1].</li>
+<li>Useful for algorithms that require bounded inputs (like neural networks with sigmoid activation).</li>
+<li>Preserves the shape of the original data distribution.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Sensitive to outliers since min and max values can be affected by extreme data points.</li>
+<li>Might squash the range of the data, causing information loss if outliers are present.</li>
+<li>Not suitable if the test data contains new min or max values not seen in the training data.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

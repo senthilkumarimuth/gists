@@ -1,0 +1,467 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c83adc1b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="LIME">LIME<a class="anchor-link" href="#LIME">¶</a></h2><p>The LIME (Local Interpretable Model-agnostic Explanations) library in Python is used to explain the predictions of any machine learning classifier in an interpretable and faithful manner, by learning an interpretable model locally around the prediction. It helps users understand why a model made a certain prediction for a specific instance.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c93886fa">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>model-agnostic - meaning it can be applied to any ML/DL models, doesn't depend on model's interanl structure. treats models as black box</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8eeadbe1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Step-by-Step-Working-of-LIME">Step-by-Step Working of LIME<a class="anchor-link" href="#Step-by-Step-Working-of-LIME">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ee5229f3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><img alt="alt text" src="lime.png" title="Title"/></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4b62d88d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ol>
+<li><p><strong>Select the Instance to Explain:</strong><br/>
+Choose a specific data point (instance) for which you want to understand the model's prediction.</p>
+</li>
+<li><p><strong>Perturb the Data:</strong><br/>
+Generate a set of new samples by slightly modifying (perturbing) the selected instance. For tabular data, this could mean randomly changing feature values; for text, removing or replacing words; for images, turning off superpixels.</p>
+</li>
+<li><p><strong>Predict with the Black-Box Model:</strong><br/>
+Use the original (black-box) model to predict the output for each of the perturbed samples. Perturbed sample data will have prediction in both classes(in binary class)</p>
+</li>
+<li><p><strong>Weight the Samples:</strong><br/>
+Assign higher weights to perturbed samples that are more similar to the original instance. This ensures the explanation focuses on the local neighborhood of the instance.</p>
+</li>
+<li><p><strong>Fit an Interpretable Model Locally:</strong></p>
+<p>Train a simple, interpretable model (such as a linear regression or decision tree) on the perturbed samples and their predictions, using the assigned weights.</p>
+</li>
+<li><p><strong>Extract Feature Importances:</strong><br/>
+The coefficients or feature importances from the local surrogate model indicate which features contributed most to the prediction for the selected instance.</p>
+</li>
+<li><p><strong>Present the Explanation:</strong><br/>
+Display the most influential features and their contributions, providing a human-understandable explanation for the model's prediction on that specific instance.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9744ccae">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Interpreting-LIME-results">Interpreting LIME results<a class="anchor-link" href="#Interpreting-LIME-results">¶</a></h1>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e2968482">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">ipython</span> <span class="n">jupyter</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Requirement already satisfied: ipython in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (9.5.0)
+Requirement already satisfied: jupyter in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (1.1.1)
+Requirement already satisfied: decorator in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython) (5.2.1)
+Requirement already satisfied: ipython-pygments-lexers in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython) (1.1.1)
+Requirement already satisfied: jedi&gt;=0.16 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython) (0.19.2)
+Requirement already satisfied: matplotlib-inline in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython) (0.1.7)
+Requirement already satisfied: pexpect&gt;4.3 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython) (4.9.0)
+Requirement already satisfied: prompt_toolkit&lt;3.1.0,&gt;=3.0.41 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython) (3.0.52)
+Requirement already satisfied: pygments&gt;=2.4.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython) (2.19.2)
+Requirement already satisfied: stack_data in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython) (0.6.3)
+Requirement already satisfied: traitlets&gt;=5.13.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython) (5.14.3)
+Requirement already satisfied: wcwidth in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from prompt_toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython) (0.2.14)
+Requirement already satisfied: notebook in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter) (7.4.7)
+Requirement already satisfied: jupyter-console in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter) (6.6.3)
+Requirement already satisfied: nbconvert in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter) (7.16.6)
+Requirement already satisfied: ipykernel in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter) (6.30.1)
+Requirement already satisfied: ipywidgets in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter) (8.1.7)
+Requirement already satisfied: jupyterlab in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter) (4.4.9)
+Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.4 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jedi&gt;=0.16-&gt;ipython) (0.8.5)
+Requirement already satisfied: ptyprocess&gt;=0.5 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from pexpect&gt;4.3-&gt;ipython) (0.7.0)
+Requirement already satisfied: appnope&gt;=0.1.2 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (0.1.4)
+Requirement already satisfied: comm&gt;=0.1.1 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (0.2.3)
+Requirement already satisfied: debugpy&gt;=1.6.5 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (1.8.17)
+Requirement already satisfied: jupyter-client&gt;=8.0.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (8.6.3)
+Requirement already satisfied: jupyter-core!=5.0.*,&gt;=4.12 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (5.8.1)
+Requirement already satisfied: nest-asyncio&gt;=1.4 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (1.6.0)
+Requirement already satisfied: packaging&gt;=22 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (25.0)
+Requirement already satisfied: psutil&gt;=5.7 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (7.1.0)
+Requirement already satisfied: pyzmq&gt;=25 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (27.1.0)
+Requirement already satisfied: tornado&gt;=6.2 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipykernel-&gt;jupyter) (6.5.2)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-client&gt;=8.0.0-&gt;ipykernel-&gt;jupyter) (2.9.0.post0)
+Requirement already satisfied: platformdirs&gt;=2.5 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-core!=5.0.*,&gt;=4.12-&gt;ipykernel-&gt;jupyter) (4.4.0)
+Requirement already satisfied: six&gt;=1.5 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;jupyter-client&gt;=8.0.0-&gt;ipykernel-&gt;jupyter) (1.17.0)
+Requirement already satisfied: widgetsnbextension~=4.0.14 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipywidgets-&gt;jupyter) (4.0.14)
+Requirement already satisfied: jupyterlab_widgets~=3.0.15 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipywidgets-&gt;jupyter) (3.0.15)
+Requirement already satisfied: async-lru&gt;=1.0.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (2.0.5)
+Requirement already satisfied: httpx&lt;1,&gt;=0.25.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (0.28.1)
+Requirement already satisfied: jinja2&gt;=3.0.3 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (3.1.6)
+Requirement already satisfied: jupyter-lsp&gt;=2.0.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (2.3.0)
+Requirement already satisfied: jupyter-server&lt;3,&gt;=2.4.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (2.17.0)
+Requirement already satisfied: jupyterlab-server&lt;3,&gt;=2.27.1 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (2.27.3)
+Requirement already satisfied: notebook-shim&gt;=0.2 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (0.2.4)
+Requirement already satisfied: setuptools&gt;=41.1.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyterlab-&gt;jupyter) (80.9.0)
+Requirement already satisfied: anyio in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from httpx&lt;1,&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (4.11.0)
+Requirement already satisfied: certifi in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from httpx&lt;1,&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (2025.8.3)
+Requirement already satisfied: httpcore==1.* in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from httpx&lt;1,&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (1.0.9)
+Requirement already satisfied: idna in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from httpx&lt;1,&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (3.10)
+Requirement already satisfied: h11&gt;=0.16 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from httpcore==1.*-&gt;httpx&lt;1,&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (0.16.0)
+Requirement already satisfied: argon2-cffi&gt;=21.1 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (25.1.0)
+Requirement already satisfied: jupyter-events&gt;=0.11.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.12.0)
+Requirement already satisfied: jupyter-server-terminals&gt;=0.4.4 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.5.3)
+Requirement already satisfied: nbformat&gt;=5.3.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (5.10.4)
+Requirement already satisfied: prometheus-client&gt;=0.9 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.23.1)
+Requirement already satisfied: send2trash&gt;=1.8.2 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.8.3)
+Requirement already satisfied: terminado&gt;=0.8.3 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.18.1)
+Requirement already satisfied: websocket-client&gt;=1.7 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.8.0)
+Requirement already satisfied: babel&gt;=2.10 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (2.17.0)
+Requirement already satisfied: json5&gt;=0.9.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (0.12.1)
+Requirement already satisfied: jsonschema&gt;=4.18.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (4.25.1)
+Requirement already satisfied: requests&gt;=2.31 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (2.32.5)
+Requirement already satisfied: sniffio&gt;=1.1 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from anyio-&gt;httpx&lt;1,&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (1.3.1)
+Requirement already satisfied: typing_extensions&gt;=4.5 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from anyio-&gt;httpx&lt;1,&gt;=0.25.0-&gt;jupyterlab-&gt;jupyter) (4.15.0)
+Requirement already satisfied: argon2-cffi-bindings in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (25.1.0)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jinja2&gt;=3.0.3-&gt;jupyterlab-&gt;jupyter) (3.0.3)
+Requirement already satisfied: attrs&gt;=22.2.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (25.3.0)
+Requirement already satisfied: jsonschema-specifications&gt;=2023.03.6 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (2025.9.1)
+Requirement already satisfied: referencing&gt;=0.28.4 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (0.36.2)
+Requirement already satisfied: rpds-py&gt;=0.7.1 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (0.27.1)
+Requirement already satisfied: python-json-logger&gt;=2.0.4 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (3.3.0)
+Requirement already satisfied: pyyaml&gt;=5.3 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (6.0.3)
+Requirement already satisfied: rfc3339-validator in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.1.4)
+Requirement already satisfied: rfc3986-validator&gt;=0.1.1 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (0.1.1)
+Requirement already satisfied: fqdn in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.5.1)
+Requirement already satisfied: isoduration in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (20.11.0)
+Requirement already satisfied: jsonpointer&gt;1.13 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (3.0.0)
+Requirement already satisfied: rfc3987-syntax&gt;=1.1.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.1.0)
+Requirement already satisfied: uri-template in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.3.0)
+Requirement already satisfied: webcolors&gt;=24.6.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (24.11.1)
+Requirement already satisfied: beautifulsoup4 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (4.14.0)
+Requirement already satisfied: bleach!=5.0.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from bleach[css]!=5.0.0-&gt;nbconvert-&gt;jupyter) (6.2.0)
+Requirement already satisfied: defusedxml in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (0.7.1)
+Requirement already satisfied: jupyterlab-pygments in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (0.3.0)
+Requirement already satisfied: mistune&lt;4,&gt;=2.0.3 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (3.1.4)
+Requirement already satisfied: nbclient&gt;=0.5.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (0.10.2)
+Requirement already satisfied: pandocfilters&gt;=1.4.1 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from nbconvert-&gt;jupyter) (1.5.1)
+Requirement already satisfied: webencodings in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from bleach!=5.0.0-&gt;bleach[css]!=5.0.0-&gt;nbconvert-&gt;jupyter) (0.5.1)
+Requirement already satisfied: tinycss2&lt;1.5,&gt;=1.1.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from bleach[css]!=5.0.0-&gt;nbconvert-&gt;jupyter) (1.4.0)
+Requirement already satisfied: fastjsonschema&gt;=2.15 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from nbformat&gt;=5.3.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (2.21.2)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (3.4.3)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from requests&gt;=2.31-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;jupyter) (2.5.0)
+Requirement already satisfied: lark&gt;=1.2.2 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from rfc3987-syntax&gt;=1.1.0-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.3.0)
+Requirement already satisfied: cffi&gt;=1.0.1 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from argon2-cffi-bindings-&gt;argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (2.0.0)
+Requirement already satisfied: pycparser in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from cffi&gt;=1.0.1-&gt;argon2-cffi-bindings-&gt;argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (2.23)
+Requirement already satisfied: soupsieve&gt;1.2 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from beautifulsoup4-&gt;nbconvert-&gt;jupyter) (2.8)
+Requirement already satisfied: arrow&gt;=0.15.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from isoduration-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (1.3.0)
+Requirement already satisfied: types-python-dateutil&gt;=2.8.10 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from arrow&gt;=0.15.0-&gt;isoduration-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;jupyter) (2.9.0.20250822)
+Requirement already satisfied: executing&gt;=1.2.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from stack_data-&gt;ipython) (2.2.1)
+Requirement already satisfied: asttokens&gt;=2.1.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from stack_data-&gt;ipython) (3.0.0)
+Requirement already satisfied: pure-eval in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from stack_data-&gt;ipython) (0.2.3)
+Note: you may need to restart the kernel to use updated packages.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3fafcff2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="s2">"ipython&lt;8.17"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=802c1c8c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Example: Using LIME to Explain a Prediction on Tabular Data</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lime.lime_tabular</span>
+
+<span class="c1"># Load dataset and train a model</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span>
+<span class="n">class_names</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target_names</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Choose an instance to explain</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">instance</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="c1"># Create LIME explainer</span>
+<span class="n">explainer</span> <span class="o">=</span> <span class="n">lime</span><span class="o">.</span><span class="n">lime_tabular</span><span class="o">.</span><span class="n">LimeTabularExplainer</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">,</span>
+    <span class="n">feature_names</span><span class="o">=</span><span class="n">feature_names</span><span class="p">,</span>
+    <span class="n">class_names</span><span class="o">=</span><span class="n">class_names</span><span class="p">,</span>
+    <span class="n">discretize_continuous</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Explain the prediction for the selected instance</span>
+<span class="n">exp</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">explain_instance</span><span class="p">(</span>
+    <span class="n">instance</span><span class="p">,</span> 
+    <span class="n">rf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">,</span> 
+    <span class="n">num_features</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> 
+    <span class="n">top_labels</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Show explanation in notebook</span>
+
+
+
+
+<span class="c1"># Interpreting the result:</span>
+<span class="c1"># The explanation will display the most influential features for the model's prediction on this instance.</span>
+<span class="c1"># Each feature's contribution (positive or negative) to the predicted class probability is shown.</span>
+<span class="c1"># For example, if "petal width (cm) &gt; 1.75" has a large positive weight for class "virginica",</span>
+<span class="c1"># it means this feature strongly supports the prediction of "virginica" for this sample.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=193b13c4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Collecting ipython&lt;8.17
+  Using cached ipython-8.16.1-py3-none-any.whl.metadata (5.9 kB)
+Requirement already satisfied: backcall in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython&lt;8.17) (0.2.0)
+Requirement already satisfied: decorator in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython&lt;8.17) (5.2.1)
+Requirement already satisfied: jedi&gt;=0.16 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython&lt;8.17) (0.19.2)
+Requirement already satisfied: matplotlib-inline in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython&lt;8.17) (0.1.7)
+Requirement already satisfied: pickleshare in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython&lt;8.17) (0.7.5)
+Requirement already satisfied: prompt-toolkit!=3.0.37,&lt;3.1.0,&gt;=3.0.30 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython&lt;8.17) (3.0.52)
+Requirement already satisfied: pygments&gt;=2.4.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython&lt;8.17) (2.19.2)
+Requirement already satisfied: stack-data in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython&lt;8.17) (0.6.3)
+Requirement already satisfied: traitlets&gt;=5 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython&lt;8.17) (5.14.3)
+Requirement already satisfied: pexpect&gt;4.3 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython&lt;8.17) (4.9.0)
+Requirement already satisfied: appnope in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from ipython&lt;8.17) (0.1.4)
+Requirement already satisfied: wcwidth in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from prompt-toolkit!=3.0.37,&lt;3.1.0,&gt;=3.0.30-&gt;ipython&lt;8.17) (0.2.14)
+Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.4 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from jedi&gt;=0.16-&gt;ipython&lt;8.17) (0.8.5)
+Requirement already satisfied: ptyprocess&gt;=0.5 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from pexpect&gt;4.3-&gt;ipython&lt;8.17) (0.7.0)
+Requirement already satisfied: executing&gt;=1.2.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython&lt;8.17) (2.2.1)
+Requirement already satisfied: asttokens&gt;=2.1.0 in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython&lt;8.17) (3.0.0)
+Requirement already satisfied: pure-eval in /Users/senthilkumar/projects/gists/.venv/lib/python3.12/site-packages (from stack-data-&gt;ipython&lt;8.17) (0.2.3)
+Using cached ipython-8.16.1-py3-none-any.whl (806 kB)
+Installing collected packages: ipython
+  Attempting uninstall: ipython
+    Found existing installation: ipython 9.5.0
+    Uninstalling ipython-9.5.0:
+      Successfully uninstalled ipython-9.5.0
+Successfully installed ipython-8.16.1
+Note: you may need to restart the kernel to use updated packages.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3c641271">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">exp</span><span class="o">.</span><span class="n">show_in_notebook</span><span class="p">(</span><span class="n">show_table</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_all</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<html>
+
+<head></head><body>
+<div class="lime top_div" id="top_divBGGG3A0WA7Z1809"></div>
+
+</body></html>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4ebe21f0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The probability predicted for a lable is sum of probability from individual features, hence it easily interetable</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44e2ffe1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="LIME-vs-SHAP">LIME vs SHAP<a class="anchor-link" href="#LIME-vs-SHAP">¶</a></h3><p>LIME (Local Interpretable Model-agnostic Explanations) and SHAP (SHapley Additive exPlanations) are both popular tools for explaining machine learning model predictions, but they differ in their approach and theoretical foundations.</p>
+<ul>
+<li><p><strong>LIME</strong> explains individual predictions by approximating the model locally with an interpretable model (like a linear model), focusing on the neighborhood of the instance being explained. It perturbs the input data and observes the resulting changes in predictions to fit a simple model that mimics the complex model locally.</p>
+</li>
+<li><p><strong>SHAP</strong> is based on cooperative game theory and computes Shapley values, which fairly attribute the contribution of each feature to the prediction. SHAP provides a unified measure of feature importance that is consistent and has strong theoretical guarantees.</p>
+</li>
+</ul>
+<p><strong>Key Differences:</strong></p>
+<ul>
+<li>LIME uses local surrogate models, while SHAP uses Shapley values from game theory.</li>
+<li>SHAP values are theoretically guaranteed to be consistent and additive, while LIME is more heuristic.</li>
+<li>SHAP can be more computationally intensive but provides global and local explanations, whereas LIME is primarily local.</li>
+</ul>
+<p>In summary, both are useful for model interpretability, but SHAP provides more theoretically sound and consistent explanations, while LIME is often faster and easier to apply for local interpretability.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61a496d9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Use-Cases-for-LIME">Use Cases for LIME<a class="anchor-link" href="#Use-Cases-for-LIME">¶</a></h3><p>LIME is particularly useful in the following scenarios:</p>
+<ul>
+<li><p><strong>Model Debugging:</strong> Helps data scientists and engineers understand why a model made a specific prediction, making it easier to identify errors, biases, or unexpected behaviors in the model.</p>
+</li>
+<li><p><strong>Regulatory Compliance:</strong> In industries like finance and healthcare, regulations may require explanations for automated decisions. LIME can provide interpretable justifications for individual predictions.</p>
+</li>
+<li><p><strong>Building Trust:</strong> By offering clear, local explanations, LIME helps build trust with stakeholders, end-users, and domain experts who may be skeptical of black-box models.</p>
+</li>
+<li><p><strong>Feature Importance Analysis:</strong> LIME can highlight which features are most influential for a particular prediction, guiding feature engineering and model refinement.</p>
+</li>
+<li><p><strong>Model Comparison:</strong> When evaluating multiple models, LIME can be used to compare how different models arrive at their predictions for the same instance.</p>
+</li>
+<li><p><strong>Detecting Data Drift or Concept Drift:</strong> By explaining predictions over time, LIME can help detect when the model's behavior changes due to shifts in data distribution.</p>
+</li>
+<li><p><strong>Explaining Predictions on Tabular, Text, and Image Data:</strong> LIME supports a variety of data types, making it versatile for use in different domains such as tabular data (e.g., credit scoring), text classification (e.g., sentiment analysis), and image classification (e.g., medical imaging).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a1751221">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Pros-and-Cons-of-LIME">Pros and Cons of LIME<a class="anchor-link" href="#Pros-and-Cons-of-LIME">¶</a></h3><p><strong>Pros:</strong></p>
+<ul>
+<li>Model-agnostic: Can be used with any machine learning or deep learning model, regardless of its internal structure.</li>
+<li>Local interpretability: Provides explanations for individual predictions, helping users understand specific model decisions.</li>
+<li>Easy to use: Simple API and quick to apply to new models and datasets.</li>
+<li>Flexible: Supports tabular, text, and image data.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Instability: Explanations can vary significantly with different runs due to random sampling of perturbed data.</li>
+<li>Locality: Only explains predictions locally; does not provide global model interpretability.</li>
+<li>Heuristic approach: Lacks the strong theoretical guarantees of methods like SHAP.</li>
+<li>Computational cost: Can be slow for large datasets or complex models, as it requires many model evaluations for each explanation.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

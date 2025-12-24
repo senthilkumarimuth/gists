@@ -1,0 +1,985 @@
+{
+  "kotline_android": {
+    "label": "Kotline Android",
+    "children": {},
+    "notebooks": [
+      {
+        "title": "var or val",
+        "path": "/kotline_android/variable",
+        "id": "kotline_android/variable"
+      },
+      {
+        "title": "Following are the data types availablerays",
+        "path": "/kotline_android/Datatypes",
+        "id": "kotline_android/Datatypes"
+      },
+      {
+        "title": "fun",
+        "path": "/kotline_android/keywords",
+        "id": "kotline_android/keywords"
+      }
+    ],
+    "count": 3
+  },
+  "python": {
+    "label": "Python",
+    "children": {
+      "tools": {
+        "label": "Tools",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "Lazy loading",
+            "path": "/python/tools/databrciks",
+            "id": "python/tools/databrciks"
+          },
+          {
+            "title": "Codewiki",
+            "path": "/python/tools/understanding_repo",
+            "id": "python/tools/understanding_repo"
+          },
+          {
+            "title": "Kubernetes",
+            "path": "/python/tools/kubernetes",
+            "id": "python/tools/kubernetes"
+          }
+        ],
+        "count": 3
+      },
+      "libraries": {
+        "label": "Libraries",
+        "children": {
+          "web_server": {
+            "label": "Web Server",
+            "children": {
+              "fastapi_web_app": {
+                "label": "Fastapi Web App",
+                "children": {},
+                "notebooks": [
+                  {
+                    "title": "What is FastAPI",
+                    "path": "/python/libraries/web_server/fastapi_web_app/myapp",
+                    "id": "python/libraries/web_server/fastapi_web_app/myapp"
+                  }
+                ],
+                "count": 1
+              }
+            },
+            "notebooks": [],
+            "count": 1
+          },
+          "visual": {
+            "label": "Visual",
+            "children": {
+              "folium": {
+                "label": "Folium",
+                "children": {},
+                "notebooks": [
+                  {
+                    "title": "Install folium",
+                    "path": "/python/libraries/visual/folium/folium_lib",
+                    "id": "python/libraries/visual/folium/folium_lib"
+                  }
+                ],
+                "count": 1
+              }
+            },
+            "notebooks": [],
+            "count": 1
+          }
+        },
+        "notebooks": [
+          {
+            "title": "what is fire",
+            "path": "/python/libraries/fire_lib",
+            "id": "python/libraries/fire_lib"
+          },
+          {
+            "title": "extract text",
+            "path": "/python/libraries/pdfplumber_lib",
+            "id": "python/libraries/pdfplumber_lib"
+          },
+          {
+            "title": "Untitled Notebook",
+            "path": "/python/libraries/pydantic_lib",
+            "id": "python/libraries/pydantic_lib"
+          },
+          {
+            "title": "what is string library",
+            "path": "/python/libraries/string_lib",
+            "id": "python/libraries/string_lib"
+          },
+          {
+            "title": "Getting its version",
+            "path": "/python/libraries/tensorflow_lib",
+            "id": "python/libraries/tensorflow_lib"
+          },
+          {
+            "title": "Geodisc - This considers earths curvature while calculating distance between two points",
+            "path": "/python/libraries/geopy_lib",
+            "id": "python/libraries/geopy_lib"
+          }
+        ],
+        "count": 8
+      },
+      "design_patterns": {
+        "label": "Design Patterns",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "imagepngattachmentimagepng",
+            "path": "/python/design_patterns/adapter_design_pattern",
+            "id": "python/design_patterns/adapter_design_pattern"
+          },
+          {
+            "title": "Factory Design Pattern",
+            "path": "/python/design_patterns/factory_design_pattern",
+            "id": "python/design_patterns/factory_design_pattern"
+          },
+          {
+            "title": "Untitled Notebook",
+            "path": "/python/design_patterns/prototype_design_pattern",
+            "id": "python/design_patterns/prototype_design_pattern"
+          }
+        ],
+        "count": 3
+      },
+      "search_algorithms": {
+        "label": "Search Algorithms",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "linear search",
+            "path": "/python/search_algorithms/python_search_algorithms",
+            "id": "python/search_algorithms/python_search_algorithms"
+          }
+        ],
+        "count": 1
+      }
+    },
+    "notebooks": [
+      {
+        "title": "create an empty dictionary",
+        "path": "/python/data_structure_dictionary",
+        "id": "python/data_structure_dictionary"
+      },
+      {
+        "title": "how to create an empty list",
+        "path": "/python/data_stucture_list",
+        "id": "python/data_stucture_list"
+      },
+      {
+        "title": "and",
+        "path": "/python/keyword",
+        "id": "python/keyword"
+      },
+      {
+        "title": "Create a number",
+        "path": "/python/data_structure_number",
+        "id": "python/data_structure_number"
+      },
+      {
+        "title": "filter",
+        "path": "/python/In-built functions",
+        "id": "python/In-built functions"
+      },
+      {
+        "title": "Loops",
+        "path": "/python/loops",
+        "id": "python/loops"
+      },
+      {
+        "title": "Types of Operator",
+        "path": "/python/Operator",
+        "id": "python/Operator"
+      },
+      {
+        "title": "Decision making",
+        "path": "/python/Decision_making",
+        "id": "python/Decision_making"
+      },
+      {
+        "title": "Functions",
+        "path": "/python/Functions",
+        "id": "python/Functions"
+      },
+      {
+        "title": "SOLID Principles in Python",
+        "path": "/python/oops",
+        "id": "python/oops"
+      },
+      {
+        "title": "how to create emtpty set",
+        "path": "/python/data_structure_set",
+        "id": "python/data_structure_set"
+      },
+      {
+        "title": "how to identify a string",
+        "path": "/python/data_structure_string",
+        "id": "python/data_structure_string"
+      },
+      {
+        "title": "Empty tuple",
+        "path": "/python/data_structure_tuple",
+        "id": "python/data_structure_tuple"
+      },
+      {
+        "title": "Definition",
+        "path": "/python/Generator",
+        "id": "python/Generator"
+      }
+    ],
+    "count": 29
+  },
+  "maths": {
+    "label": "Maths",
+    "children": {},
+    "notebooks": [
+      {
+        "title": "Joint probability",
+        "path": "/maths/probability",
+        "id": "maths/probability"
+      }
+    ],
+    "count": 1
+  },
+  "cloud": {
+    "label": "Cloud",
+    "children": {
+      "azure": {
+        "label": "Azure",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "why azure function app",
+            "path": "/cloud/azure/function_app",
+            "id": "cloud/azure/function_app"
+          },
+          {
+            "title": "REST APIs",
+            "path": "/cloud/azure/REST_vsNON_REST_APIs",
+            "id": "cloud/azure/REST_vsNON_REST_APIs"
+          }
+        ],
+        "count": 2
+      }
+    },
+    "notebooks": [],
+    "count": 2
+  },
+  "artificial_intelligence": {
+    "label": "Artificial Intelligence",
+    "children": {
+      "embeddings": {
+        "label": "Embeddings",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "What are learned token embeddings",
+            "path": "/artificial_intelligence/embeddings/embeddings",
+            "id": "artificial_intelligence/embeddings/embeddings"
+          },
+          {
+            "title": "Positional Embeddings in Deep Learning",
+            "path": "/artificial_intelligence/embeddings/positional_embeddings",
+            "id": "artificial_intelligence/embeddings/positional_embeddings"
+          }
+        ],
+        "count": 2
+      },
+      "recommendation_system": {
+        "label": "Recommendation System",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "Recommendation System",
+            "path": "/artificial_intelligence/recommendation_system/recommendation_engine",
+            "id": "artificial_intelligence/recommendation_system/recommendation_engine"
+          }
+        ],
+        "count": 1
+      },
+      "mlops": {
+        "label": "Mlops",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "httpsnotebooksdatabrickscomdemosmlops-end2endindexhtml",
+            "path": "/artificial_intelligence/mlops/databricks_mlops",
+            "id": "artificial_intelligence/mlops/databricks_mlops"
+          },
+          {
+            "title": "Feature Drift",
+            "path": "/artificial_intelligence/mlops/feature_drift",
+            "id": "artificial_intelligence/mlops/feature_drift"
+          }
+        ],
+        "count": 2
+      },
+      "explainability": {
+        "label": "Explainability",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "Step-by-Step Working of LIME",
+            "path": "/artificial_intelligence/explainability/lime_for_local",
+            "id": "artificial_intelligence/explainability/lime_for_local"
+          },
+          {
+            "title": "what is shap",
+            "path": "/artificial_intelligence/explainability/shap_for_local_and_global",
+            "id": "artificial_intelligence/explainability/shap_for_local_and_global"
+          }
+        ],
+        "count": 2
+      },
+      "quantization": {
+        "label": "Quantization",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "Linear Quantization",
+            "path": "/artificial_intelligence/quantization/quantization_learning",
+            "id": "artificial_intelligence/quantization/quantization_learning"
+          }
+        ],
+        "count": 1
+      },
+      "deep_learning": {
+        "label": "Deep Learning",
+        "children": {
+          "embeddings": {
+            "label": "Embeddings",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "What is Doc2Vec",
+                "path": "/artificial_intelligence/deep_learning/embeddings/doc2vec_example",
+                "id": "artificial_intelligence/deep_learning/embeddings/doc2vec_example"
+              },
+              {
+                "title": "GloVe Global Vectors for Word Representation Embedding Creation",
+                "path": "/artificial_intelligence/deep_learning/embeddings/glove_embedding_example",
+                "id": "artificial_intelligence/deep_learning/embeddings/glove_embedding_example"
+              }
+            ],
+            "count": 2
+          },
+          "vision": {
+            "label": "Vision",
+            "children": {
+              "vgg": {
+                "label": "Vgg",
+                "children": {},
+                "notebooks": [
+                  {
+                    "title": "titleimgnew41jpg",
+                    "path": "/artificial_intelligence/deep_learning/vision/vgg/vgg_catvsdog",
+                    "id": "artificial_intelligence/deep_learning/vision/vgg/vgg_catvsdog"
+                  }
+                ],
+                "count": 1
+              }
+            },
+            "notebooks": [
+              {
+                "title": "What is a CNN",
+                "path": "/artificial_intelligence/deep_learning/vision/cnn",
+                "id": "artificial_intelligence/deep_learning/vision/cnn"
+              },
+              {
+                "title": "what is super resolution",
+                "path": "/artificial_intelligence/deep_learning/vision/super_resolution",
+                "id": "artificial_intelligence/deep_learning/vision/super_resolution"
+              }
+            ],
+            "count": 3
+          },
+          "activation_functions": {
+            "label": "Activation Functions",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "why activation functions",
+                "path": "/artificial_intelligence/deep_learning/activation_functions/basics",
+                "id": "artificial_intelligence/deep_learning/activation_functions/basics"
+              },
+              {
+                "title": "Sigmoid Activation Function",
+                "path": "/artificial_intelligence/deep_learning/activation_functions/sigmoid_activation",
+                "id": "artificial_intelligence/deep_learning/activation_functions/sigmoid_activation"
+              },
+              {
+                "title": "What is a Maxout activation function",
+                "path": "/artificial_intelligence/deep_learning/activation_functions/maxout_activation",
+                "id": "artificial_intelligence/deep_learning/activation_functions/maxout_activation"
+              },
+              {
+                "title": "Tanh Activation Function",
+                "path": "/artificial_intelligence/deep_learning/activation_functions/tanh_activation",
+                "id": "artificial_intelligence/deep_learning/activation_functions/tanh_activation"
+              },
+              {
+                "title": "ReLU Activation Function",
+                "path": "/artificial_intelligence/deep_learning/activation_functions/relu_activation",
+                "id": "artificial_intelligence/deep_learning/activation_functions/relu_activation"
+              },
+              {
+                "title": "Softmax Activation Function",
+                "path": "/artificial_intelligence/deep_learning/activation_functions/softmax_activation",
+                "id": "artificial_intelligence/deep_learning/activation_functions/softmax_activation"
+              }
+            ],
+            "count": 6
+          },
+          "object_detection": {
+            "label": "Object Detection",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "what is resnet",
+                "path": "/artificial_intelligence/deep_learning/object_detection/resnet_example",
+                "id": "artificial_intelligence/deep_learning/object_detection/resnet_example"
+              }
+            ],
+            "count": 1
+          }
+        },
+        "notebooks": [
+          {
+            "title": "how to create custom pytorch loss metric functions",
+            "path": "/artificial_intelligence/deep_learning/pytorch_framework",
+            "id": "artificial_intelligence/deep_learning/pytorch_framework"
+          }
+        ],
+        "count": 13
+      },
+      "auto_encoder_concepts": {
+        "label": "Auto Encoder Concepts",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "What is an Autoencoder",
+            "path": "/artificial_intelligence/auto_encoder_concepts/auto_encode_model",
+            "id": "artificial_intelligence/auto_encoder_concepts/auto_encode_model"
+          }
+        ],
+        "count": 1
+      },
+      "image_text_parsing": {
+        "label": "Image Text Parsing",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "Untitled Notebook",
+            "path": "/artificial_intelligence/image_text_parsing/data_parsing",
+            "id": "artificial_intelligence/image_text_parsing/data_parsing"
+          }
+        ],
+        "count": 1
+      },
+      "generative_ai": {
+        "label": "Generative Ai",
+        "children": {
+          "model_compression": {
+            "label": "Model Compression",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "what is knowledge distilation",
+                "path": "/artificial_intelligence/generative_ai/model_compression/knowledge_distilation",
+                "id": "artificial_intelligence/generative_ai/model_compression/knowledge_distilation"
+              }
+            ],
+            "count": 1
+          },
+          "fine_tuning": {
+            "label": "Fine Tuning",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "Fine Tuning",
+                "path": "/artificial_intelligence/generative_ai/fine_tuning/custom_fine_tune",
+                "id": "artificial_intelligence/generative_ai/fine_tuning/custom_fine_tune"
+              }
+            ],
+            "count": 1
+          },
+          "architectures": {
+            "label": "Architectures",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "Guardrails in GenAI Applications",
+                "path": "/artificial_intelligence/generative_ai/architectures/guardrails",
+                "id": "artificial_intelligence/generative_ai/architectures/guardrails"
+              },
+              {
+                "title": "What are diffusion models",
+                "path": "/artificial_intelligence/generative_ai/architectures/diffusion_models",
+                "id": "artificial_intelligence/generative_ai/architectures/diffusion_models"
+              },
+              {
+                "title": "what is DALLE",
+                "path": "/artificial_intelligence/generative_ai/architectures/text_to_image_dalle",
+                "id": "artificial_intelligence/generative_ai/architectures/text_to_image_dalle"
+              },
+              {
+                "title": "Understanding NanoGPT",
+                "path": "/artificial_intelligence/generative_ai/architectures/understanding_nangpt",
+                "id": "artificial_intelligence/generative_ai/architectures/understanding_nangpt"
+              },
+              {
+                "title": "What are Transformers",
+                "path": "/artificial_intelligence/generative_ai/architectures/understanding_transformers",
+                "id": "artificial_intelligence/generative_ai/architectures/understanding_transformers"
+              },
+              {
+                "title": "Variational Autoencoders VAE in AI",
+                "path": "/artificial_intelligence/generative_ai/architectures/VAEs",
+                "id": "artificial_intelligence/generative_ai/architectures/VAEs"
+              },
+              {
+                "title": "temperature",
+                "path": "/artificial_intelligence/generative_ai/architectures/parameters",
+                "id": "artificial_intelligence/generative_ai/architectures/parameters"
+              },
+              {
+                "title": "Generative Adversarial Networks GANs in Artificial Intelligence",
+                "path": "/artificial_intelligence/generative_ai/architectures/GANs",
+                "id": "artificial_intelligence/generative_ai/architectures/GANs"
+              },
+              {
+                "title": "Building a GPT",
+                "path": "/artificial_intelligence/generative_ai/architectures/build_gpt_from_scratch",
+                "id": "artificial_intelligence/generative_ai/architectures/build_gpt_from_scratch"
+              }
+            ],
+            "count": 9
+          },
+          "rag": {
+            "label": "Rag",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "From llama-index",
+                "path": "/artificial_intelligence/generative_ai/rag/document_splitters",
+                "id": "artificial_intelligence/generative_ai/rag/document_splitters"
+              },
+              {
+                "title": "Untitled Notebook",
+                "path": "/artificial_intelligence/generative_ai/rag/azure_databriks_vector_search",
+                "id": "artificial_intelligence/generative_ai/rag/azure_databriks_vector_search"
+              },
+              {
+                "title": "What is vector database",
+                "path": "/artificial_intelligence/generative_ai/rag/vector_database",
+                "id": "artificial_intelligence/generative_ai/rag/vector_database"
+              },
+              {
+                "title": "Updating vector databases",
+                "path": "/artificial_intelligence/generative_ai/rag/best_practices",
+                "id": "artificial_intelligence/generative_ai/rag/best_practices"
+              }
+            ],
+            "count": 4
+          },
+          "llm_providers": {
+            "label": "Llm Providers",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "Prompt caching",
+                "path": "/artificial_intelligence/generative_ai/llm_providers/openai_llm",
+                "id": "artificial_intelligence/generative_ai/llm_providers/openai_llm"
+              }
+            ],
+            "count": 1
+          },
+          "eval": {
+            "label": "Eval",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "Retrieval",
+                "path": "/artificial_intelligence/generative_ai/eval/metrics",
+                "id": "artificial_intelligence/generative_ai/eval/metrics"
+              }
+            ],
+            "count": 1
+          }
+        },
+        "notebooks": [
+          {
+            "title": "Prompt Injections",
+            "path": "/artificial_intelligence/generative_ai/chanallenges_of_llm",
+            "id": "artificial_intelligence/generative_ai/chanallenges_of_llm"
+          },
+          {
+            "title": "Improving performance of LLMs",
+            "path": "/artificial_intelligence/generative_ai/best_practices",
+            "id": "artificial_intelligence/generative_ai/best_practices"
+          },
+          {
+            "title": "based on httpsgithubcommodelcontextprotocolpython-sdk",
+            "path": "/artificial_intelligence/generative_ai/mcp_server_explore",
+            "id": "artificial_intelligence/generative_ai/mcp_server_explore"
+          }
+        ],
+        "count": 20
+      },
+      "transfer learning": {
+        "label": "Transfer Learning",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "titleimgnew41jpg",
+            "path": "/artificial_intelligence/transfer learning/custom_transfer_learning",
+            "id": "artificial_intelligence/transfer learning/custom_transfer_learning"
+          }
+        ],
+        "count": 1
+      },
+      "text": {
+        "label": "Text",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "Thus it confirms that CNN also can be configured to use for text classification",
+            "path": "/artificial_intelligence/text/word_cnn",
+            "id": "artificial_intelligence/text/word_cnn"
+          },
+          {
+            "title": "the output is close to 0 hence it is class 0",
+            "path": "/artificial_intelligence/text/rnn_classification",
+            "id": "artificial_intelligence/text/rnn_classification"
+          }
+        ],
+        "count": 2
+      },
+      "forecasting": {
+        "label": "Forecasting",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "Untitled Notebook",
+            "path": "/artificial_intelligence/forecasting/walmart_sales_prediction",
+            "id": "artificial_intelligence/forecasting/walmart_sales_prediction"
+          }
+        ],
+        "count": 1
+      },
+      "datasets": {
+        "label": "Datasets",
+        "children": {
+          "image": {
+            "label": "Image",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "Untitled Notebook",
+                "path": "/artificial_intelligence/datasets/image/imagenet_dataset",
+                "id": "artificial_intelligence/datasets/image/imagenet_dataset"
+              }
+            ],
+            "count": 1
+          }
+        },
+        "notebooks": [],
+        "count": 1
+      },
+      "machine_learning": {
+        "label": "Machine Learning",
+        "children": {
+          "classification": {
+            "label": "Classification",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "What is a causal model",
+                "path": "/artificial_intelligence/machine_learning/classification/classification_causal_model",
+                "id": "artificial_intelligence/machine_learning/classification/classification_causal_model"
+              },
+              {
+                "title": "Untitled Notebook",
+                "path": "/artificial_intelligence/machine_learning/classification/baysian_network_example",
+                "id": "artificial_intelligence/machine_learning/classification/baysian_network_example"
+              },
+              {
+                "title": "how to choose right model for a classification problem",
+                "path": "/artificial_intelligence/machine_learning/classification/performance_evaluation",
+                "id": "artificial_intelligence/machine_learning/classification/performance_evaluation"
+              },
+              {
+                "title": "What is Support Vector Machines SVM",
+                "path": "/artificial_intelligence/machine_learning/classification/classification_svm",
+                "id": "artificial_intelligence/machine_learning/classification/classification_svm"
+              }
+            ],
+            "count": 4
+          },
+          "basics": {
+            "label": "Basics",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "What is the difference between Logic and Fuzzy Logic",
+                "path": "/artificial_intelligence/machine_learning/basics/basics",
+                "id": "artificial_intelligence/machine_learning/basics/basics"
+              },
+              {
+                "title": "Why Scaling",
+                "path": "/artificial_intelligence/machine_learning/basics/preprocessing",
+                "id": "artificial_intelligence/machine_learning/basics/preprocessing"
+              }
+            ],
+            "count": 2
+          },
+          "survival_analysis": {
+            "label": "Survival Analysis",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "Kaplan Meier",
+                "path": "/artificial_intelligence/machine_learning/survival_analysis/kaplan_meier_model",
+                "id": "artificial_intelligence/machine_learning/survival_analysis/kaplan_meier_model"
+              },
+              {
+                "title": "What is Survival Analysis",
+                "path": "/artificial_intelligence/machine_learning/survival_analysis/lung_cancer_survial_analysis",
+                "id": "artificial_intelligence/machine_learning/survival_analysis/lung_cancer_survial_analysis"
+              },
+              {
+                "title": "Brier Score",
+                "path": "/artificial_intelligence/machine_learning/survival_analysis/metrices",
+                "id": "artificial_intelligence/machine_learning/survival_analysis/metrices"
+              }
+            ],
+            "count": 3
+          },
+          "clustering": {
+            "label": "Clustering",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "Untitled Notebook",
+                "path": "/artificial_intelligence/machine_learning/clustering/clustering_gmm",
+                "id": "artificial_intelligence/machine_learning/clustering/clustering_gmm"
+              },
+              {
+                "title": "Online K-Means",
+                "path": "/artificial_intelligence/machine_learning/clustering/clustering_onlinekmeans",
+                "id": "artificial_intelligence/machine_learning/clustering/clustering_onlinekmeans"
+              }
+            ],
+            "count": 2
+          },
+          "boosting": {
+            "label": "Boosting",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "Untitled Notebook",
+                "path": "/artificial_intelligence/machine_learning/boosting/xgboosting_example",
+                "id": "artificial_intelligence/machine_learning/boosting/xgboosting_example"
+              },
+              {
+                "title": "Untitled Notebook",
+                "path": "/artificial_intelligence/machine_learning/boosting/ada_boosting_example",
+                "id": "artificial_intelligence/machine_learning/boosting/ada_boosting_example"
+              },
+              {
+                "title": "what is light gbm",
+                "path": "/artificial_intelligence/machine_learning/boosting/lightgbm_example",
+                "id": "artificial_intelligence/machine_learning/boosting/lightgbm_example"
+              }
+            ],
+            "count": 3
+          },
+          "feature_engineering": {
+            "label": "Feature Engineering",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "what is factor analysis",
+                "path": "/artificial_intelligence/machine_learning/feature_engineering/factor_analysis",
+                "id": "artificial_intelligence/machine_learning/feature_engineering/factor_analysis"
+              }
+            ],
+            "count": 1
+          },
+          "dimentionality_reduction": {
+            "label": "Dimentionality Reduction",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "Linear Discriminant Analysis LDA",
+                "path": "/artificial_intelligence/machine_learning/dimentionality_reduction/lda_example",
+                "id": "artificial_intelligence/machine_learning/dimentionality_reduction/lda_example"
+              },
+              {
+                "title": "UMAP Uniform Manifold Approximation and Projection",
+                "path": "/artificial_intelligence/machine_learning/dimentionality_reduction/umap_example",
+                "id": "artificial_intelligence/machine_learning/dimentionality_reduction/umap_example"
+              }
+            ],
+            "count": 2
+          },
+          "regression": {
+            "label": "Regression",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "What is R-squared",
+                "path": "/artificial_intelligence/machine_learning/regression/metrices",
+                "id": "artificial_intelligence/machine_learning/regression/metrices"
+              }
+            ],
+            "count": 1
+          },
+          "casual_models": {
+            "label": "Casual Models",
+            "children": {},
+            "notebooks": [
+              {
+                "title": "CBN - Causal Bayesian Networks",
+                "path": "/artificial_intelligence/machine_learning/casual_models/cbn_causal_baysiean_network",
+                "id": "artificial_intelligence/machine_learning/casual_models/cbn_causal_baysiean_network"
+              },
+              {
+                "title": "what is causal model",
+                "path": "/artificial_intelligence/machine_learning/casual_models/casual_modelling",
+                "id": "artificial_intelligence/machine_learning/casual_models/casual_modelling"
+              }
+            ],
+            "count": 2
+          }
+        },
+        "notebooks": [],
+        "count": 20
+      }
+    },
+    "notebooks": [],
+    "count": 68
+  },
+  "statistics": {
+    "label": "Statistics",
+    "children": {
+      "monte_carlo_simulation": {
+        "label": "Monte Carlo Simulation",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "This code is based on the above link",
+            "path": "/statistics/monte_carlo_simulation/monte_carlo",
+            "id": "statistics/monte_carlo_simulation/monte_carlo"
+          }
+        ],
+        "count": 1
+      },
+      "basics": {
+        "label": "Basics",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "What is Percentile",
+            "path": "/statistics/basics/percentile",
+            "id": "statistics/basics/percentile"
+          },
+          {
+            "title": "Information value",
+            "path": "/statistics/basics/information_value_and_woe",
+            "id": "statistics/basics/information_value_and_woe"
+          },
+          {
+            "title": "Cosine Distance",
+            "path": "/statistics/basics/distances",
+            "id": "statistics/basics/distances"
+          },
+          {
+            "title": "Simpsons Paradox",
+            "path": "/statistics/basics/Simpson's Paradox",
+            "id": "statistics/basics/Simpson's Paradox"
+          }
+        ],
+        "count": 4
+      },
+      "algorithms": {
+        "label": "Algorithms",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "Expectation Maximization EM Algorithm",
+            "path": "/statistics/algorithms/expectation_maximization_example",
+            "id": "statistics/algorithms/expectation_maximization_example"
+          },
+          {
+            "title": "what is LPP",
+            "path": "/statistics/algorithms/lpp_example",
+            "id": "statistics/algorithms/lpp_example"
+          }
+        ],
+        "count": 2
+      },
+      "distribution": {
+        "label": "Distribution",
+        "children": {},
+        "notebooks": [
+          {
+            "title": "What is kurtosis",
+            "path": "/statistics/distribution/basics",
+            "id": "statistics/distribution/basics"
+          },
+          {
+            "title": "Gamma Distribution",
+            "path": "/statistics/distribution/gamma_distribution",
+            "id": "statistics/distribution/gamma_distribution"
+          },
+          {
+            "title": "Pros and Cons of the Exponential Distribution",
+            "path": "/statistics/distribution/exponential_distribution",
+            "id": "statistics/distribution/exponential_distribution"
+          },
+          {
+            "title": "The uniform distribution is a type of probability distribution in which all outcomes are equally likely within a certain interval",
+            "path": "/statistics/distribution/uniform_distribution",
+            "id": "statistics/distribution/uniform_distribution"
+          },
+          {
+            "title": "Chi-Square Distribution",
+            "path": "/statistics/distribution/chi_square_distribution",
+            "id": "statistics/distribution/chi_square_distribution"
+          },
+          {
+            "title": "What is weibull distribtion",
+            "path": "/statistics/distribution/weibull_distribution",
+            "id": "statistics/distribution/weibull_distribution"
+          },
+          {
+            "title": "Normal distribution",
+            "path": "/statistics/distribution/normal_distribution",
+            "id": "statistics/distribution/normal_distribution"
+          },
+          {
+            "title": "Difference Between Log and Exponent",
+            "path": "/statistics/distribution/log_normal_distribution",
+            "id": "statistics/distribution/log_normal_distribution"
+          },
+          {
+            "title": "Untitled Notebook",
+            "path": "/statistics/distribution/poison_distribution",
+            "id": "statistics/distribution/poison_distribution"
+          },
+          {
+            "title": "What is Beta Distribution",
+            "path": "/statistics/distribution/beta_distribution",
+            "id": "statistics/distribution/beta_distribution"
+          }
+        ],
+        "count": 10
+      }
+    },
+    "notebooks": [],
+    "count": 17
+  }
+}

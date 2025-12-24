@@ -1,0 +1,200 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cdffdbda">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="From-llama-index">From llama-index<a class="anchor-link" href="#From-llama-index">¶</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=576f59ee">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>In <strong>LlamaIndex</strong>, <em>splitters</em> break large documents into manageable text chunks for embedding and retrieval. Here are the main types:</p>
+<hr/>
+<h3 id="%F0%9F%A7%A9-1.-SentenceSplitter">🧩 1. <strong><code>SentenceSplitter</code></strong><a class="anchor-link" href="#%F0%9F%A7%A9-1.-SentenceSplitter">¶</a></h3><ul>
+<li>Splits text by sentences (using <code>nltk</code> or <code>spacy</code> internally).</li>
+<li>Best for <strong>semantic coherence</strong>.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.node_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">SentenceSplitter</span>
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">SentenceSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+<hr/>
+<h3 id="%F0%9F%93%84-2.-TokenTextSplitter">📄 2. <strong><code>TokenTextSplitter</code></strong><a class="anchor-link" href="#%F0%9F%93%84-2.-TokenTextSplitter">¶</a></h3><ul>
+<li>Splits based on <strong>token count</strong> (useful when working with OpenAI or local LLMs).</li>
+<li>Helps avoid exceeding model token limits.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.node_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">TokenTextSplitter</span>
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">TokenTextSplitter</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s2">" "</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+<hr/>
+<h3 id="%F0%9F%AA%B6-3.-MarkdownSplitter">🪶 3. <strong><code>MarkdownSplitter</code></strong><a class="anchor-link" href="#%F0%9F%AA%B6-3.-MarkdownSplitter">¶</a></h3><ul>
+<li>Keeps markdown structure like headers, lists, and code blocks intact.</li>
+<li>Ideal for <strong>technical docs or README files</strong>.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.node_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarkdownNodeParser</span>
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">MarkdownNodeParser</span><span class="p">()</span>
+</pre></div>
+<hr/>
+<h3 id="%F0%9F%93%9A-4.-SemanticSplitter">📚 4. <strong><code>SemanticSplitter</code></strong><a class="anchor-link" href="#%F0%9F%93%9A-4.-SemanticSplitter">¶</a></h3><ul>
+<li>Uses embeddings to split text <strong>based on semantic similarity</strong>, not just size.</li>
+<li>More intelligent, but computationally heavier.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.node_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">SemanticSplitterNodeParser</span>
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">SemanticSplitterNodeParser</span><span class="p">(</span><span class="n">embed_model</span><span class="o">=</span><span class="s2">"text-embedding-3-small"</span><span class="p">)</span>
+</pre></div>
+<hr/>
+<h3 id="%F0%9F%94%96-5.-HierarchicalNodeParser">🔖 5. <strong><code>HierarchicalNodeParser</code></strong><a class="anchor-link" href="#%F0%9F%94%96-5.-HierarchicalNodeParser">¶</a></h3><ul>
+<li>Creates a <strong>multi-level structure</strong> (paragraphs → sections → chapters).</li>
+<li>Useful for large books, reports, or PDFs.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.node_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">HierarchicalNodeParser</span>
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">HierarchicalNodeParser</span><span class="o">.</span><span class="n">from_defaults</span><span class="p">()</span>
+</pre></div>
+<hr/>
+<h3 id="%E2%9A%99%EF%B8%8F-6.-CodeSplitter">⚙️ 6. <strong><code>CodeSplitter</code></strong><a class="anchor-link" href="#%E2%9A%99%EF%B8%8F-6.-CodeSplitter">¶</a></h3><ul>
+<li>Specialized for <strong>source code</strong> – respects functions, classes, and imports.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.node_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">CodeSplitter</span>
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">CodeSplitter</span><span class="p">(</span><span class="n">language</span><span class="o">=</span><span class="s2">"python"</span><span class="p">)</span>
+</pre></div>
+<hr/>
+<p>Would you like me to show a <strong>side-by-side example</strong> of how the same document is split differently by each splitter?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1c97b4b1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="From-langchain">From langchain<a class="anchor-link" href="#From-langchain">¶</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ad7ae515">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>In <strong>LangChain</strong>, document splitters are in the module
+<code>langchain.text_splitter</code>. Here are the main types you can use:</p>
+<hr/>
+<h3 id="%F0%9F%A7%B1-1.-CharacterTextSplitter">🧱 1. <strong><code>CharacterTextSplitter</code></strong><a class="anchor-link" href="#%F0%9F%A7%B1-1.-CharacterTextSplitter">¶</a></h3><ul>
+<li>Splits by character count (simple and fast).</li>
+<li>Default separator: <code>"\n\n"</code>.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">CharacterTextSplitter</span>
+
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">CharacterTextSplitter</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">long_text</span><span class="p">)</span>
+</pre></div>
+<hr/>
+<h3 id="%E2%9C%82%EF%B8%8F-2.-RecursiveCharacterTextSplitter-(most-popular)">✂️ 2. <strong><code>RecursiveCharacterTextSplitter</code></strong> <em>(most popular)</em><a class="anchor-link" href="#%E2%9C%82%EF%B8%8F-2.-RecursiveCharacterTextSplitter-(most-popular)">¶</a></h3><ul>
+<li>Tries multiple separators (like <code>\n\n</code>, <code>.</code>, <code>,</code>, <code> </code>) to split cleanly.</li>
+<li>Keeps semantic context better.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">long_text</span><span class="p">)</span>
+</pre></div>
+<hr/>
+<h3 id="%F0%9F%93%98-3.-TokenTextSplitter">📘 3. <strong><code>TokenTextSplitter</code></strong><a class="anchor-link" href="#%F0%9F%93%98-3.-TokenTextSplitter">¶</a></h3><ul>
+<li>Splits based on <strong>tokens</strong> (not characters).</li>
+<li>Prevents overflow for LLM input limits.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">TokenTextSplitter</span>
+
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">TokenTextSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">long_text</span><span class="p">)</span>
+</pre></div>
+<hr/>
+<h3 id="%F0%9F%AA%B6-4.-MarkdownHeaderTextSplitter">🪶 4. <strong><code>MarkdownHeaderTextSplitter</code></strong><a class="anchor-link" href="#%F0%9F%AA%B6-4.-MarkdownHeaderTextSplitter">¶</a></h3><ul>
+<li>Splits Markdown docs by header levels (<code>#</code>, <code>##</code>, etc.).</li>
+<li>Keeps hierarchical context.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarkdownHeaderTextSplitter</span>
+
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">MarkdownHeaderTextSplitter</span><span class="p">(</span><span class="n">headers_to_split_on</span><span class="o">=</span><span class="p">[(</span><span class="s2">"#"</span><span class="p">,</span> <span class="s2">"Header 1"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"##"</span><span class="p">,</span> <span class="s2">"Header 2"</span><span class="p">)])</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">markdown_text</span><span class="p">)</span>
+</pre></div>
+<hr/>
+<h3 id="%F0%9F%92%BB-5.-PythonCodeTextSplitter">💻 5. <strong><code>PythonCodeTextSplitter</code></strong><a class="anchor-link" href="#%F0%9F%92%BB-5.-PythonCodeTextSplitter">¶</a></h3><ul>
+<li>Splits Python code by <strong>function</strong>, <strong>class</strong>, or <strong>logical blocks</strong>.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">PythonCodeTextSplitter</span>
+
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">PythonCodeTextSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">python_code</span><span class="p">)</span>
+</pre></div>
+<hr/>
+<h3 id="%F0%9F%A7%A0-6.-NLTKTextSplitter-/-SpacyTextSplitter">🧠 6. <strong><code>NLTKTextSplitter</code> / <code>SpacyTextSplitter</code></strong><a class="anchor-link" href="#%F0%9F%A7%A0-6.-NLTKTextSplitter-/-SpacyTextSplitter">¶</a></h3><ul>
+<li>Sentence-based splitting using NLP libraries.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpacyTextSplitter</span>
+
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">SpacyTextSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">long_text</span><span class="p">)</span>
+</pre></div>
+<hr/>
+<h3 id="%F0%9F%94%8D-Summary">🔍 Summary<a class="anchor-link" href="#%F0%9F%94%8D-Summary">¶</a></h3><table>
+<thead>
+<tr>
+<th>Splitter</th>
+<th>Best for</th>
+<th>Key Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CharacterTextSplitter</code></td>
+<td>Simple text</td>
+<td>Fast &amp; straightforward</td>
+</tr>
+<tr>
+<td><code>RecursiveCharacterTextSplitter</code></td>
+<td>General use</td>
+<td>Context-aware</td>
+</tr>
+<tr>
+<td><code>TokenTextSplitter</code></td>
+<td>LLM inputs</td>
+<td>Token-limit control</td>
+</tr>
+<tr>
+<td><code>MarkdownHeaderTextSplitter</code></td>
+<td>Docs / README</td>
+<td>Preserves structure</td>
+</tr>
+<tr>
+<td><code>PythonCodeTextSplitter</code></td>
+<td>Code files</td>
+<td>Logical code splitting</td>
+</tr>
+<tr>
+<td><code>SpacyTextSplitter</code></td>
+<td>Natural text</td>
+<td>Sentence-aware</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<p>Would you like me to show an example comparing <code>RecursiveCharacterTextSplitter</code> vs <code>MarkdownHeaderTextSplitter</code> on the same text?</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

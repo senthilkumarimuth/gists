@@ -1,0 +1,87 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">llama_parse</span><span class="w"> </span><span class="kn">import</span> <span class="n">LlamaParse</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">parser</span> <span class="o">=</span> <span class="n">LlamaParse</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">"llx-H4GGCIVeZWs8Gu9FaQCUpDTgs9Igs96521FbJnI9sz8Ix4fX"</span><span class="p">,</span> <span class="n">result_type</span><span class="o">=</span><span class="s2">"markdown"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nest_asyncio</span>
+<span class="n">nest_asyncio</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s2">"./UD1-220224-122107-v2_test.pdf"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Started parsing the file under job_id 7a2386f5-9b39-40fc-a460-8e861634375a
+...</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">documents</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>'# 1.6.4 Parking Screen\n\nStatus: REDRAFT\n\nNeed Information: YES\n\nNeed Final Screens: YES\n\nTap on the hard key on the right side to enter the parking mode. You will be displayed the screen in illustration no. while your TVS X is parked. Tap on the hard key again to exit the parking mode.\n\n10.00 AM\n\n05 km/h\n\nRev\n\nTRIPA\n85.4 km\nPARKING\nRANGE\n110 km\nIn Parking Mode, you can use the Hard keys to switch between Forward and Reverse directions. The on-screen arrow will change accordingly to show your current selection direction along with a text at the bottom showing FWD or REV.\n\n# The screen displays the following information:\n\n|Item|Description|\n|---|---|\n|1. Time|Current time in your preferred unit|\n|2. Direction Arrow|If you press the forward key the arrow will be directed upwards. If you press the reverse key the arrow will be directed downwards.|\n|3. Speed|Indicates the speed of the vehicle in forward or reverse direction|\n|4. Trip Distance|If you started a trip, the reading displays the total distance covered in the trip. If you did not start a trip, it will give you the odometer value.|'</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

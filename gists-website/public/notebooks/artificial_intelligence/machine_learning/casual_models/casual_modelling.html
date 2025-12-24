@@ -1,0 +1,231 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d4554a8c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="what-is-causal-model?">what is causal model?<a class="anchor-link" href="#what-is-causal-model?">¶</a></h2><p>A "causal model" is a framework or mathematical model used to describe and analyze cause-and-effect relationships between variables. In machine learning and statistics, causal models help us understand how changes in one variable (the cause) can directly affect another variable (the effect), beyond mere correlation. These models are essential for tasks like predicting the outcome of interventions, policy analysis, and scientific discovery.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b2a9030d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Assumptions">Assumptions<a class="anchor-link" href="#Assumptions">¶</a></h3><p>Common assumptions in causal modeling:</p>
+<ol>
+<li><strong>Causal Sufficiency</strong>: All relevant confounders (common causes of treatment and outcome) are measured and included in the model.</li>
+<li><strong>No Unmeasured Confounding</strong>: There are no hidden variables that affect both the treatment and the outcome.</li>
+<li><strong>Consistency</strong>: The observed outcome under the actual treatment received is the same as the potential outcome under that treatment.</li>
+<li><strong>Positivity (Overlap)</strong>: Every unit has a positive probability of receiving each level of the treatment, given the confounders.</li>
+<li><strong>Correct Model Specification</strong>: The functional form of the relationships between variables is correctly specified.</li>
+<li><strong>Stable Unit Treatment Value Assumption (SUTVA)</strong>: The treatment of one unit does not affect the outcome of another unit (no interference).</li>
+</ol>
+<p>These assumptions are crucial for identifying and estimating causal effects from data.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a939fe25">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="What-is-confounding?">What is confounding?<a class="anchor-link" href="#What-is-confounding?">¶</a></h4><p><strong>Confounding</strong> occurs when a third variable, known as a confounder, influences both the treatment (or exposure) and the outcome, creating a spurious association between them. In other words, a confounder is a variable that can make it appear as though there is a causal relationship between the treatment and the outcome, when in fact the observed association is (at least partly) due to the confounder.</p>
+<p>For example, suppose we want to study whether drinking coffee (treatment) causes heart disease (outcome). If age is related to both coffee consumption and heart disease risk, then age is a confounder. Failing to account for age could lead to incorrect conclusions about the effect of coffee on heart disease.</p>
+<p>In causal modeling, it is crucial to identify and adjust for confounders to estimate the true causal effect of a treatment or intervention.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cae57820">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Use-cases">Use cases<a class="anchor-link" href="#Use-cases">¶</a></h3><p>Example use cases of causal models in machine learning</p>
+<ol>
+<li>Healthcare: Estimating the effect of a new drug or treatment on patient outcomes, accounting for confounding variables.</li>
+<li>Economics: Predicting the impact of policy changes (e.g., tax reforms) on employment or economic growth.</li>
+<li>Marketing: Understanding how a marketing campaign causally affects sales, separating true effect from correlation.</li>
+<li>Social Sciences: Studying the causal impact of education on income or social mobility.</li>
+<li>Recommendation Systems: Determining whether showing a user a particular item causes them to make a purchase, rather than just being correlated.</li>
+<li>A/B Testing: Analyzing the causal effect of website changes on user engagement or conversion rates.</li>
+<li>Public Policy: Evaluating the effectiveness of interventions (e.g., vaccination programs) on public health outcomes.</li>
+</ol>
+<p>These use cases highlight how causal models go beyond correlation to answer "what if" and "why" questions, enabling better decision-making.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7d553695">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Example: Estimating the causal effect of a treatment using the backdoor adjustment (with simulated data)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+
+<span class="c1"># Simulate data for a simple causal model:</span>
+<span class="c1"># Z (confounder) -&gt; X (treatment) -&gt; Y (outcome)</span>
+<span class="c1"># Z also affects Y directly (confounding)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># Simulate confounder Z</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Simulate treatment X, affected by Z</span>
+<span class="n">X</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">Z</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Simulate outcome Y, affected by both X and Z</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">Z</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Create a DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'Z'</span><span class="p">:</span> <span class="n">Z</span><span class="p">,</span> <span class="s1">'X'</span><span class="p">:</span> <span class="n">X</span><span class="p">,</span> <span class="s1">'Y'</span><span class="p">:</span> <span class="n">Y</span><span class="p">})</span>
+
+<span class="c1"># Naive regression: Estimate effect of X on Y without adjusting for Z (ignores confounding)</span>
+<span class="n">naive_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'Y'</span><span class="p">],</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'X'</span><span class="p">]))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Naive estimate (ignoring confounder Z):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">naive_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="c1"># Proper regression: Adjust for confounder Z (backdoor adjustment)</span>
+<span class="n">adjusted_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'Y'</span><span class="p">],</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'X'</span><span class="p">,</span> <span class="s1">'Z'</span><span class="p">]]))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Adjusted estimate (controlling for confounder Z):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">adjusted_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="c1"># How to interpret the results:</span>
+<span class="c1"># - Look at the coefficient for 'X' in both models.</span>
+<span class="c1"># - In the naive model, the coefficient for X represents the *association* between X and Y,</span>
+<span class="c1">#   which may be biased due to confounding by Z.</span>
+<span class="c1"># - In the adjusted model, the coefficient for X represents the *causal effect* of X on Y,</span>
+<span class="c1">#   because we have controlled for the confounder Z.</span>
+<span class="c1"># - The closer the adjusted coefficient is to the true simulated value (2.0), the better.</span>
+<span class="c1"># - The p-value for X tells you whether the effect is statistically significant.</span>
+<span class="c1"># - The coefficient for Z in the adjusted model should be close to its true effect (1.5).</span>
+<span class="c1"># - Always interpret the adjusted model's X coefficient as the estimated average causal effect</span>
+<span class="c1">#   of the treatment (X) on the outcome (Y), assuming all confounders are properly controlled.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Naive estimate (ignoring confounder Z):
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      Y   R-squared:                       0.734
+Model:                            OLS   Adj. R-squared:                  0.733
+Method:                 Least Squares   F-statistic:                     2750.
+Date:                Wed, 03 Sep 2025   Prob (F-statistic):          5.05e-289
+Time:                        15:35:05   Log-Likelihood:                -1937.6
+No. Observations:                1000   AIC:                             3879.
+Df Residuals:                     998   BIC:                             3889.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.0096      0.053     -0.180      0.857      -0.114       0.095
+X              2.5519      0.049     52.441      0.000       2.456       2.647
+==============================================================================
+Omnibus:                        3.384   Durbin-Watson:                   2.021
+Prob(Omnibus):                  0.184   Jarque-Bera (JB):                2.862
+Skew:                           0.025   Prob(JB):                        0.239
+Kurtosis:                       2.743   Cond. No.                         1.12
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+Adjusted estimate (controlling for confounder Z):
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      Y   R-squared:                       0.909
+Model:                            OLS   Adj. R-squared:                  0.909
+Method:                 Least Squares   F-statistic:                     4972.
+Date:                Wed, 03 Sep 2025   Prob (F-statistic):               0.00
+Time:                        15:35:05   Log-Likelihood:                -1401.5
+No. Observations:                1000   AIC:                             2809.
+Df Residuals:                     997   BIC:                             2824.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0061      0.031      0.197      0.844      -0.055       0.067
+X              1.9898      0.031     63.691      0.000       1.929       2.051
+Z              1.5269      0.035     43.776      0.000       1.458       1.595
+==============================================================================
+Omnibus:                        1.860   Durbin-Watson:                   2.022
+Prob(Omnibus):                  0.394   Jarque-Bera (JB):                1.756
+Skew:                           0.060   Prob(JB):                        0.416
+Kurtosis:                       3.167   Cond. No.                         1.58
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a0a15b58">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Pros">Pros<a class="anchor-link" href="#Pros">¶</a></h3><ul>
+<li>Allows for estimation of causal effects rather than just associations.</li>
+<li>Enables answering "what if" (counterfactual) questions.</li>
+<li>Supports better decision-making in policy, medicine, business, etc.</li>
+<li>Can control for confounding variables to reduce bias.</li>
+<li>Provides a framework for understanding mechanisms and pathways.</li>
+<li>Facilitates generalization of findings to new settings (external validity).</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90974d2b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Cons">Cons<a class="anchor-link" href="#Cons">¶</a></h3><ul>
+<li>Requires strong assumptions (e.g., no unmeasured confounding) that may not hold in practice.</li>
+<li>Causal inference methods can be sensitive to model misspecification.</li>
+<li>Data collection for all relevant variables (especially confounders) can be difficult or expensive.</li>
+<li>Results can be biased if important confounders are omitted.</li>
+<li>Interpretation of causal effects may be challenging in complex systems.</li>
+<li>Some methods require large sample sizes for reliable estimation.</li>
+<li>Not all causal questions can be answered from observational data alone.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

@@ -1,0 +1,49 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a067ad7f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Positional-Embeddings-in-Deep-Learning">Positional Embeddings in Deep Learning<a class="anchor-link" href="#Positional-Embeddings-in-Deep-Learning">¶</a></h2><p><strong>What are Positional Embeddings?</strong><br/>
+In models like Transformers, there is no built-in understanding of the order of tokens in a sequence, since the model processes all tokens in parallel. Positional embeddings are additional learned vectors that encode the position of each token in the sequence, allowing the model to understand word order.</p>
+<h3 id="How-Do-Positional-Embeddings-Work?">How Do Positional Embeddings Work?<a class="anchor-link" href="#How-Do-Positional-Embeddings-Work?">¶</a></h3><p>Each token in a sequence gets a corresponding positional embedding (either learned or sinusoidal) added to its word embedding. This combined embedding is then fed to the model so it can capture both the word’s identity and its position in the sentence.</p>
+<h3 id="Step-by-Step:-How-Positional-Embeddings-Work">Step-by-Step: How Positional Embeddings Work<a class="anchor-link" href="#Step-by-Step:-How-Positional-Embeddings-Work">¶</a></h3><ol>
+<li><strong>Tokenization</strong>: Break the input sequence into individual tokens (words or subwords).</li>
+<li><strong>Word Embedding Lookup</strong>: Convert each token into a word embedding vector using an embedding matrix.</li>
+<li><strong>Generate Positional Embeddings</strong>: For each position in the sequence, create a positional embedding (can be either fixed, like sinusoidal, or learned).</li>
+<li><strong>Combine Embeddings</strong>: Add the positional embedding to the word embedding for each token. This merged vector now encodes both meaning and position.</li>
+<li><strong>Feed to Model</strong>: Supply the combined embeddings as input to the deep learning model (e.g., a Transformer).</li>
+<li><strong>Model Learns Sequence Information</strong>: During training, the model learns to utilize both the word content and position to understand sequence meaning.</li>
+</ol>
+<h3 id="Types-of-Positional-Embeddings">Types of Positional Embeddings<a class="anchor-link" href="#Types-of-Positional-Embeddings">¶</a></h3><p>Two primary approaches exist for generating $ \mathbf{p}_i $:</p>
+<p>Learned Positional Embeddings:</p>
+<p>These are trainable parameters initialized randomly and optimized during model training, similar to word embeddings. A matrix $ \mathbf{P} \in \mathbb{R}^{n \times d} $ is learned, where each row corresponds to a position. This method is flexible and effective for fixed-length sequences but may not generalize well to longer sequences unseen during training.</p>
+<p>Sinusoidal Positional Encodings (Fixed):</p>
+<p>Introduced in the original Transformer paper ("Attention Is All You Need"), these use deterministic trigonometric functions to encode positions. For position $ pos $ and dimension $ i $ (0 to $ d/2 - 1 $), the components are:
+$$p_{pos, 2i} = \sin\left( \frac{pos}{10000^{2i/d}} \right), \quad p_{pos, 2i+1} = \cos\left( \frac{pos}{10000^{2i/d}} \right)$$
+This creates periodic patterns with varying wavelengths, allowing the model to easily compute relative positions (e.g., via linear transformations). Sinusoidal encodings are advantageous for extrapolation to longer sequences, as they do not require retraining.</p>
+<h3 id="Use-Cases:">Use Cases:<a class="anchor-link" href="#Use-Cases:">¶</a></h3><ul>
+<li>Natural Language Processing (NLP): For tasks such as machine translation, question answering, and text summarization where sequence order is important.</li>
+<li>Computer Vision: In Vision Transformers (ViTs), positional embeddings are used to encode patch positions.</li>
+<li>Speech and Time-Series Analysis: Applied wherever sequential data order matters.</li>
+</ul>
+<h3 id="Pros-and-Cons">Pros and Cons<a class="anchor-link" href="#Pros-and-Cons">¶</a></h3><p><strong>Pros:</strong></p>
+<ul>
+<li>Helps models handle sequence data without recurrence.</li>
+<li>Enables parallel processing of input sequences.</li>
+<li>Flexible: learned or fixed (sinusoidal or other functions) implementations.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>May not generalize well to sequences longer than those seen during training (especially for learned embeddings).</li>
+<li>Absolute positional encoding may not capture relative distances as effectively.</li>
+<li>Requires additional computation and parameters.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

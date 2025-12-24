@@ -1,0 +1,810 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">databricks</span><span class="o">-</span><span class="n">vectorsearch</span>
+<span class="n">dbutils</span><span class="o">.</span><span class="n">library</span><span class="o">.</span><span class="n">restartPython</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre><span class="ansi-yellow-bg">Note: you may need to restart the kernel using dbutils.library.restartPython() to use updated packages.</span>
+Collecting databricks-vectorsearch
+  Downloading databricks_vectorsearch-0.57-py3-none-any.whl (16 kB)
+Requirement already satisfied: protobuf&lt;6,&gt;=3.12.0 in /databricks/python3/lib/python3.10/site-packages (from databricks-vectorsearch) (3.19.4)
+Collecting deprecation&gt;=2
+  Downloading deprecation-2.1.0-py2.py3-none-any.whl (11 kB)
+Collecting mlflow-skinny&lt;4,&gt;=2.11.3
+  Downloading mlflow_skinny-3.1.1-py3-none-any.whl (1.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 7.2 MB/s eta 0:00:00
+Requirement already satisfied: requests&gt;=2 in /databricks/python3/lib/python3.10/site-packages (from databricks-vectorsearch) (2.28.1)
+Requirement already satisfied: packaging in /databricks/python3/lib/python3.10/site-packages (from deprecation&gt;=2-&gt;databricks-vectorsearch) (21.3)
+Collecting fastapi&lt;1
+  Downloading fastapi-0.116.1-py3-none-any.whl (95 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 95.6/95.6 kB 15.2 MB/s eta 0:00:00
+Collecting pydantic&lt;3,&gt;=1.10.8
+  Downloading pydantic-2.11.7-py3-none-any.whl (444 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 444.8/444.8 kB 37.7 MB/s eta 0:00:00
+Collecting sqlparse&lt;1,&gt;=0.4.0
+  Downloading sqlparse-0.5.3-py3-none-any.whl (44 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.4/44.4 kB 5.5 MB/s eta 0:00:00
+Collecting cachetools&lt;7,&gt;=5.0.0
+  Downloading cachetools-6.1.0-py3-none-any.whl (11 kB)
+Requirement already satisfied: typing-extensions&lt;5,&gt;=4.0.0 in /databricks/python3/lib/python3.10/site-packages (from mlflow-skinny&lt;4,&gt;=2.11.3-&gt;databricks-vectorsearch) (4.3.0)
+Collecting uvicorn&lt;1
+  Downloading uvicorn-0.35.0-py3-none-any.whl (66 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 66.4/66.4 kB 7.4 MB/s eta 0:00:00
+Collecting pyyaml&lt;7,&gt;=5.1
+  Downloading PyYAML-6.0.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (751 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 751.2/751.2 kB 44.1 MB/s eta 0:00:00
+Collecting gitpython&lt;4,&gt;=3.1.9
+  Downloading GitPython-3.1.44-py3-none-any.whl (207 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 207.6/207.6 kB 21.0 MB/s eta 0:00:00
+Collecting opentelemetry-sdk&lt;3,&gt;=1.9.0
+  Downloading opentelemetry_sdk-1.35.0-py3-none-any.whl (119 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 119.4/119.4 kB 10.4 MB/s eta 0:00:00
+Requirement already satisfied: importlib_metadata!=4.7.0,&lt;9,&gt;=3.7.0 in /usr/lib/python3/dist-packages (from mlflow-skinny&lt;4,&gt;=2.11.3-&gt;databricks-vectorsearch) (4.6.4)
+Collecting databricks-sdk&lt;1,&gt;=0.20.0
+  Downloading databricks_sdk-0.59.0-py3-none-any.whl (676 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 676.2/676.2 kB 41.5 MB/s eta 0:00:00
+Collecting opentelemetry-api&lt;3,&gt;=1.9.0
+  Downloading opentelemetry_api-1.35.0-py3-none-any.whl (65 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 65.6/65.6 kB 9.5 MB/s eta 0:00:00
+Requirement already satisfied: click&lt;9,&gt;=7.0 in /databricks/python3/lib/python3.10/site-packages (from mlflow-skinny&lt;4,&gt;=2.11.3-&gt;databricks-vectorsearch) (8.0.4)
+Collecting cloudpickle&lt;4
+  Downloading cloudpickle-3.1.1-py3-none-any.whl (20 kB)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /databricks/python3/lib/python3.10/site-packages (from requests&gt;=2-&gt;databricks-vectorsearch) (2022.9.14)
+Requirement already satisfied: charset-normalizer&lt;3,&gt;=2 in /databricks/python3/lib/python3.10/site-packages (from requests&gt;=2-&gt;databricks-vectorsearch) (2.0.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /databricks/python3/lib/python3.10/site-packages (from requests&gt;=2-&gt;databricks-vectorsearch) (1.26.11)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /databricks/python3/lib/python3.10/site-packages (from requests&gt;=2-&gt;databricks-vectorsearch) (3.3)
+Collecting google-auth~=2.0
+  Downloading google_auth-2.40.3-py2.py3-none-any.whl (216 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 216.1/216.1 kB 14.8 MB/s eta 0:00:00
+Collecting typing-extensions&lt;5,&gt;=4.0.0
+  Downloading typing_extensions-4.14.1-py3-none-any.whl (43 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.9/43.9 kB 5.7 MB/s eta 0:00:00
+Collecting starlette&lt;0.48.0,&gt;=0.40.0
+  Downloading starlette-0.47.2-py3-none-any.whl (72 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.0/73.0 kB 9.9 MB/s eta 0:00:00
+Collecting gitdb&lt;5,&gt;=4.0.1
+  Downloading gitdb-4.0.12-py3-none-any.whl (62 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.8/62.8 kB 8.3 MB/s eta 0:00:00
+Collecting importlib_metadata!=4.7.0,&lt;9,&gt;=3.7.0
+  Downloading importlib_metadata-8.7.0-py3-none-any.whl (27 kB)
+Collecting zipp&gt;=3.20
+  Downloading zipp-3.23.0-py3-none-any.whl (10 kB)
+Collecting opentelemetry-semantic-conventions==0.56b0
+  Downloading opentelemetry_semantic_conventions-0.56b0-py3-none-any.whl (201 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 201.6/201.6 kB 25.0 MB/s eta 0:00:00
+Requirement already satisfied: pyparsing!=3.0.5,&gt;=2.0.2 in /databricks/python3/lib/python3.10/site-packages (from packaging-&gt;deprecation&gt;=2-&gt;databricks-vectorsearch) (3.0.9)
+Collecting pydantic-core==2.33.2
+  Downloading pydantic_core-2.33.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 28.1 MB/s eta 0:00:00
+Collecting typing-inspection&gt;=0.4.0
+  Downloading typing_inspection-0.4.1-py3-none-any.whl (14 kB)
+Collecting annotated-types&gt;=0.6.0
+  Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Collecting h11&gt;=0.8
+  Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Collecting smmap&lt;6,&gt;=3.0.1
+  Downloading smmap-5.0.2-py3-none-any.whl (24 kB)
+Collecting cachetools&lt;7,&gt;=5.0.0
+  Downloading cachetools-5.5.2-py3-none-any.whl (10 kB)
+Collecting pyasn1-modules&gt;=0.2.1
+  Downloading pyasn1_modules-0.4.2-py3-none-any.whl (181 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 181.3/181.3 kB 25.0 MB/s eta 0:00:00
+Collecting rsa&lt;5,&gt;=3.1.4
+  Downloading rsa-4.9.1-py3-none-any.whl (34 kB)
+Collecting anyio&lt;5,&gt;=3.6.2
+  Downloading anyio-4.9.0-py3-none-any.whl (100 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100.9/100.9 kB 14.5 MB/s eta 0:00:00
+Collecting exceptiongroup&gt;=1.0.2
+  Downloading exceptiongroup-1.3.0-py3-none-any.whl (16 kB)
+Collecting sniffio&gt;=1.1
+  Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+Collecting pyasn1&lt;0.7.0,&gt;=0.6.1
+  Downloading pyasn1-0.6.1-py3-none-any.whl (83 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 83.1/83.1 kB 11.4 MB/s eta 0:00:00
+Installing collected packages: zipp, typing-extensions, sqlparse, sniffio, smmap, pyyaml, pyasn1, h11, cloudpickle, cachetools, annotated-types, uvicorn, typing-inspection, rsa, pydantic-core, pyasn1-modules, importlib_metadata, gitdb, exceptiongroup, deprecation, pydantic, opentelemetry-api, google-auth, gitpython, anyio, starlette, opentelemetry-semantic-conventions, databricks-sdk, opentelemetry-sdk, fastapi, mlflow-skinny, databricks-vectorsearch
+  Attempting uninstall: zipp
+    Found existing installation: zipp 1.0.0
+    Not uninstalling zipp at /usr/lib/python3/dist-packages, outside environment /local_disk0/.ephemeral_nfs/envs/pythonEnv-a768efab-cd15-4d7e-9231-8c8420f5d812
+    Can't uninstall 'zipp'. No files were found to uninstall.
+  Attempting uninstall: typing-extensions
+    Found existing installation: typing_extensions 4.3.0
+    Not uninstalling typing-extensions at /databricks/python3/lib/python3.10/site-packages, outside environment /local_disk0/.ephemeral_nfs/envs/pythonEnv-a768efab-cd15-4d7e-9231-8c8420f5d812
+    Can't uninstall 'typing_extensions'. No files were found to uninstall.
+  Attempting uninstall: importlib_metadata
+    Found existing installation: importlib-metadata 4.6.4
+    Not uninstalling importlib-metadata at /usr/lib/python3/dist-packages, outside environment /local_disk0/.ephemeral_nfs/envs/pythonEnv-a768efab-cd15-4d7e-9231-8c8420f5d812
+    Can't uninstall 'importlib-metadata'. No files were found to uninstall.
+  Attempting uninstall: pydantic
+    Found existing installation: pydantic 1.10.6
+    Not uninstalling pydantic at /databricks/python3/lib/python3.10/site-packages, outside environment /local_disk0/.ephemeral_nfs/envs/pythonEnv-a768efab-cd15-4d7e-9231-8c8420f5d812
+    Can't uninstall 'pydantic'. No files were found to uninstall.
+  Attempting uninstall: databricks-sdk
+    Found existing installation: databricks-sdk 0.1.6
+    Not uninstalling databricks-sdk at /databricks/python3/lib/python3.10/site-packages, outside environment /local_disk0/.ephemeral_nfs/envs/pythonEnv-a768efab-cd15-4d7e-9231-8c8420f5d812
+    Can't uninstall 'databricks-sdk'. No files were found to uninstall.
+Successfully installed annotated-types-0.7.0 anyio-4.9.0 cachetools-5.5.2 cloudpickle-3.1.1 databricks-sdk-0.59.0 databricks-vectorsearch-0.57 deprecation-2.1.0 exceptiongroup-1.3.0 fastapi-0.116.1 gitdb-4.0.12 gitpython-3.1.44 google-auth-2.40.3 h11-0.16.0 importlib_metadata-8.7.0 mlflow-skinny-3.1.1 opentelemetry-api-1.35.0 opentelemetry-sdk-1.35.0 opentelemetry-semantic-conventions-0.56b0 pyasn1-0.6.1 pyasn1-modules-0.4.2 pydantic-2.11.7 pydantic-core-2.33.2 pyyaml-6.0.2 rsa-4.9.1 smmap-5.0.2 sniffio-1.3.1 sqlparse-0.5.3 starlette-0.47.2 typing-extensions-4.14.1 typing-inspection-0.4.1 uvicorn-0.35.0 zipp-3.23.0
+<span class="ansi-yellow-bg">Note: you may need to restart the kernel using dbutils.library.restartPython() to use updated packages.</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">CREATE TABLE telemetry.lwrca.document_table (</span>
+<span class="s2">    id STRING,</span>
+<span class="s2">    document STRING</span>
+<span class="s2">)</span>
+<span class="s2">USING DELTA</span>
+<span class="s2">"""</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[0]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>DataFrame[]</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">"1"</span><span class="p">,</span> <span class="s2">"Databricks simplifies big data and AI."</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"2"</span><span class="p">,</span> <span class="s2">"Azure Cognitive Search enables powerful search capabilities."</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"3"</span><span class="p">,</span> <span class="s2">"Delta Lake provides ACID transactions for Spark."</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"4"</span><span class="p">,</span> <span class="s2">"Vector search is essential for semantic retrieval."</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"5"</span><span class="p">,</span> <span class="s2">"Python is widely used for data science."</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"document"</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">"delta"</span><span class="p">)</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">"append"</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s2">"telemetry.lwrca.document_table"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">spark</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s2">"telemetry.lwrca.document_table"</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<style scoped="">
+  .table-result-container {
+    max-height: 300px;
+    overflow: auto;
+  }
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+  }
+  th {
+    text-align: left;
+  }
+</style><div class="table-result-container"><table class="table-result"><thead style="background-color: white"><tr><th>id</th><th>document</th></tr></thead><tbody><tr><td>3</td><td>Delta Lake provides ACID transactions for Spark.</td></tr><tr><td>5</td><td>Python is widely used for data science.</td></tr><tr><td>1</td><td>Databricks simplifies big data and AI.</td></tr><tr><td>2</td><td>Azure Cognitive Search enables powerful search capabilities.</td></tr><tr><td>4</td><td>Vector search is essential for semantic retrieval.</td></tr></tbody></table></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">ALTER TABLE telemetry.lwrca.document_table SET TBLPROPERTIES (delta.enableChangeDataFeed = true)</span>
+<span class="s2">"""</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[0]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>DataFrame[]</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">databricks.vector_search.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">VectorSearchClient</span>
+
+<span class="n">vsc</span> <span class="o">=</span> <span class="n">VectorSearchClient</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[NOTICE] Using a notebook authentication token. Recommended for development only. For improved performance, please use Service Principal based authentication. To disable this message, pass disable_notice=True.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">VectorSearchClient</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Help on class VectorSearchClient in module databricks.vector_search.client:
+
+class VectorSearchClient(builtins.object)
+ |  VectorSearchClient(workspace_url=None, personal_access_token=None, service_principal_client_id=None, service_principal_client_secret=None, azure_tenant_id=None, azure_login_id='2ff814a6-3304-4ab8-85cb-cd0e6f879c1d', disable_notice=False, credential_strategy=None)
+ |  
+ |  A client for interacting with the Vector Search service.
+ |  
+ |  This client provides methods for managing endpoints and indexes in the Vector Search service.
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, workspace_url=None, personal_access_token=None, service_principal_client_id=None, service_principal_client_secret=None, azure_tenant_id=None, azure_login_id='2ff814a6-3304-4ab8-85cb-cd0e6f879c1d', disable_notice=False, credential_strategy=None)
+ |      Initialize the VectorSearchClient.
+ |      
+ |      :param str workspace_url: The URL of the workspace.
+ |      :param str personal_access_token: The personal access token for authentication.
+ |      :param str service_principal_client_id: The client ID of the service principal for authentication.
+ |      :param str service_principal_client_secret: The client secret of the service principal for authentication.
+ |      :param str azure_tenant_id: The tenant ID of Azure for authentication.
+ |      :param str azure_login_id: The login ID of Azure for authentication (aka Databricks Azure Application ID).
+ |                                 Default to AZURE_PUBLIC.
+ |                                 See all login IDs in https://github.com/databricks/databricks-sdk-py/blob/main/databricks/sdk/environments.py
+ |      :param bool disable_notice: Whether to disable the notice message.
+ |      :param CredentialStrategy credential_strategy: Credential Strategy used to authenticate Vector Search Client
+ |  
+ |  create_delta_sync_index(self, endpoint_name, index_name, primary_key, source_table_name, pipeline_type, embedding_dimension=None, embedding_vector_column=None, embedding_source_column=None, embedding_model_endpoint_name=None, sync_computed_embeddings=False, columns_to_sync=None)
+ |      Create a delta sync index.
+ |      
+ |      :param str columns_to_sync: The columns that would be synced to the vector index with the primary key and vector column always being synced. If the field is not defined, all columns will be synced.
+ |      :param str endpoint_name: The name of the endpoint.
+ |      :param str index_name: The name of the index.
+ |      :param str primary_key: The primary key of the index.
+ |      :param str source_table_name: The name of the source table.
+ |      :param str pipeline_type: The type of the pipeline. Must be CONTINUOUS or TRIGGERED.
+ |      :param int embedding_dimension: The dimension of the embedding vector.
+ |      :param str embedding_vector_column: The name of the embedding vector column.
+ |      :param str embedding_source_column: The name of the embedding source column.
+ |      :param str embedding_model_endpoint_name: The name of the embedding model endpoint.
+ |      :param bool sync_computed_embeddings: Whether to automatically sync the vector index contents and computed embeddings to a new UC table,
+ |                                           table name will be ${index_name}_writeback_table.
+ |  
+ |  create_delta_sync_index_and_wait(self, endpoint_name, index_name, primary_key, source_table_name, pipeline_type, embedding_dimension=None, embedding_vector_column=None, embedding_source_column=None, embedding_model_endpoint_name=None, sync_computed_embeddings=False, columns_to_sync=None, verbose=False, timeout=datetime.timedelta(days=1))
+ |      Create a delta sync index and wait for it to be ready.
+ |      
+ |      :param str columns_to_sync: The columns that would be synced to the vector index with the primary key and vector column always being synced. If the field is not defined, all columns will be synced.
+ |      :param str endpoint_name: The name of the endpoint.
+ |      :param str index_name: The name of the index.
+ |      :param str primary_key: The primary key of the index.
+ |      :param str source_table_name: The name of the source table.
+ |      :param str pipeline_type: The type of the pipeline. Must be CONTINUOUS or TRIGGERED.
+ |      :param int embedding_dimension: The dimension of the embedding vector.
+ |      :param str embedding_vector_column: The name of the embedding vector column.
+ |      :param str embedding_source_column: The name of the embedding source column.
+ |      :param str embedding_model_endpoint_name: The name of the embedding model endpoint.
+ |      :param bool verbose: Whether to print status messages.
+ |      :param datetime.timedelta timeout: The time allowed until we timeout with an Exception.
+ |      :param bool sync_computed_embeddings: Whether to automatically sync the vector index contents and computed embeddings to a new UC table,
+ |                                           table name will be ${index_name}_writeback_table.
+ |  
+ |  create_direct_access_index(self, endpoint_name, index_name, primary_key, embedding_dimension, embedding_vector_column, schema, embedding_model_endpoint_name=None)
+ |      Create a direct access index.
+ |      
+ |      :param str endpoint_name: The name of the endpoint.
+ |      :param str index_name: The name of the index.
+ |      :param str primary_key: The primary key of the index.
+ |      :param int embedding_dimension: The dimension of the embedding vector.
+ |      :param str embedding_vector_column: The name of the embedding vector column.
+ |      :param dict schema: The schema of the index.
+ |      :param str embedding_model_endpoint_name: The name of the optional embedding model endpoint to use when querying.
+ |  
+ |  create_endpoint(self, name, endpoint_type='STANDARD', budget_policy_id=None)
+ |      Create an endpoint.
+ |      
+ |      :param str name: The name of the endpoint.
+ |      :param str endpoint_type: The type of the endpoint. Must be STANDARD or ENTERPRISE.
+ |      :param str budget_policy_id: The id of the budget policy to assign to the endpoint.
+ |  
+ |  create_endpoint_and_wait(self, name, endpoint_type='STANDARD', budget_policy_id=None, verbose=False, timeout=datetime.timedelta(seconds=3600))
+ |      Create an endpoint and wait for it to be online.
+ |      
+ |      :param str name: The name of the endpoint.
+ |      :param str endpoint_type: The type of the endpoint. Must be STANDARD or ENTERPRISE.
+ |      :param str budget_policy_id: The id of the budget policy to assign to the endpoint.
+ |      :param bool verbose: Whether to print status messages.
+ |      :param datetime.timedelta timeout: The time allowed until we timeout with an Exception.
+ |  
+ |  delete_endpoint(self, name)
+ |      Delete an endpoint.
+ |      
+ |      :param str name: The name of the endpoint.
+ |  
+ |  delete_index(self, endpoint_name=None, index_name=None)
+ |      Delete an index.
+ |      
+ |      :param Option[str] endpoint_name: The optional name of the endpoint.
+ |      :param str index_name: The name of the index.
+ |  
+ |  get_endpoint(self, name)
+ |      Get an endpoint.
+ |      
+ |      :param str name: The name of the endpoint.
+ |  
+ |  get_index(self, endpoint_name=None, index_name=None)
+ |      Get an index.
+ |      
+ |      :param Option[str] endpoint_name: The optional name of the endpoint.
+ |      :param str index_name: The name of the index.
+ |  
+ |  list_endpoints(self)
+ |      List all endpoints.
+ |  
+ |  list_indexes(self, name)
+ |      List all indexes for an endpoint.
+ |      
+ |      :param str name: The name of the endpoint.
+ |  
+ |  update_endpoint_budget_policy(self, name, budget_policy_id)
+ |      Update an endpoint's budget policy.
+ |      
+ |      :param str name: The name of the endpoint.
+ |      :param str budget_policy_id: The id of the budget policy to assign to the endpoint.
+ |  
+ |  validate(self, disable_notice=False)
+ |  
+ |  wait_for_endpoint(self, name, verbose=False, timeout=datetime.timedelta(seconds=3600))
+ |      Wait for an endpoint to be online.
+ |      
+ |      :param str name: The name of the endpoint.
+ |      :param bool verbose: Whether to print status messages.
+ |      :param datetime.timedelta timeout: The time allowed until we timeout with an Exception.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="n">endpoints</span> <span class="o">=</span> <span class="n">vsc</span><span class="o">.</span><span class="n">list_endpoints</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Available endpoints:"</span><span class="p">,</span> <span class="n">endpoints</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Available endpoints: {}
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="n">vector_search_endpoint_name</span> <span class="o">=</span> <span class="s2">"vector-search-demo-endpoint"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="n">vsc</span><span class="o">.</span><span class="n">create_endpoint</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="n">vector_search_endpoint_name</span><span class="p">,</span>
+    <span class="n">endpoint_type</span><span class="o">=</span><span class="s2">"STANDARD"</span> <span class="c1"># or "STORAGE_OPTIMIZED"</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[0]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>{'name': 'vector-search-demo-endpoint',
+ 'creator': 'senthilkumar.marimuthu@tvsmotor.com',
+ 'creation_timestamp': 1753070384426,
+ 'last_updated_timestamp': 1753070384426,
+ 'endpoint_type': 'STANDARD',
+ 'last_updated_user': 'senthilkumar.marimuthu@tvsmotor.com',
+ 'id': 'c9feecdc-1bf1-4e0c-b7f9-dd2e14eb5dea',
+ 'endpoint_status': {'state': 'PROVISIONING'},
+ 'num_indexes': 0}</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">vsc</span><span class="o">.</span><span class="n">get_endpoint</span><span class="p">(</span>
+  <span class="n">name</span><span class="o">=</span><span class="n">vector_search_endpoint_name</span><span class="p">)</span>
+<span class="n">endpoint</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[0]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>{'name': 'vector-search-demo-endpoint',
+ 'creator': 'senthilkumar.marimuthu@tvsmotor.com',
+ 'creation_timestamp': 1753070384426,
+ 'last_updated_timestamp': 1753070384426,
+ 'endpoint_type': 'STANDARD',
+ 'last_updated_user': 'senthilkumar.marimuthu@tvsmotor.com',
+ 'id': 'c9feecdc-1bf1-4e0c-b7f9-dd2e14eb5dea',
+ 'endpoint_status': {'state': 'PROVISIONING'},
+ 'num_indexes': 0}</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="c1"># Vector index</span>
+<span class="n">vs_index</span> <span class="o">=</span> <span class="s2">"en_wiki_index"</span>
+<span class="n">vs_index_fullname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"telemetry.lwrca.</span><span class="si">{</span><span class="n">vs_index</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="n">embedding_model_endpoint</span> <span class="o">=</span> <span class="s2">"databricks-gte-large-en"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="n">vsc</span><span class="o">.</span><span class="n">create_delta_sync_index</span><span class="p">(</span>
+  <span class="n">endpoint_name</span><span class="o">=</span><span class="n">vector_search_endpoint_name</span><span class="p">,</span>
+  <span class="n">source_table_name</span><span class="o">=</span><span class="s1">'telemetry.lwrca.document_table'</span><span class="p">,</span>
+  <span class="n">index_name</span><span class="o">=</span><span class="n">vs_index_fullname</span><span class="p">,</span>
+  <span class="n">pipeline_type</span><span class="o">=</span><span class="s1">'TRIGGERED'</span><span class="p">,</span>
+  <span class="n">primary_key</span><span class="o">=</span><span class="s2">"id"</span><span class="p">,</span>
+  <span class="n">embedding_source_column</span><span class="o">=</span><span class="s2">"document"</span><span class="p">,</span>
+  <span class="n">embedding_model_endpoint_name</span><span class="o">=</span><span class="n">embedding_model_endpoint</span>
+<span class="p">)</span>
+<span class="n">index</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[0]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>{'name': 'telemetry.lwrca.en_wiki_index',
+ 'endpoint_name': 'vector-search-demo-endpoint',
+ 'primary_key': 'id',
+ 'index_type': 'DELTA_SYNC',
+ 'delta_sync_index_spec': {'source_table': 'telemetry.lwrca.document_table',
+  'embedding_source_columns': [{'name': 'document',
+    'embedding_model_endpoint_name': 'databricks-gte-large-en'}],
+  'pipeline_type': 'TRIGGERED',
+  'pipeline_id': '54f00dd7-6270-4307-96dd-4dfb080e3243'},
+ 'status': {'detailed_state': 'PROVISIONING_INDEX',
+  'message': 'Delta sync Index creation is pending. Check latest status: https://adb-1948512269941134.14.azuredatabricks.net/explore/data/telemetry/lwrca/en_wiki_index',
+  'indexed_row_count': 0,
+  'ready': False,
+  'index_url': 'adb-1948512269941134.14.azuredatabricks.net/api/2.0/vector-search/indexes/telemetry.lwrca.en_wiki_index'},
+ 'creator': 'senthilkumar.marimuthu@tvsmotor.com',
+ 'endpoint_type': 'STANDARD'}</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="c1">#vs_index_fullname = "telemetry.lwrca.sample_doc_vectors_index"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="n">vsc</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">endpoint_name</span><span class="o">=</span><span class="n">vector_search_endpoint_name</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="n">vs_index_fullname</span><span class="p">)</span>
+
+<span class="n">index</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[0]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>{'name': 'telemetry.lwrca.en_wiki_index',
+ 'endpoint_name': 'vector-search-demo-endpoint',
+ 'primary_key': 'id',
+ 'index_type': 'DELTA_SYNC',
+ 'delta_sync_index_spec': {'source_table': 'telemetry.lwrca.document_table',
+  'embedding_source_columns': [{'name': 'document',
+    'embedding_model_endpoint_name': 'databricks-gte-large-en'}],
+  'pipeline_type': 'TRIGGERED',
+  'pipeline_id': '54f00dd7-6270-4307-96dd-4dfb080e3243'},
+ 'status': {'detailed_state': 'ONLINE_TRIGGERED_UPDATE',
+  'message': 'Index is online but is currently is in the process of re-syncing initial data. Check latest status: https://adb-1948512269941134.14.azuredatabricks.net/explore/data/telemetry/lwrca/en_wiki_index',
+  'indexed_row_count': 5,
+  'triggered_update_status': {'last_processed_commit_version': 2,
+   'last_processed_commit_timestamp': '2025-07-21T03:41:31Z',
+   'triggered_update_progress': {'latest_version_currently_processing': 2,
+    'num_synced_rows': 5,
+    'total_rows_to_sync': 5,
+    'sync_progress_completion': 1.0,
+    'estimated_completion_time_seconds': 0.0,
+    'pipeline_metrics': {'total_sync_time_per_row_ms': 368.8,
+     'ingestion_metrics': {'ingestion_time_per_row_ms': 31.6,
+      'ingestion_batch_size': 50},
+     'embedding_metrics': {'embedding_generation_time_per_row_ms': 173.8,
+      'embedding_generation_batch_size': 32}}}},
+  'ready': True,
+  'index_url': 'adb-1948512269941134.14.azuredatabricks.net/api/2.0/vector-search/indexes/telemetry.lwrca.en_wiki_index'},
+ 'creator': 'senthilkumar.marimuthu@tvsmotor.com',
+ 'endpoint_type': 'STANDARD'}</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">index</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'status'</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'detailed_state'</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'ONLINE'</span><span class="p">):</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Waiting for index to be ONLINE..."</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Index is ONLINE"</span><span class="p">)</span>
+<span class="n">index</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Index is ONLINE
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[0]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>{'name': 'telemetry.lwrca.en_wiki_index',
+ 'endpoint_name': 'vector-search-demo-endpoint',
+ 'primary_key': 'id',
+ 'index_type': 'DELTA_SYNC',
+ 'delta_sync_index_spec': {'source_table': 'telemetry.lwrca.document_table',
+  'embedding_source_columns': [{'name': 'document',
+    'embedding_model_endpoint_name': 'databricks-gte-large-en'}],
+  'pipeline_type': 'TRIGGERED',
+  'pipeline_id': '54f00dd7-6270-4307-96dd-4dfb080e3243'},
+ 'status': {'detailed_state': 'ONLINE_NO_PENDING_UPDATE',
+  'message': 'Index creation succeeded. Check latest status: https://adb-1948512269941134.14.azuredatabricks.net/explore/data/telemetry/lwrca/en_wiki_index',
+  'indexed_row_count': 5,
+  'triggered_update_status': {'last_processed_commit_version': 2,
+   'last_processed_commit_timestamp': '2025-07-21T03:41:31Z'},
+  'ready': True,
+  'index_url': 'adb-1948512269941134.14.azuredatabricks.net/api/2.0/vector-search/indexes/telemetry.lwrca.en_wiki_index'},
+ 'creator': 'senthilkumar.marimuthu@tvsmotor.com',
+ 'endpoint_type': 'STANDARD'}</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [0]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span>
+  <span class="n">query_text</span><span class="o">=</span><span class="s2">"python used widely"</span><span class="p">,</span>
+  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'document'</span><span class="p">],</span>
+  <span class="n">num_results</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[NOTICE] Using a notebook authentication token. Recommended for development only. For improved performance, please use Service Principal based authentication. To disable this message, pass disable_notice=True.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[0]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>{'manifest': {'column_count': 2,
+  'columns': [{'name': 'document'}, {'name': 'score'}]},
+ 'result': {'row_count': 2,
+  'data_array': [['Python is widely used for data science.', 0.0034594734],
+   ['Databricks simplifies big data and AI.', 0.0021118384]]},
+ 'debug_info': {'response_time': 1494.0,
+  'ann_time': 18.0,
+  'embedding_gen_time': 1470.0}}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

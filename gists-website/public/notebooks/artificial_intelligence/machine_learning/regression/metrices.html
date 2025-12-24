@@ -1,0 +1,222 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e6852fa2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="What-is-R-squared?">What is R-squared?<a class="anchor-link" href="#What-is-R-squared?">¶</a></h2><p><strong>R-squared</strong> (also known as the <strong>coefficient of determination</strong>) is a statistical metric used to evaluate how well a regression model explains the variability of the target variable. It represents the proportion of the variance in the dependent variable that is predictable from the independent variables.</p>
+<p>Mathematically, R-squared is defined as:</p>
+<p>$$
+R^2 = 1 - \frac{SS_{res}}{SS_{tot}}
+$$</p>
+<p>where:</p>
+<ul>
+<li>$SS_{res} = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$ (the sum of squared residuals)</li>
+<li>$SS_{tot} = \sum_{i=1}^{n} (y_i - \bar{y})^2$ (the total sum of squares)</li>
+<li>$y_i$ = actual value</li>
+<li>$\hat{y}_i$ = predicted value</li>
+<li>$\bar{y}$ = mean of actual values</li>
+</ul>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li>$R^2 = 1$: The model perfectly predicts all the data points.</li>
+<li>$R^2 = 0$: The model does not explain any of the variability in the target variable.</li>
+<li>$R^2 &lt; 0$: The model performs worse than simply predicting the mean.</li>
+</ul>
+<h3 id="Pros-and-Cons-of-R-squared">Pros and Cons of R-squared<a class="anchor-link" href="#Pros-and-Cons-of-R-squared">¶</a></h3><p><strong>Pros:</strong></p>
+<ul>
+<li><strong>Intuitive Interpretation:</strong> Indicates the proportion of variance explained by the model.</li>
+<li><strong>Widely Used:</strong> Standard metric for evaluating regression models.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li><strong>Does Not Indicate Causation:</strong> A high R-squared does not mean that changes in independent variables cause changes in the dependent variable.</li>
+<li><strong>Can Be Misleading:</strong> Adding more variables can artificially inflate R-squared, even if those variables are not meaningful.</li>
+<li><strong>Not Always Suitable:</strong> For non-linear models or models with outliers, R-squared may not be the best metric.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=78215ebd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="What-is-Adjusted-R-squared?">What is Adjusted R-squared?<a class="anchor-link" href="#What-is-Adjusted-R-squared?">¶</a></h2><p><strong>Adjusted R-squared</strong> is a modified version of the R-squared metric that adjusts for the number of predictors (independent variables) in a regression model. While R-squared always increases (or stays the same) as more variables are added to the model, Adjusted R-squared provides a more accurate measure by penalizing the addition of irrelevant predictors.</p>
+<p>Mathematically, Adjusted R-squared is defined as:</p>
+<p>$$
+ \text{Adjusted } R^2 = 1 - \left(1 - R^2\right) \frac{n - 1}{n - p - 1}
+ $$</p>
+<p>where:</p>
+<ul>
+<li>$R^2$ = R-squared value</li>
+<li>$n$ = number of observations</li>
+<li>$p$ = number of independent variables (predictors)</li>
+</ul>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li>Adjusted R-squared increases only if the new predictor improves the model more than would be expected by chance.</li>
+<li>It can decrease if the added variable does not improve the model sufficiently.</li>
+</ul>
+<h3 id="Pros-and-Cons-of-Adjusted-R-squared">Pros and Cons of Adjusted R-squared<a class="anchor-link" href="#Pros-and-Cons-of-Adjusted-R-squared">¶</a></h3><p><strong>Pros:</strong></p>
+<ul>
+<li><strong>Penalizes Irrelevant Predictors:</strong> Helps prevent overfitting by discouraging the inclusion of unnecessary variables.</li>
+<li><strong>Better Model Comparison:</strong> Useful for comparing models with different numbers of predictors.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li><strong>Still Not a Guarantee of Causation:</strong> Like R-squared, a high Adjusted R-squared does not imply causation.</li>
+<li><strong>Can Be Negative:</strong> In poorly fitting models, Adjusted R-squared can be negative.</li>
+</ul>
+<p><strong>Summary:</strong><br/>
+Adjusted R-squared is generally preferred over R-squared when comparing models with different numbers of predictors, as it provides a more reliable measure of model quality.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0ef3e216">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="What-is-MAE?">What is MAE?<a class="anchor-link" href="#What-is-MAE?">¶</a></h2><p><strong>MAE</strong> stands for <strong>Mean Absolute Error</strong>. It is a commonly used metric in regression analysis that measures the average absolute difference between the actual (true) values and the predicted values.</p>
+<p>Mathematically, for a set of $n$ data points, MAE is calculated as:</p>
+<p>$$
+\text{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+$$</p>
+<p>where:</p>
+<ul>
+<li>$y_i$ = actual value</li>
+<li>$\hat{y}_i$ = predicted value</li>
+</ul>
+<p>A lower MAE indicates that the predictions are closer to the actual values.</p>
+<h3 id="Pros-and-Cons-of-MAE">Pros and Cons of MAE<a class="anchor-link" href="#Pros-and-Cons-of-MAE">¶</a></h3><p><strong>Pros:</strong></p>
+<ul>
+<li><strong>Interpretability:</strong> MAE is easy to interpret because it is in the same units as the target variable.</li>
+<li><strong>Robust to Outliers:</strong> MAE is less sensitive to outliers compared to MSE, as it does not square the errors.</li>
+<li><strong>Widely Used:</strong> MAE is a standard metric for regression tasks.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li><strong>Non-differentiable at Zero:</strong> The absolute value function is not differentiable at zero, which can be a challenge for some optimization algorithms.</li>
+<li><strong>Equal Weight to All Errors:</strong> MAE treats all errors equally, which may not be desirable if larger errors should be penalized more.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42b16b65">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="What-is-MAPE?">What is MAPE?<a class="anchor-link" href="#What-is-MAPE?">¶</a></h2><p><strong>MAPE</strong> stands for <strong>Mean Absolute Percentage Error</strong>. It is a metric used to measure the accuracy of a regression model as a percentage. MAPE calculates the average absolute difference between the actual and predicted values, expressed as a percentage of the actual values.</p>
+<p>Mathematically, for a set of $n$ data points, MAPE is calculated as:</p>
+<p>$$
+ \text{MAPE} = \frac{100\%}{n} \sum_{i=1}^{n} \left| \frac{y_i - \hat{y}_i}{y_i} \right|
+ $$</p>
+<p>where:</p>
+<ul>
+<li>$y_i$ = actual value</li>
+<li>$\hat{y}_i$ = predicted value</li>
+</ul>
+<p>A lower MAPE indicates better predictive accuracy, with 0% being a perfect prediction.</p>
+<h3 id="Pros-and-Cons-of-MAPE">Pros and Cons of MAPE<a class="anchor-link" href="#Pros-and-Cons-of-MAPE">¶</a></h3><p><strong>Pros:</strong></p>
+<ul>
+<li><strong>Interpretability:</strong> MAPE is easy to interpret because it expresses errors as percentages.</li>
+<li><strong>Scale Independence:</strong> Useful for comparing forecast accuracy across different datasets or scales.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li><strong>Undefined for Zero Actuals:</strong> If any $y_i = 0$, MAPE is undefined or can be extremely large.</li>
+<li><strong>Biased Toward Underestimation:</strong> MAPE can be biased when actual values are very small.</li>
+<li><strong>Sensitive to Outliers:</strong> Large percentage errors can dominate the metric if actual values are close to zero.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d0079d43">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="What-is-MSE?">What is MSE?<a class="anchor-link" href="#What-is-MSE?">¶</a></h2><p><strong>MSE</strong> stands for <strong>Mean Squared Error</strong>. It is a common metric used to measure the average squared difference between the actual (true) values and the predicted values in regression problems.</p>
+<p>Mathematically, for a set of $n$ data points, MSE is calculated as:</p>
+<p>$$
+\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+$$</p>
+<p>where:</p>
+<ul>
+<li>$y_i$ = actual value</li>
+<li>$\hat{y}_i$ = predicted value</li>
+</ul>
+<p>A lower MSE indicates that the predictions are closer to the actual values.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=95458022">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Pros-and-Cons-of-MSE">Pros and Cons of MSE<a class="anchor-link" href="#Pros-and-Cons-of-MSE">¶</a></h3><p><strong>Pros:</strong></p>
+<ul>
+<li><strong>Widely Used:</strong> MSE is a standard and well-understood metric in regression analysis.</li>
+<li><strong>Penalizes Large Errors:</strong> By squaring the errors, MSE gives more weight to larger errors, making it sensitive to outliers.</li>
+<li><strong>Differentiable:</strong> MSE is continuous and differentiable, which is useful for optimization algorithms like gradient descent.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li><strong>Sensitive to Outliers:</strong> Because errors are squared, a few large errors can disproportionately affect the MSE, making it less robust to outliers.</li>
+<li><strong>Units:</strong> The value of MSE is in the squared units of the target variable, which can make interpretation less intuitive.</li>
+<li><strong>Not Always Interpretable:</strong> A lower MSE does not always mean better performance if the data contains outliers or is not normally distributed.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3e8f35d8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="What-is-RMSE?">What is RMSE?<a class="anchor-link" href="#What-is-RMSE?">¶</a></h2><p><strong>RMSE</strong> stands for <strong>Root Mean Squared Error</strong>. It is a popular metric used to measure the average magnitude of the errors between predicted values and actual values in regression problems.</p>
+<p>Mathematically, for a set of $n$ data points, RMSE is calculated as:</p>
+<p>$$
+ \text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
+ $$</p>
+<p>where:</p>
+<ul>
+<li>$y_i$ = actual value</li>
+<li>$\hat{y}_i$ = predicted value</li>
+</ul>
+<p>RMSE is always non-negative, and a lower RMSE value indicates better predictive accuracy. Unlike MSE, RMSE has the same units as the target variable, making it more interpretable.</p>
+<h3 id="Pros-and-Cons-of-RMSE">Pros and Cons of RMSE<a class="anchor-link" href="#Pros-and-Cons-of-RMSE">¶</a></h3><p><strong>Pros:</strong></p>
+<ul>
+<li><strong>Interpretability:</strong> RMSE is in the same units as the target variable, making it easier to interpret.</li>
+<li><strong>Penalizes Large Errors:</strong> Like MSE, RMSE gives higher weight to larger errors due to the squaring of differences.</li>
+<li><strong>Widely Used:</strong> RMSE is a standard metric in regression analysis and model evaluation.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li><strong>Sensitive to Outliers:</strong> RMSE is affected by outliers, as large errors have a disproportionately large effect.</li>
+<li><strong>Not Robust:</strong> If the data contains significant outliers, RMSE may not reflect the typical prediction error.</li>
+<li><strong>Not Always Intuitive:</strong> While more interpretable than MSE, RMSE can still be misleading if the error distribution is highly skewed.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

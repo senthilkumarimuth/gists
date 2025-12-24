@@ -1,0 +1,351 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1b423401">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Brier-Score">Brier Score<a class="anchor-link" href="#Brier-Score">¶</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42042876">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The Brier score is a metric used to measure the accuracy of probabilistic predictions.
+In the context of survival analysis, it quantifies how close the predicted survival probabilities are to the actual outcomes.</p>
+<p>The Brier score ranges from 0 to 1, where 0 indicates perfect accuracy and 1 indicates the worst possible prediction.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=afdebac0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">brier_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">event_observed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute the Brier score for survival analysis.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    y_true : array-like, shape (n_samples,)</span>
+<span class="sd">        Actual survival/censoring times.</span>
+<span class="sd">    y_pred : array-like, shape (n_samples,)</span>
+<span class="sd">        Predicted survival probabilities at a specific time.</span>
+<span class="sd">    event_observed : array-like, shape (n_samples,)</span>
+<span class="sd">        Event indicator: 1 if event occurred, 0 if censored.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    float</span>
+<span class="sd">        The Brier score.</span>
+<span class="sd">    """</span>
+    <span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">event_observed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">event_observed</span><span class="p">)</span>
+
+    <span class="c1"># For censored data, use inverse probability of censoring weighting (IPCW)</span>
+    <span class="c1"># For simplicity, here we ignore IPCW and compute the naive Brier score</span>
+    <span class="c1"># (for uncensored data or as an illustrative example)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">event_observed</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Example usage:</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>  <span class="c1"># predicted survival probabilities at a given time</span>
+<span class="n">event_observed</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># 1=event occurred, 0=censored</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">brier_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">event_observed</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Brier score:"</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Brier score: 0.009999999999999997
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ddb4bdb5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The lower the score, the better the prediction</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90b21d54">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Pros-and-Cons-of-the-Brier-Score">Pros and Cons of the Brier Score<a class="anchor-link" href="#Pros-and-Cons-of-the-Brier-Score">¶</a></h4><p><strong>Pros:</strong></p>
+<ul>
+<li>Simple to compute and interpret.</li>
+<li>Provides a direct measure of the accuracy of probabilistic predictions.</li>
+<li>Can be used for both binary and survival analysis settings.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Sensitive to censoring; naive computation does not account for censored data properly.</li>
+<li>Requires adjustment (e.g., IPCW) for use with censored survival data, which can complicate implementation.</li>
+<li>May not distinguish well between models with similar calibration but different discrimination.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d3b728dc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="concordance-Index">concordance Index<a class="anchor-link" href="#concordance-Index">¶</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3f684512">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The concordance index (C-index) is a metric used to evaluate the predictive accuracy of risk scores in survival analysis.
+It measures the agreement between the predicted risk scores and the actual order of observed survival times.</p>
+<p>A higher C-index indicates better model discrimination, with a value of 1.0 representing perfect prediction and 0.5 indicating random chance.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=667cb636">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">concordance_index</span><span class="p">(</span><span class="n">event_times</span><span class="p">,</span> <span class="n">predicted_scores</span><span class="p">,</span> <span class="n">event_observed</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute the concordance index (C-index) for survival predictions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    event_times : array-like</span>
+<span class="sd">        Actual observed survival times.</span>
+<span class="sd">    predicted_scores : array-like</span>
+<span class="sd">        Predicted risk scores (higher means higher risk).</span>
+<span class="sd">    event_observed : array-like</span>
+<span class="sd">        Event indicator (1 if event occurred, 0 if censored).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    c_index : float</span>
+<span class="sd">        Concordance index value between 0 and 1.</span>
+<span class="sd">    """</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># number of comparable pairs</span>
+    <span class="n">n_concordant</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">n_tied</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event_times</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event_times</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="c1"># Only consider pairs where one event is observed and the other survived longer</span>
+            <span class="k">if</span> <span class="n">event_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">event_times</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="ow">and</span> <span class="n">event_observed</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">predicted_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">predicted_scores</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                    <span class="n">n_concordant</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">predicted_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">predicted_scores</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                    <span class="n">n_tied</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">n_concordant</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">n_tied</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+
+<span class="c1"># Example usage:</span>
+<span class="n">event_times</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">predicted_scores</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>  <span class="c1"># higher means higher risk</span>
+<span class="n">event_observed</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">c_index</span> <span class="o">=</span> <span class="n">concordance_index</span><span class="p">(</span><span class="n">event_times</span><span class="p">,</span> <span class="n">predicted_scores</span><span class="p">,</span> <span class="n">event_observed</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Concordance index:"</span><span class="p">,</span> <span class="n">c_index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Concordance index: 1.0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=82c0b299">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Pros-and-Cons">Pros and Cons<a class="anchor-link" href="#Pros-and-Cons">¶</a></h4><p>Pros</p>
+<ul>
+<li>Intuitive interpretation: Measures the probability that, for a randomly selected pair, the model correctly predicts which subject experiences the event first.</li>
+<li>Handles censored data: Can be used even when some survival times are censored.</li>
+<li>Model-agnostic: Does not require assumptions about the underlying survival distribution or model type.</li>
+<li>Widely used: Standard metric for comparing survival models.</li>
+</ul>
+<p>Cons</p>
+<ul>
+<li>Ignores calibration: Only assesses ranking, not the absolute accuracy of predicted survival times.</li>
+<li>Sensitive to ties: May be less informative when there are many tied predicted scores or event times.</li>
+<li>Pairwise computation: Can be computationally expensive for large datasets due to pairwise comparisons.</li>
+<li>Does not account for time-dependent covariates or dynamic predictions.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e9543025">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="What-is-Time-Dependent-AUC?">What is Time-Dependent AUC?<a class="anchor-link" href="#What-is-Time-Dependent-AUC?">¶</a></h3><p>Time-dependent AUC (Area Under the Curve) is an extension of the traditional AUC metric used in classification, adapted for survival analysis. It measures a model's ability to correctly rank Individuals according to their risk of experiencing an event by a specific time point, while properly handling censored data.</p>
+<p>At a given time <code>t</code>, the time-dependent AUC evaluates the probability that, for a randomly selected pair of individuals—one who experienced the event by time <code>t</code> (a "case") and one who survived past time <code>t</code> (a "control")—the model assigns a higher risk score to the case than to the control. This process is repeated for various time points to assess model discrimination over time.</p>
+<p><strong>Key Points:</strong></p>
+<ul>
+<li><strong>Handles Censoring:</strong> Properly accounts for censored observations, which are common in survival data.</li>
+<li><strong>Dynamic Assessment:</strong> Provides insight into model performance at different time horizons, not just overall.</li>
+<li><strong>Interpretation:</strong> A higher time-dependent AUC at time <code>t</code> means the model is better at distinguishing who will experience the event by <code>t</code> versus who will not.</li>
+</ul>
+<p><strong>Use Case:</strong> Time-dependent AUC is widely used to evaluate and compare the discriminative ability of survival models, especially when the timing of events is important.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=71ffbd1e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">time_dependent_auc</span><span class="p">(</span><span class="n">event_times</span><span class="p">,</span> <span class="n">predicted_scores</span><span class="p">,</span> <span class="n">event_observed</span><span class="p">,</span> <span class="n">times</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute time-dependent AUC (Area Under the ROC Curve) for survival analysis.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - event_times: array-like, observed event/censoring times</span>
+<span class="sd">    - predicted_scores: array-like, risk scores (higher means higher risk)</span>
+<span class="sd">    - event_observed: array-like, 1 if event occurred, 0 if censored</span>
+<span class="sd">    - times: array-like, time points at which to compute the AUC</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    - aucs: list of AUC values at each time point in 'times'</span>
+<span class="sd">    """</span>
+    <span class="n">event_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">event_times</span><span class="p">)</span>
+    <span class="n">predicted_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">predicted_scores</span><span class="p">)</span>
+    <span class="n">event_observed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">event_observed</span><span class="p">)</span>
+    <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="n">aucs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="p">:</span>
+        <span class="c1"># Define cases and controls at time t</span>
+        <span class="c1"># Cases: experienced event by time t</span>
+        <span class="c1"># Controls: survived past time t (not censored before t)</span>
+        <span class="n">is_case</span> <span class="o">=</span> <span class="p">(</span><span class="n">event_times</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">event_observed</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">is_control</span> <span class="o">=</span> <span class="p">(</span><span class="n">event_times</span> <span class="o">&gt;</span> <span class="n">t</span><span class="p">)</span>
+
+        <span class="n">n_case</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">is_case</span><span class="p">)</span>
+        <span class="n">n_control</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">is_control</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">n_case</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">n_control</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">aucs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Get all pairs (case, control)</span>
+        <span class="n">case_scores</span> <span class="o">=</span> <span class="n">predicted_scores</span><span class="p">[</span><span class="n">is_case</span><span class="p">]</span>
+        <span class="n">control_scores</span> <span class="o">=</span> <span class="n">predicted_scores</span><span class="p">[</span><span class="n">is_control</span><span class="p">]</span>
+
+        <span class="c1"># Compare all pairs</span>
+        <span class="n">concordant</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">tied</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">cs</span> <span class="ow">in</span> <span class="n">case_scores</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">cts</span> <span class="ow">in</span> <span class="n">control_scores</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">cs</span> <span class="o">&gt;</span> <span class="n">cts</span><span class="p">:</span>
+                    <span class="n">concordant</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">cs</span> <span class="o">==</span> <span class="n">cts</span><span class="p">:</span>
+                    <span class="n">tied</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">total</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">total</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">aucs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">aucs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">concordant</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">tied</span><span class="p">)</span> <span class="o">/</span> <span class="n">total</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">aucs</span>
+
+<span class="c1"># Example usage:</span>
+<span class="n">event_times</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">predicted_scores</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>
+<span class="n">event_observed</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">aucs</span> <span class="o">=</span> <span class="n">time_dependent_auc</span><span class="p">(</span><span class="n">event_times</span><span class="p">,</span> <span class="n">predicted_scores</span><span class="p">,</span> <span class="n">event_observed</span><span class="p">,</span> <span class="n">times</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">auc</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">aucs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Time </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">: AUC = </span><span class="si">{</span><span class="n">auc</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Time 5: AUC = 0.6666666666666666
+Time 6: AUC = 0.75
+Time 8: AUC = 0.5
+Time 10: AUC = nan
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

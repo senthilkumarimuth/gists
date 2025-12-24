@@ -1,0 +1,91 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The Prototype Design Pattern is a creational design pattern that allows an object to create a copy of itself. This is useful when creating a new instance is resource-intensive, and you can clone an existing object to avoid overhead.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+
+<span class="c1"># Prototype class</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Prototype</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_objects</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">register_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Register an object with a name."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_objects</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">unregister_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Remove an object by name."""</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objects</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objects</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">attrs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Clone a registered object and update its attributes."""</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objects</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Object '</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">' not found"</span><span class="p">)</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_objects</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+        <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+
+<span class="c1"># Example class to be cloned</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Car</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">engine_power</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine_power</span> <span class="o">=</span> <span class="n">engine_power</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">engine_power</span><span class="si">}</span><span class="s2">HP"</span>
+
+
+<span class="c1"># Usage</span>
+<span class="n">prototype</span> <span class="o">=</span> <span class="n">Prototype</span><span class="p">()</span>
+
+<span class="c1"># Register an object</span>
+<span class="n">car1</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="s2">"Sedan"</span><span class="p">,</span> <span class="s2">"Red"</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="n">prototype</span><span class="o">.</span><span class="n">register_object</span><span class="p">(</span><span class="s2">"basic_sedan"</span><span class="p">,</span> <span class="n">car1</span><span class="p">)</span>
+
+<span class="c1"># Clone the registered object and modify attributes</span>
+<span class="n">car2</span> <span class="o">=</span> <span class="n">prototype</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="s2">"basic_sedan"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"Blue"</span><span class="p">,</span> <span class="n">engine_power</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+
+<span class="c1"># Outputs</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">car1</span><span class="p">)</span>  <span class="c1"># Output: Red Sedan with 150HP</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">car2</span><span class="p">)</span>  <span class="c1"># Output: Blue Sedan with 180HP</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Red Sedan with 150HP
+Blue Sedan with 180HP
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

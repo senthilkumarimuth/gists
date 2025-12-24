@@ -1,0 +1,96 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3be19f90">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>What are diffusion models?</p>
+<p>Diffusion models are a class of generative models that synthesize data (such as images, audio, or text) by simulating a process of gradual noise addition and then learning to reverse this process to reconstruct the original data. The model is trained to progressively denoise random noise into coherent samples, producing high-quality and diverse outputs. Diffusion models have achieved state-of-the-art performance in various generative tasks, especially in image generation.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22527015">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Use-Cases-of-Diffusion-Models">Use Cases of Diffusion Models<a class="anchor-link" href="#Use-Cases-of-Diffusion-Models">¶</a></h2><p>Diffusion models are applied in a wide range of domains, including:</p>
+<ul>
+<li><strong>Image Generation:</strong> Creating realistic images from random noise (e.g., DALL·E, Stable Diffusion).</li>
+<li><strong>Image Editing:</strong> Inpainting, outpainting, and style transfer for modifying existing images.</li>
+<li><strong>Text-to-Image Synthesis:</strong> Generating images based on natural language descriptions.</li>
+<li><strong>Super-Resolution:</strong> Enhancing the quality and resolution of low-quality images.</li>
+<li><strong>Audio Generation:</strong> Synthesizing high-fidelity audio and speech.</li>
+<li><strong>Molecular Design:</strong> Generating new molecules and materials for drug discovery and chemistry.</li>
+<li><strong>Video Generation:</strong> Creating or editing video frames with temporal consistency.</li>
+<li><strong>Medical Imaging:</strong> Generating or enhancing medical images for diagnostics.</li>
+</ul>
+<p>These models are particularly valued for their ability to produce diverse, high-quality outputs across various data modalities.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ab8371b7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="How-Do-Diffusion-Models-Work?-Step-by-Step">How Do Diffusion Models Work? Step-by-Step<a class="anchor-link" href="#How-Do-Diffusion-Models-Work?-Step-by-Step">¶</a></h2><ol>
+<li><p><strong>Noise Addition (Forward Process):</strong></p>
+<ul>
+<li>Start with real data (such as an image).</li>
+<li>Gradually add random noise to the data over many time steps until it turns into pure noise. Each step adds a bit more noise, destroying information about the original data.</li>
+</ul>
+</li>
+<li><p><strong>Learning to Reverse Noise (Training the Model):</strong></p>
+<ul>
+<li>A neural network is trained to predict and remove the added noise at each time step.</li>
+<li>At every step, the model tries to estimate the original data or the noise that was added, learning how to step-by-step undo the noising process.</li>
+</ul>
+</li>
+<li><p><strong>Sampling (Generation by Denoising):</strong></p>
+<ul>
+<li>To generate new data, start with pure random noise.</li>
+<li>The trained model progressively removes noise, step by step, gradually revealing a realistic data sample (such as an image).</li>
+<li>After enough steps, a coherent and high-quality sample is produced.</li>
+</ul>
+</li>
+</ol>
+<p>This process lets diffusion models turn random noise into structured, novel outputs by "learning how to run the noising process in reverse."</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c82cb3ed">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Pros-and-Cons-of-Diffusion-Models">Pros and Cons of Diffusion Models<a class="anchor-link" href="#Pros-and-Cons-of-Diffusion-Models">¶</a></h2><p><strong>Pros:</strong></p>
+<ul>
+<li><strong>High-Quality Outputs:</strong> Diffusion models generate highly realistic and diverse results, particularly excelling in image synthesis and restoration tasks.</li>
+<li><strong>Strong Diversity:</strong> Due to their stochastic sampling, these models can create a variety of outputs from a single prompt.</li>
+<li><strong>Stable Training:</strong> Compared to GANs, diffusion models are less prone to issues such as mode collapse and unstable training dynamics.</li>
+<li><strong>Flexible Conditioning:</strong> They can be easily conditioned on various inputs (such as images, text, or partial data), supporting tasks like text-to-image or inpainting.</li>
+<li><strong>State-of-the-Art Performance:</strong> Many recent benchmarks in image and audio generation are led by diffusion model architectures.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li><strong>Slow Sampling:</strong> Generating samples is computationally expensive and time-consuming; many reverse diffusion steps are needed.</li>
+<li><strong>Resource Intensive:</strong> Training and inference often demand significant computational resources (memory, GPU hours).</li>
+<li><strong>Complexity:</strong> The mathematical formulation and implementation can be challenging, requiring careful consideration of noise schedules and architectures.</li>
+<li><strong>Large Model Sizes:</strong> High-fidelity results often rely on large networks with millions of parameters.</li>
+<li><strong>Data Demands:</strong> Achieving top performance may require large, diverse, and high-quality datasets.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

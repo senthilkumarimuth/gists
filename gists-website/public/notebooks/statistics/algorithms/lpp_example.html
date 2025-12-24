@@ -1,0 +1,131 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="what-is-LPP?">what is LPP?<a class="anchor-link" href="#what-is-LPP?">¶</a></h1><p>The <strong>LPP Simplex Method</strong> is an algorithm used to solve <strong>Linear Programming Problems (LPP)</strong>. Linear programming is a mathematical method for determining the best possible outcome (such as maximum profit or minimum cost) in a model with linear relationships, subject to constraints.</p>
+<h3 id="Key-Concepts:">Key Concepts:<a class="anchor-link" href="#Key-Concepts:">¶</a></h3><ol>
+<li><p><strong>Objective Function</strong>: This is the function that needs to be maximized or minimized (e.g., profit, cost).
+[
+\text{Maximize or Minimize } Z = c_1x_1 + c_2x_2 + ... + c_nx_n
+]
+where (x_1, x_2, ..., x_n) are decision variables, and (c_1, c_2, ..., c_n) are the coefficients.</p>
+</li>
+<li><p><strong>Constraints</strong>: These are the linear inequalities or equations that define the feasible region.
+[
+a_{11}x_1 + a_{12}x_2 + ... + a_{1n}x_n \leq b_1
+]
+where (a_{ij}) are the constraint coefficients, and (b_1, b_2, ..., b_m) are the constraint values.</p>
+</li>
+<li><p><strong>Feasible Region</strong>: The region defined by the constraints where the solution is valid.</p>
+</li>
+</ol>
+<h3 id="Simplex-Method-Steps:">Simplex Method Steps:<a class="anchor-link" href="#Simplex-Method-Steps:">¶</a></h3><p>The simplex method is an iterative procedure to solve linear programming problems. It works by moving along the edges of the feasible region to find the optimal solution.</p>
+<ol>
+<li><p><strong>Formulation</strong>:</p>
+<ul>
+<li>Convert the LPP into <strong>standard form</strong> by introducing slack variables to turn inequalities into equalities.</li>
+<li>Set up the initial <strong>simplex tableau</strong> (a tabular representation of the system of equations).</li>
+</ul>
+</li>
+<li><p><strong>Initialization</strong>:</p>
+<ul>
+<li>Identify an initial <strong>basic feasible solution</strong> by setting non-basic variables (decision variables not in the basis) to zero and solving for basic variables.</li>
+</ul>
+</li>
+<li><p><strong>Optimality Test</strong>:</p>
+<ul>
+<li>Determine if the current solution is optimal by checking the objective function's coefficients in the tableau (known as <strong>reduced costs</strong>). If all coefficients are non-negative in a maximization problem, the current solution is optimal.</li>
+</ul>
+</li>
+<li><p><strong>Pivoting</strong>:</p>
+<ul>
+<li>If the current solution is not optimal, select a <strong>pivot column</strong> (variable to enter the basis) and a <strong>pivot row</strong> (variable to leave the basis).</li>
+<li>Perform <strong>Gaussian elimination</strong> to update the tableau and move to the next basic feasible solution.</li>
+</ul>
+</li>
+<li><p><strong>Iteration</strong>:</p>
+<ul>
+<li>Repeat the optimality test and pivoting steps until an optimal solution is found.</li>
+</ul>
+</li>
+<li><p><strong>Termination</strong>:</p>
+<ul>
+<li>The algorithm stops when the objective function can't be improved further, meaning an optimal solution has been reached.</li>
+</ul>
+</li>
+</ol>
+<h3 id="Advantages:">Advantages:<a class="anchor-link" href="#Advantages:">¶</a></h3><ul>
+<li><strong>Efficient for Large Problems</strong>: Simplex is widely used due to its efficiency in solving large-scale LPPs.</li>
+<li><strong>Exact Solution</strong>: Unlike heuristic methods, simplex guarantees finding an exact optimal solution (if it exists).</li>
+</ul>
+<h3 id="Example:">Example:<a class="anchor-link" href="#Example:">¶</a></h3><p>If you are solving a maximization problem:</p>
+<pre><code>Maximize Z = 3x1 + 2x2
+Subject to:
+    x1 + x2 ≤ 4
+    2x1 + x2 ≤ 5
+    x1, x2 ≥ 0
+</code></pre>
+<p>The simplex method would convert this into standard form, iterate through potential solutions in the feasible region, and eventually find the optimal values of (x1) and (x2) that maximize (Z).</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pulp</span><span class="w"> </span><span class="kn">import</span> <span class="n">LpProblem</span><span class="p">,</span> <span class="n">LpMaximize</span><span class="p">,</span> <span class="n">LpVariable</span><span class="p">,</span> <span class="n">lpSum</span><span class="p">,</span> <span class="n">LpStatus</span><span class="p">,</span> <span class="n">value</span>
+
+<span class="c1"># Define the problem</span>
+<span class="n">problem</span> <span class="o">=</span> <span class="n">LpProblem</span><span class="p">(</span><span class="s2">"Maximize_Z"</span><span class="p">,</span> <span class="n">LpMaximize</span><span class="p">)</span>
+
+<span class="c1"># Define decision variables</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">LpVariable</span><span class="p">(</span><span class="s2">"x1"</span><span class="p">,</span> <span class="n">lowBound</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># x1 &gt;= 0</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">LpVariable</span><span class="p">(</span><span class="s2">"x2"</span><span class="p">,</span> <span class="n">lowBound</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># x2 &gt;= 0</span>
+
+<span class="c1"># Define the objective function</span>
+<span class="n">problem</span> <span class="o">+=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x2</span><span class="p">,</span> <span class="s2">"Objective"</span>
+
+<span class="c1"># Define the constraints</span>
+<span class="n">problem</span> <span class="o">+=</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"Constraint_1"</span>
+<span class="n">problem</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"Constraint_2"</span>
+
+<span class="c1"># Solve the problem</span>
+<span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+<span class="c1"># Print the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Status:"</span><span class="p">,</span> <span class="n">LpStatus</span><span class="p">[</span><span class="n">problem</span><span class="o">.</span><span class="n">status</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Optimal value of x1:"</span><span class="p">,</span> <span class="n">value</span><span class="p">(</span><span class="n">x1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Optimal value of x2:"</span><span class="p">,</span> <span class="n">value</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Maximum Z:"</span><span class="p">,</span> <span class="n">value</span><span class="p">(</span><span class="n">problem</span><span class="o">.</span><span class="n">objective</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Status: Optimal
+Optimal value of x1: 1.0
+Optimal value of x2: 3.0
+Maximum Z: 9.0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

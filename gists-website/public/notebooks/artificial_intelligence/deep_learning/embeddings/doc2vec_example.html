@@ -1,0 +1,154 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="What-is-Doc2Vec?">What is Doc2Vec?<a class="anchor-link" href="#What-is-Doc2Vec?">¶</a></h1><p>Doc2Vec is an extension of the Word2Vec algorithm, designed to create vector representations (embeddings) of entire documents rather than just individual words. It was introduced by Quoc Le and Tomas Mikolov in 2014.</p>
+<p>Key features of Doc2Vec:</p>
+<ol>
+<li>Document-level embeddings: It can generate fixed-length feature vectors for variable-length pieces of text, such as sentences, paragraphs, or entire documents.</li>
+<li>Unsupervised learning: It learns from unlabeled text data.</li>
+<li>Semantic understanding: The resulting embeddings capture semantic similarities between documents.</li>
+<li>Versatility: It can be used for various NLP tasks like document classification, clustering, and information retrieval.</li>
+</ol>
+<p>Doc2Vec has two main training algorithms:</p>
+<ol>
+<li>Distributed Memory (DM)</li>
+<li>Distributed Bag of Words (DBOW)</li>
+</ol>
+<p>These embeddings can be used as features for machine learning models or for measuring document similarity.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Distributed-Memory-(DM)">Distributed Memory (DM)<a class="anchor-link" href="#Distributed-Memory-(DM)">¶</a></h1><p>The Distributed Memory (DM) is one of the two main approaches used in Doc2Vec, alongside the Distributed Bag of Words (DBOW). In this model:</p>
+<ol>
+<li>The document vector is trained to predict the next word given both the document vector and a context of words.</li>
+<li>It's similar to the Continuous Bag of Words (CBOW) model in Word2Vec, but with an additional document vector.</li>
+<li>DM preserves word order information within a small context window.</li>
+<li>It often produces more accurate results than DBOW, especially on larger datasets.</li>
+<li>The DM model can be computationally more expensive than DBOW.</li>
+</ol>
+<p>The DM approach in Doc2Vec allows for a richer representation of documents, capturing both the semantic meaning and some aspects of word order, which can be beneficial for various NLP tasks such as document classification and information retrieval.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Distributed-Bag-of-Words-(DBOW)">Distributed Bag of Words (DBOW)<a class="anchor-link" href="#Distributed-Bag-of-Words-(DBOW)">¶</a></h1><p>The Distributed Bag of Words (DBOW) is one of the two main approaches used in Doc2Vec. In this model:</p>
+<ol>
+<li>The document vector is trained to predict the words in the document.</li>
+<li>It's similar to the Skip-gram model in Word2Vec, but instead of using a word to predict surrounding words, it uses the document vector to predict words in the document.</li>
+<li>DBOW is generally faster and uses less memory than the Distributed Memory (DM) approach.</li>
+<li>It tends to perform well on small datasets and is less prone to overfitting.</li>
+</ol>
+<p>The DBOW model in Doc2Vec captures the overall semantic meaning of the document, allowing for efficient document similarity comparisons and other NLP tasks.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Example-usage-of-doc2vec">Example usage of doc2vec<a class="anchor-link" href="#Example-usage-of-doc2vec">¶</a></h1>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import necessary libraries</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gensim</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gensim.models.doc2vec</span><span class="w"> </span><span class="kn">import</span> <span class="n">Doc2Vec</span><span class="p">,</span> <span class="n">TaggedDocument</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nltk.tokenize</span><span class="w"> </span><span class="kn">import</span> <span class="n">word_tokenize</span>
+
+<span class="c1"># Sample documents</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"Doc2Vec is an extension of Word2Vec for entire documents."</span><span class="p">,</span>
+    <span class="s2">"It creates vector representations of variable-length text."</span><span class="p">,</span>
+    <span class="s2">"The algorithm can capture semantic similarities between documents."</span><span class="p">,</span>
+    <span class="s2">"Doc2Vec is useful for various NLP tasks like classification and clustering."</span><span class="p">,</span>
+    <span class="s2">"It uses unsupervised learning to generate document embeddings."</span>
+<span class="p">]</span>
+
+<span class="c1"># Preprocess the documents</span>
+<span class="n">tagged_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">TaggedDocument</span><span class="p">(</span><span class="n">words</span><span class="o">=</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">lower</span><span class="p">()),</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">documents</span><span class="p">)]</span>
+
+<span class="c1"># Train a Doc2Vec model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Doc2Vec</span><span class="p">(</span><span class="n">vector_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">build_vocab</span><span class="p">(</span><span class="n">tagged_data</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">tagged_data</span><span class="p">,</span> <span class="n">total_examples</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">corpus_count</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">epochs</span><span class="p">)</span>
+
+<span class="c1"># Example usage: Infer vector for a new document</span>
+<span class="n">new_doc</span> <span class="o">=</span> <span class="s2">"Doc2Vec is used for document embeddings"</span>
+<span class="n">new_vector</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">infer_vector</span><span class="p">(</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">new_doc</span><span class="o">.</span><span class="n">lower</span><span class="p">()))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Vector for new document:"</span><span class="p">,</span> <span class="n">new_vector</span><span class="p">)</span>
+
+<span class="c1"># Find similar documents</span>
+<span class="n">similar_docs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">dv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">([</span><span class="n">new_vector</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Similar documents:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">doc</span><span class="p">,</span> <span class="n">similarity</span> <span class="ow">in</span> <span class="n">similar_docs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Document </span><span class="si">{</span><span class="n">doc</span><span class="si">}</span><span class="s2">: Similarity = </span><span class="si">{</span><span class="n">similarity</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Vector for new document: [-7.3994203e-03  5.6641987e-03 -5.2486341e-03  8.0357371e-03
+  3.5742640e-03  4.0831073e-04 -6.3471780e-03  4.2954260e-03
+  7.9677692e-03 -2.5655502e-03  1.0256020e-03  6.1734598e-03
+  3.4994003e-03  2.0215532e-03  1.2132036e-04 -1.0053399e-02
+ -6.3982286e-04 -9.6847489e-03 -7.3886719e-03  7.2929231e-03
+ -3.8932411e-03  4.4750838e-04 -3.4880273e-03  2.9103050e-03
+  6.3013220e-03  6.6286274e-03  9.2212204e-03 -4.8543504e-03
+ -6.3678785e-03 -5.2491724e-03 -4.9779154e-03 -8.0104759e-03
+ -2.5848330e-03 -9.3911439e-03  8.8495361e-03 -3.8854422e-03
+  8.9726066e-03  6.0794423e-03 -3.5426712e-03 -1.9116531e-03
+ -9.6985502e-03 -9.8396381e-03 -6.1360551e-03  9.6534677e-03
+  9.4779823e-03  2.5378338e-03  9.5006726e-05 -8.8074617e-03
+  6.2138718e-03 -6.3329767e-03]
+
+Similar documents:
+Document 3: Similarity = 0.1360
+Document 0: Similarity = 0.0904
+Document 1: Similarity = -0.0176
+Document 2: Similarity = -0.0890
+Document 4: Similarity = -0.2382
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

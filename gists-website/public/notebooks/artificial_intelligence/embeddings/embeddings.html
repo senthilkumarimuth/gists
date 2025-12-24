@@ -1,0 +1,203 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f06a1ab0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="What-are-learned-token-embeddings?">What are learned token embeddings?<a class="anchor-link" href="#What-are-learned-token-embeddings?">¶</a></h1><p>Learned token embeddings are vector representations of tokens (such as words, subwords, or characters) in a neural network model, where the embedding vectors are initialized randomly and then optimized (learned) during model training.</p>
+<p>These embeddings capture semantic and syntactic information about the tokens based on the training data, allowing the model to understand relationships and similarities between different tokens.</p>
+<p>Learned token embeddings are a foundational component in many natural language processing (NLP) models, such as word2vec, GloVe, and transformer-based architectures like BERT and GPT.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9ae0ef62">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Step-by-step-explanation-of-learned-token-embeddings:">Step-by-step explanation of learned token embeddings:<a class="anchor-link" href="#Step-by-step-explanation-of-learned-token-embeddings:">¶</a></h4><ol>
+<li><p><strong>Tokenization</strong>: The input text is first split into smaller units called tokens (such as words, subwords, or characters).</p>
+</li>
+<li><p><strong>Embedding Initialization</strong>: Each unique token is assigned a vector of numbers (embedding). These vectors are usually initialized randomly.</p>
+</li>
+<li><p><strong>Embedding Lookup</strong>: When processing text, each token is replaced by its corresponding embedding vector, creating a sequence of vectors.</p>
+</li>
+<li><p><strong>Model Training</strong>: As the neural network trains on data, the embedding vectors are updated through backpropagation. This means the model learns to adjust the vectors so that they capture useful information about the tokens.</p>
+</li>
+<li><p><strong>Semantic Representation</strong>: After training, tokens with similar meanings or usage patterns have embedding vectors that are close together in the vector space. This helps the model understand relationships between tokens.</p>
+</li>
+<li><p><strong>Usage in NLP Tasks</strong>: These learned embeddings are used as input features for various NLP tasks, such as text classification, translation, or question answering.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6a80a862">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="What-is-Sub-word-embeddings?">What is Sub word embeddings?<a class="anchor-link" href="#What-is-Sub-word-embeddings?">¶</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e6c8693e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Subword embeddings are a type of word representation in natural language processing where words are broken down into smaller units, such as character n-grams or subword tokens. This approach helps handle rare or unseen words by representing them as combinations of subword units, improving the model's ability to generalize and capture morphological patterns. Popular methods for generating subword embeddings include Byte Pair Encoding (BPE), WordPiece, and SentencePiece.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ddfda8f0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Byte-Pair-Encoding-(BPE)">Byte Pair Encoding (BPE)<a class="anchor-link" href="#Byte-Pair-Encoding-(BPE)">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d56488c6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Byte Pair Encoding (BPE) is a subword tokenization technique used in natural language processing to efficiently represent words as sequences of more frequent subword units. BPE starts with a base vocabulary of individual characters and iteratively merges the most frequent pairs of symbols (characters or character sequences) in the training data to form new subword units. This process continues for a predefined number of merges, resulting in a vocabulary that can represent both common words and rare or unseen words as combinations of subword units. <em><strong>BPE helps models handle out-of-vocabulary words and capture meaningful word structure.</strong></em></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46d180c4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="WordPiece">WordPiece<a class="anchor-link" href="#WordPiece">¶</a></h3><p>WordPiece is a subword tokenization algorithm commonly used in natural language processing, especially in models like BERT. It works by breaking words into smaller, more frequent subword units based on their occurrence in a training corpus. The algorithm starts with a base vocabulary of characters and iteratively merges the most frequent pairs of symbols to form new subword tokens, similar to Byte Pair Encoding (BPE). WordPiece helps handle rare or unknown words by representing them as combinations of subword units, improving the model's ability to generalize and understand word structure.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3c275862">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="SentencePiece">SentencePiece<a class="anchor-link" href="#SentencePiece">¶</a></h3><p>SentencePiece is a text tokenization tool and algorithm that segments text into subword units, often used in natural language processing tasks. Unlike BPE and WordPiece, SentencePiece does not require pre-tokenized input and can operate directly on raw text, making it language-independent and suitable for languages without clear word boundaries. It uses algorithms like Unigram Language Model or BPE to learn a vocabulary of subword tokens from the training data. SentencePiece is widely used in models such as Google's T5 and ALBERT, enabling efficient handling of rare and unknown words by representing them as sequences of subword units.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36675c00">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Character-Embeddings">Character Embeddings<a class="anchor-link" href="#Character-Embeddings">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14867005">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Character embeddings are a type of word representation in natural language processing where each character in a word is assigned a vector, and words are represented as sequences or combinations of these character vectors. This approach allows models to capture morphological patterns, handle misspellings, and process rare or unseen words by building word meaning from their constituent characters. Character embeddings are especially useful for languages with rich morphology or when dealing with noisy text data.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=007831c5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Positional-Embeddings">Positional Embeddings<a class="anchor-link" href="#Positional-Embeddings">¶</a></h3><p>Positional embeddings are a technique used in natural language processing models, especially in transformer architectures, to encode the order of tokens in a sequence. Since models like transformers process input tokens in parallel and lack inherent knowledge of token positions, positional embeddings inject information about the position of each token into the model. This is typically done by adding or concatenating a unique vector (the positional embedding) to each token embedding, allowing the model to capture the sequential structure of the input. Common approaches include fixed sinusoidal embeddings and learnable positional embeddings.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90654f30">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Difference-between-BPE,-WordPiece,-and-SentencePiece">Difference between BPE, WordPiece, and SentencePiece<a class="anchor-link" href="#Difference-between-BPE,-WordPiece,-and-SentencePiece">¶</a></h2><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>BPE (Byte Pair Encoding)</th>
+<th>WordPiece</th>
+<th>SentencePiece</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Algorithm</strong></td>
+<td>Greedy pair merging</td>
+<td>Greedy pair merging</td>
+<td>Unigram LM or BPE</td>
+</tr>
+<tr>
+<td><strong>Input</strong></td>
+<td>Pre-tokenized text</td>
+<td>Pre-tokenized text</td>
+<td>Raw text (no pre-tokenization needed)</td>
+</tr>
+<tr>
+<td><strong>Merge Criteria</strong></td>
+<td>Most frequent pairs</td>
+<td>Most likely pairs (maximizes likelihood)</td>
+<td>Probabilistic (Unigram LM) or frequent pairs (BPE)</td>
+</tr>
+<tr>
+<td><strong>Used in</strong></td>
+<td>GPT, RoBERTa</td>
+<td>BERT, DistilBERT</td>
+<td>T5, ALBERT, XLNet</td>
+</tr>
+<tr>
+<td><strong>Language Independence</strong></td>
+<td>Limited (needs tokenization)</td>
+<td>Limited (needs tokenization)</td>
+<td>High (works on raw text)</td>
+</tr>
+<tr>
+<td><strong>Special Features</strong></td>
+<td>Simple, fast</td>
+<td>Handles unknowns with ## prefix</td>
+<td>Can handle languages without spaces</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Summary:</strong></p>
+<ul>
+<li><strong>BPE</strong> and <strong>WordPiece</strong> both use iterative merging of frequent symbol pairs, but WordPiece optimizes for likelihood and often uses special prefixes for subwords.</li>
+<li><strong>SentencePiece</strong> can operate directly on raw text, supports multiple algorithms (Unigram LM, BPE), and is more language-independent.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

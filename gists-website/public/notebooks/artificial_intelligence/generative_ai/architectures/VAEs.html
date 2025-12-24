@@ -1,0 +1,106 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9f876410">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Variational-Autoencoders-(VAE)-in-AI">Variational Autoencoders (VAE) in AI<a class="anchor-link" href="#Variational-Autoencoders-(VAE)-in-AI">¶</a></h1><h2 id="What-is-a-Variational-Autoencoder-(VAE)?">What is a Variational Autoencoder (VAE)?<a class="anchor-link" href="#What-is-a-Variational-Autoencoder-(VAE)?">¶</a></h2><p>A Variational Autoencoder (VAE) is a type of generative model in artificial intelligence that learns efficient data representations (encodings) in an unsupervised manner. VAEs are widely used for generating new data similar to a given dataset (such as images, text, or audio).</p>
+<hr/>
+<h2 id="Use-Cases-of-VAEs">Use Cases of VAEs<a class="anchor-link" href="#Use-Cases-of-VAEs">¶</a></h2><ul>
+<li><strong>Image generation and reconstruction</strong> (e.g., generating new faces, handwritten digits)</li>
+<li><strong>Anomaly detection</strong> (identifying unusual or outlier data points)</li>
+<li><strong>Data denoising</strong> (removing noise from corrupted images)</li>
+<li><strong>Semi-supervised learning</strong> (leveraging unlabeled data for classification tasks)</li>
+<li><strong>Molecular and drug discovery</strong> (generating novel chemical structures)</li>
+</ul>
+<hr/>
+<h2 id="How-VAEs-Work:-Step-by-Step">How VAEs Work: Step by Step<a class="anchor-link" href="#How-VAEs-Work:-Step-by-Step">¶</a></h2><ol>
+<li><p><strong>Encoder Network</strong>:<br/>
+Maps input data (e.g., an image) to a lower-dimensional latent space, producing parameters (mean and variance) describing a probability distribution. Assumes gaussian distribution.</p>
+</li>
+<li><p><strong>Sampling</strong>:<br/>
+A random sample (latent vector) is drawn from the distribution (using the mean and variance).</p>
+</li>
+<li><p><strong>Decoder Network</strong>:<br/>
+The latent vector is passed through the decoder to reconstruct the original data.</p>
+</li>
+<li><p><strong>Loss Calculation</strong>:<br/>
+The VAE loss consists of two terms:</p>
+<ul>
+<li><strong>Reconstruction loss</strong>: measures how well the output matches the original input.</li>
+<li><strong>KL divergence loss</strong>: ensures the learned latent representations follow a normal distribution.</li>
+</ul>
+</li>
+<li><p><strong>Training</strong>:<br/>
+The encoder and decoder are trained together to minimize the total loss.</p>
+</li>
+</ol>
+<hr/>
+<h2 id="Pros-and-Cons-of-VAEs">Pros and Cons of VAEs<a class="anchor-link" href="#Pros-and-Cons-of-VAEs">¶</a></h2><h3 id="Pros:">Pros:<a class="anchor-link" href="#Pros:">¶</a></h3><ul>
+<li>Can generate new, realistic data samples.</li>
+<li>Latent space is continuous and structured, enabling smooth interpolation between data points.</li>
+<li>Principled probabilistic approach (with explicit regularization).</li>
+<li>Well-suited for unsupervised and semi-supervised tasks.</li>
+</ul>
+<h3 id="Cons:">Cons:<a class="anchor-link" href="#Cons:">¶</a></h3><ul>
+<li>Generated samples may be less sharp or detailed compared to Generative Adversarial Networks (GANs).</li>
+<li>Assumes latent variable distribution is Gaussian, which may limit flexibility.</li>
+<li>Balancing reconstruction quality and latent distribution regularization can be challenging.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cf292c9a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Comparing-VAEs-and-GANs">Comparing VAEs and GANs<a class="anchor-link" href="#Comparing-VAEs-and-GANs">¶</a></h2><p><strong>Variational Autoencoders (VAEs)</strong> and <strong>Generative Adversarial Networks (GANs)</strong> are two widely-used generative architectures, but they have key differences:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>VAE</th>
+<th>GAN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Training Objective</strong></td>
+<td>Maximizes likelihood via variational inference; reconstructs input and regularizes latent space (by KL divergence).</td>
+<td>Trains two networks (generator and discriminator) In a min-max game, trying to fool the discriminator with generated samples.</td>
+</tr>
+<tr>
+<td><strong>Latent Space</strong></td>
+<td>Continuous and well-structured, enabling meaningful interpolation and arithmetic.</td>
+<td>Less structured, often harder to interpret or manipulate.</td>
+</tr>
+<tr>
+<td><strong>Sample Quality</strong></td>
+<td>Sometimes blurry samples, but robust and diverse generations.</td>
+<td>Tends to produce sharper and more realistic samples.</td>
+</tr>
+<tr>
+<td><strong>Training Stability</strong></td>
+<td>Generally stable and easier to train.</td>
+<td>Training can be unstable, with possible mode collapse or non-convergence.</td>
+</tr>
+<tr>
+<td><strong>Applications</strong></td>
+<td>Data imputation, interpolation, anomaly detection, semi-supervised learning, etc.</td>
+<td>High-fidelity image and video synthesis, deep fakes, data augmentation, etc.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Summary:</strong><br/>
+VAEs offer a principled approach with continuous latent spaces and reliable training, making them valuable for tasks where interpretability and smooth interpolation matter. GANs, on the other hand, are preferred when photo-realistic sample quality is critical, but require more careful training.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

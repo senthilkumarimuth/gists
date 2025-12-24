@@ -1,0 +1,520 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5a84af5b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="SOLID-Principles-in-Python">SOLID Principles in Python<a class="anchor-link" href="#SOLID-Principles-in-Python">¶</a></h2><p>SOLID is an acronym for five design principles intended to make object-oriented designs more understandable, flexible, and maintainable:</p>
+<ol>
+<li><p>Single Responsibility Principle (SRP):
+A class should have only one reason to change, meaning it should have only one job or responsibility.</p>
+</li>
+<li><p>Open/Closed Principle (OCP):
+Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification.</p>
+</li>
+<li><p>Liskov Substitution Principle (LSP):
+Subtypes must be substitutable for their base types without altering the correctness of the program.</p>
+</li>
+<li><p>Interface Segregation Principle (ISP):
+No client should be forced to depend on methods it does not use. It is better to have many specific interfaces than a large, general-purpose one.</p>
+</li>
+<li><p>Dependency Inversion Principle (DIP):
+High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend on details; details should depend on abstractions.</p>
+</li>
+</ol>
+<p>In Python, these principles guide how you design your classes, interfaces (using abstract base classes), and module structures.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35bda19f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Example-for-SRP">Example for SRP<a class="anchor-link" href="#Example-for-SRP">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f7d99233">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Example for Single Responsibility Principle (SRP):</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Invoice</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="n">items</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_total</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">'price'</span><span class="p">]</span> <span class="o">*</span> <span class="n">item</span><span class="p">[</span><span class="s1">'quantity'</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InvoicePrinter</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">print_invoice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">invoice</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Invoice Details:"</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">invoice</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="s1">'quantity'</span><span class="p">]</span><span class="si">}</span><span class="s2"> = $</span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="s1">'price'</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">item</span><span class="p">[</span><span class="s1">'quantity'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total: $</span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">calculate_total</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InvoiceSaver</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">invoice</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"Invoice Details:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">invoice</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="s1">'quantity'</span><span class="p">]</span><span class="si">}</span><span class="s2"> = $</span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="s1">'price'</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">item</span><span class="p">[</span><span class="s1">'quantity'</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total: $</span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">calculate_total</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Usage example:</span>
+<span class="n">items</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'Apple'</span><span class="p">,</span> <span class="s1">'quantity'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'price'</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'Banana'</span><span class="p">,</span> <span class="s1">'quantity'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'price'</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+<span class="p">]</span>
+<span class="n">invoice</span> <span class="o">=</span> <span class="n">Invoice</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+<span class="n">printer</span> <span class="o">=</span> <span class="n">InvoicePrinter</span><span class="p">()</span>
+<span class="n">saver</span> <span class="o">=</span> <span class="n">InvoiceSaver</span><span class="p">()</span>
+
+<span class="n">printer</span><span class="o">.</span><span class="n">print_invoice</span><span class="p">(</span><span class="n">invoice</span><span class="p">)</span>
+<span class="n">saver</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">(</span><span class="n">invoice</span><span class="p">,</span> <span class="s2">"invoice.txt"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Invoice Details:
+Apple x 3 = $3.0
+Banana x 2 = $1.0
+Total: $4.0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b04f2d3e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The above code demonstrates the Single Responsibility Principle (SRP) in object-oriented programming.</p>
+<ul>
+<li><code>Invoice</code> class: Responsible ONLY for managing invoice data and calculating the total.</li>
+<li><code>InvoicePrinter</code> class: Handles displaying (printing) the invoice details to the console.</li>
+<li><code>InvoiceSaver</code> class: Handles saving invoice details to a file.</li>
+</ul>
+<p>By splitting these responsibilities, each class focuses on a single task, making the code easier to modify and maintain. For example, if you want to change how the invoice is printed or saved, you only modify the <code>InvoicePrinter</code> or <code>InvoiceSaver</code> class, not the <code>Invoice</code> itself.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9bb78aee">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Example-for-OCP">Example for OCP<a class="anchor-link" href="#Example-for-OCP">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b2698e3d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Example for Open/Closed Principle (OCP):</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DiscountStrategy</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_discount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NoDiscount</span><span class="p">(</span><span class="n">DiscountStrategy</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_discount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">total</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PercentageDiscount</span><span class="p">(</span><span class="n">DiscountStrategy</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">percent</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">percent</span> <span class="o">=</span> <span class="n">percent</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_discount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">total</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">percent</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FixedAmountDiscount</span><span class="p">(</span><span class="n">DiscountStrategy</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="n">amount</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_discount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">amount</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Order</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">discount_strategy</span><span class="p">:</span> <span class="n">DiscountStrategy</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="n">amount</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discount_strategy</span> <span class="o">=</span> <span class="n">discount_strategy</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">final_total</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">discount_strategy</span><span class="o">.</span><span class="n">apply_discount</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">amount</span><span class="p">)</span>
+
+<span class="c1"># Usage example:</span>
+<span class="n">order1</span> <span class="o">=</span> <span class="n">Order</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">NoDiscount</span><span class="p">())</span>
+<span class="n">order2</span> <span class="o">=</span> <span class="n">Order</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">PercentageDiscount</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">order3</span> <span class="o">=</span> <span class="n">Order</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">FixedAmountDiscount</span><span class="p">(</span><span class="mi">15</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Order1 total: $</span><span class="si">{</span><span class="n">order1</span><span class="o">.</span><span class="n">final_total</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>   <span class="c1"># output: 100</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Order2 total: $</span><span class="si">{</span><span class="n">order2</span><span class="o">.</span><span class="n">final_total</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>   <span class="c1"># output: 90</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Order3 total: $</span><span class="si">{</span><span class="n">order3</span><span class="o">.</span><span class="n">final_total</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>   <span class="c1"># output: 85</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Order1 total: $100
+Order2 total: $90.0
+Order3 total: $85
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ee371394">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The above example illustrates the Open/Closed Principle (OCP) in object-oriented programming.
+The OCP states that software entities (like classes, modules, and functions) should be open for extension,
+but closed for modification. This means you should be able to add new functionality without changing existing code.</p>
+<p>In the example:</p>
+<ul>
+<li>There is an abstract base class <code>DiscountStrategy</code> which defines a contract for any discount calculation.</li>
+<li>Concrete classes (<code>NoDiscount</code>, <code>PercentageDiscount</code>, <code>FixedAmountDiscount</code>) each implement this interface to provide specific discount behaviors.</li>
+<li>The <code>Order</code> class uses a <code>DiscountStrategy</code> to calculate its final total.</li>
+</ul>
+<p>If you want to introduce a new type of discount, you can simply create a new class inheriting from <code>DiscountStrategy</code> without modifying the <code>Order</code> class or the existing discount classes.
+This design keeps code flexible and maintainable, adhering to the Open/Closed Principle.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22f25645">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Example-for-LSP">Example for LSP<a class="anchor-link" href="#Example-for-LSP">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dcd6999d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Example for Liskov Substitution Principle (LSP) - Incorrect way (LSP violation):</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Bird</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Bird is flying"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Sparrow</span><span class="p">(</span><span class="n">Bird</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Sparrow is flying"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Ostrich</span><span class="p">(</span><span class="n">Bird</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Ostrich can't fly."</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">make_bird_fly</span><span class="p">(</span><span class="n">bird</span><span class="p">:</span> <span class="n">Bird</span><span class="p">):</span>
+    <span class="n">bird</span><span class="o">.</span><span class="n">fly</span><span class="p">()</span>
+
+<span class="c1"># LSP violation: assigning an Ostrich instance causes unexpected behavior</span>
+<span class="n">birds</span> <span class="o">=</span> <span class="p">[</span><span class="n">Sparrow</span><span class="p">(),</span> <span class="n">Ostrich</span><span class="p">()]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"LSP Violation Example:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bird</span> <span class="ow">in</span> <span class="n">birds</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">make_bird_fly</span><span class="p">(</span><span class="n">bird</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">NotImplementedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Correct way to adhere to LSP:"</span><span class="p">)</span>
+
+<span class="c1"># Correct way: Use separate interfaces/capabilities for flying birds</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BirdBase</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Flyable</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LSP_Sparrow</span><span class="p">(</span><span class="n">BirdBase</span><span class="p">,</span> <span class="n">Flyable</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Sparrow is flying"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LSP_Ostrich</span><span class="p">(</span><span class="n">BirdBase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Ostrich is running"</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">make_bird_fly_lsp</span><span class="p">(</span><span class="n">bird</span><span class="p">:</span> <span class="n">Flyable</span><span class="p">):</span>
+    <span class="n">bird</span><span class="o">.</span><span class="n">fly</span><span class="p">()</span>
+
+<span class="n">lsp_birds</span> <span class="o">=</span> <span class="p">[</span><span class="n">LSP_Sparrow</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Flying birds:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bird</span> <span class="ow">in</span> <span class="n">lsp_birds</span><span class="p">:</span>
+    <span class="n">make_bird_fly_lsp</span><span class="p">(</span><span class="n">bird</span><span class="p">)</span>
+
+<span class="n">lsp_ostrich</span> <span class="o">=</span> <span class="n">LSP_Ostrich</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Ostrich behavior:"</span><span class="p">)</span>
+<span class="n">lsp_ostrich</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>LSP Violation Example:
+Sparrow is flying
+Error: Ostrich can't fly.
+
+Correct way to adhere to LSP:
+Flying birds:
+Sparrow is flying
+Ostrich behavior:
+Ostrich is running
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=da46fb43">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The Liskov Substitution Principle states that subclasses should be substitutable for their base classes
+without altering the correctness of the program. In this example, Ostrich violates LSP because it cannot fly,
+causing code that expects all birds to fly to break. To adhere to LSP, we might need to rethink the hierarchy,
+perhaps extracting a Flyable interface or using composition instead of inheritance.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fc758d37">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Example-for-ISP">Example for ISP<a class="anchor-link" href="#Example-for-ISP">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4b76f2fc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Example for Interface Segregation Principle (ISP):</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="c1"># Bad Example: Fat interface</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Worker</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">HumanWorker</span><span class="p">(</span><span class="n">Worker</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Human working"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Human eating lunch"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RobotWorker</span><span class="p">(</span><span class="n">Worker</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Robot working"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Robot doesn't eat!"</span><span class="p">)</span>
+
+<span class="c1"># This is a violation of ISP because RobotWorker is forced to implement an irrelevant method.</span>
+
+<span class="c1"># Good Example: Segregated interfaces</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Workable</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Eatable</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">HumanWorker2</span><span class="p">(</span><span class="n">Workable</span><span class="p">,</span> <span class="n">Eatable</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Human working"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Human eating lunch"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RobotWorker2</span><span class="p">(</span><span class="n">Workable</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Robot working"</span><span class="p">)</span>
+
+<span class="c1"># Now, RobotWorker2 only needs to implement the methods relevant to it, adhering to ISP.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bef2fbfe">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Example-for-DIP">Example for DIP<a class="anchor-link" href="#Example-for-DIP">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2929e45f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># DIP Example</span>
+
+<span class="c1"># The DIP (Dependency Inversion Principle) states:</span>
+<span class="c1"># High-level modules should not depend on low-level modules. Both should depend on abstractions.</span>
+<span class="c1"># Abstractions should not depend on details. Details should depend on abstractions.</span>
+
+<span class="c1"># Bad Example: High-level depends on low-level implementation</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LightBulb</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">turn_on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"LightBulb: turned on"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">turn_off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"LightBulb: turned off"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Switch</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bulb</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bulb</span> <span class="o">=</span> <span class="n">bulb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_on</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">operate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_on</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bulb</span><span class="o">.</span><span class="n">turn_off</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_on</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bulb</span><span class="o">.</span><span class="n">turn_on</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_on</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Here, Switch is tightly coupled to LightBulb (low-level module)</span>
+
+<span class="c1"># Good Example: Depend on abstractions (interfaces)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Switchable</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">turn_on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">turn_off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Fan</span><span class="p">(</span><span class="n">Switchable</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">turn_on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Fan: turned on"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">turn_off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Fan: turned off"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LightBulb2</span><span class="p">(</span><span class="n">Switchable</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">turn_on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"LightBulb2: turned on"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">turn_off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"LightBulb2: turned off"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Switch2</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Switchable</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_on</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">operate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_on</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">turn_off</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_on</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">turn_on</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_on</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Now, Switch2 depends on the abstraction (Switchable), not concrete implementations.</span>
+<span class="c1"># This allows any Switchable device (LightBulb2, Fan, etc.) to be used with Switch2, </span>
+<span class="c1"># adhering to DIP.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

@@ -1,0 +1,35 @@
+{
+  "name": "gists-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "convert": "python3 scripts/convert-notebooks.py",
+    "index": "npx ts-node scripts/build-index.ts",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@types/prismjs": "^1.26.5",
+    "autoprefixer": "^10.4.23",
+    "flexsearch": "^0.8.212",
+    "gray-matter": "^4.0.3",
+    "next": "16.1.1",
+    "next-themes": "^0.4.6",
+    "postcss": "^8.5.6",
+    "prismjs": "^1.30.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "tailwindcss": "^3.4.19"
+  },
+  "devDependencies": {
+    "@types/flexsearch": "^0.7.6",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "typescript": "^5"
+  }
+}

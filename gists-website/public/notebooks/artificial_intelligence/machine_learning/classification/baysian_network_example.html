@@ -1,0 +1,262 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pgmpy.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">BayesianNetwork</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pgmpy.factors.discrete</span><span class="w"> </span><span class="kn">import</span> <span class="n">TabularCPD</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pgmpy.inference</span><span class="w"> </span><span class="kn">import</span> <span class="n">VariableElimination</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>c:\Users\senthil.marimuthu\OneDrive - HTC Global Services, Inc\self\gists\.venv\lib\site-packages\tqdm\auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Define the structure</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">BayesianNetwork</span><span class="p">([(</span><span class="s1">'Battery'</span><span class="p">,</span> <span class="s1">'Starter'</span><span class="p">),</span>
+                         <span class="p">(</span><span class="s1">'Starter'</span><span class="p">,</span> <span class="s1">'CarStarts'</span><span class="p">),</span>
+                         <span class="p">(</span><span class="s1">'Ignition'</span><span class="p">,</span> <span class="s1">'CarStarts'</span><span class="p">)])</span>
+
+<span class="c1"># Define the Conditional Probability Distributions (CPDs)</span>
+<span class="sd">"""variable_card specifies the number of states or categories that a variable can take (e.g., binary variables can take two states: 0 or 1)."""</span>
+<span class="sd">"""values - probabibility of each state"""</span>
+<span class="n">cpd_battery</span> <span class="o">=</span> <span class="n">TabularCPD</span><span class="p">(</span><span class="n">variable</span><span class="o">=</span><span class="s1">'Battery'</span><span class="p">,</span> <span class="n">variable_card</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.6</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">]])</span>
+<span class="n">cpd_starter</span> <span class="o">=</span> <span class="n">TabularCPD</span><span class="p">(</span><span class="n">variable</span><span class="o">=</span><span class="s1">'Starter'</span><span class="p">,</span> <span class="n">variable_card</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                         <span class="n">values</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]],</span> 
+                         <span class="n">evidence</span><span class="o">=</span><span class="p">[</span><span class="s1">'Battery'</span><span class="p">],</span> <span class="n">evidence_card</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">cpd_ignition</span> <span class="o">=</span> <span class="n">TabularCPD</span><span class="p">(</span><span class="n">variable</span><span class="o">=</span><span class="s1">'Ignition'</span><span class="p">,</span> <span class="n">variable_card</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.7</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">]])</span>
+<span class="n">cpd_carstarts</span> <span class="o">=</span> <span class="n">TabularCPD</span><span class="p">(</span><span class="n">variable</span><span class="o">=</span><span class="s1">'CarStarts'</span><span class="p">,</span> <span class="n">variable_card</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                           <span class="n">values</span><span class="o">=</span><span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> 
+                                   <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]],</span>
+                           <span class="n">evidence</span><span class="o">=</span><span class="p">[</span><span class="s1">'Starter'</span><span class="p">,</span> <span class="s1">'Ignition'</span><span class="p">],</span> 
+                           <span class="n">evidence_card</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># Add CPDs to the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_cpds</span><span class="p">(</span><span class="n">cpd_battery</span><span class="p">,</span> <span class="n">cpd_starter</span><span class="p">,</span> <span class="n">cpd_ignition</span><span class="p">,</span> <span class="n">cpd_carstarts</span><span class="p">)</span>
+
+<span class="c1"># Verify the model</span>
+<span class="k">assert</span> <span class="n">model</span><span class="o">.</span><span class="n">check_model</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Perform inference</span>
+<span class="n">inference</span> <span class="o">=</span> <span class="n">VariableElimination</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="s1">'CarStarts'</span><span class="p">],</span> <span class="n">evidence</span><span class="o">=</span><span class="p">{</span><span class="s1">'Battery'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'Ignition'</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>+--------------+------------------+
+| CarStarts    |   phi(CarStarts) |
++==============+==================+
+| CarStarts(0) |           0.1600 |
++--------------+------------------+
+| CarStarts(1) |           0.8400 |
++--------------+------------------+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Let’s break down the example and understand key aspects like how the <code>variable_card</code> and the values in the Conditional Probability Distributions (CPDs) are chosen.</p>
+<h3 id="1.-Defining-the-Structure">1. <strong>Defining the Structure</strong><a class="anchor-link" href="#1.-Defining-the-Structure">¶</a></h3><p>In the code, we define a <strong>Bayesian Network</strong> structure using directed edges:</p>
+<div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">BayesianNetwork</span><span class="p">([(</span><span class="s1">'Battery'</span><span class="p">,</span> <span class="s1">'Starter'</span><span class="p">),</span>
+                         <span class="p">(</span><span class="s1">'Starter'</span><span class="p">,</span> <span class="s1">'CarStarts'</span><span class="p">),</span>
+                         <span class="p">(</span><span class="s1">'Ignition'</span><span class="p">,</span> <span class="s1">'CarStarts'</span><span class="p">)])</span>
+</pre></div>
+<p>This structure represents how the variables influence each other:</p>
+<ul>
+<li><code>Battery</code> affects <code>Starter</code>.</li>
+<li>Both <code>Starter</code> and <code>Ignition</code> affect whether the <code>CarStarts</code>.</li>
+</ul>
+<h3 id="2.-Understanding-CPD-and-variable_card">2. <strong>Understanding CPD and <code>variable_card</code></strong><a class="anchor-link" href="#2.-Understanding-CPD-and-variable_card">¶</a></h3><p>A <strong>Conditional Probability Distribution (CPD)</strong> defines the probability of a variable given its parent nodes. In a Bayesian Network:</p>
+<ul>
+<li><code>variable_card</code> specifies the number of states or categories that a variable can take (e.g., binary variables can take two states: 0 or 1).</li>
+</ul>
+<h4 id="Example-1:-Battery">Example 1: Battery<a class="anchor-link" href="#Example-1:-Battery">¶</a></h4><div class="highlight"><pre><span></span><span class="n">cpd_battery</span> <span class="o">=</span> <span class="n">TabularCPD</span><span class="p">(</span><span class="n">variable</span><span class="o">=</span><span class="s1">'Battery'</span><span class="p">,</span> <span class="n">variable_card</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.6</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">]])</span>
+</pre></div>
+<ul>
+<li><strong>Variable</strong>: <code>Battery</code>.</li>
+<li><strong>variable_card=2</strong>: This means the <code>Battery</code> variable is binary, with two possible states: <code>0</code> (Battery is dead) and <code>1</code> (Battery is working).</li>
+<li><strong>values=[[0.6], [0.4]]</strong>: The probability of each state is provided:<ul>
+<li>( P(\text{Battery} = 0) = 0.6 )</li>
+<li>( P(\text{Battery} = 1) = 0.4 )</li>
+</ul>
+</li>
+</ul>
+<p>Since <code>Battery</code> has no parent, this is a simple probability distribution (a marginal distribution).</p>
+<h4 id="Example-2:-Starter">Example 2: Starter<a class="anchor-link" href="#Example-2:-Starter">¶</a></h4><div class="highlight"><pre><span></span><span class="n">cpd_starter</span> <span class="o">=</span> <span class="n">TabularCPD</span><span class="p">(</span><span class="n">variable</span><span class="o">=</span><span class="s1">'Starter'</span><span class="p">,</span> <span class="n">variable_card</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                         <span class="n">values</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]],</span> 
+                         <span class="n">evidence</span><span class="o">=</span><span class="p">[</span><span class="s1">'Battery'</span><span class="p">],</span> <span class="n">evidence_card</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+<ul>
+<li><strong>Variable</strong>: <code>Starter</code>.</li>
+<li><strong>variable_card=2</strong>: <code>Starter</code> is binary (0: Starter doesn’t work, 1: Starter works).</li>
+<li><strong>evidence=['Battery']</strong>: <code>Starter</code> depends on <code>Battery</code> (i.e., whether the battery is working or not).</li>
+<li><strong>evidence_card=[2]</strong>: This means the <code>Battery</code> has two possible states (0 or 1), so we define conditional probabilities for both cases.</li>
+</ul>
+<p>The <code>values</code> table corresponds to the conditional probabilities:</p>
+<table>
+<thead>
+<tr>
+<th>Battery</th>
+<th>P(Starter=0)</th>
+<th>P(Starter=1)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0.8</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0.2</td>
+<td>0.8</td>
+</tr>
+</tbody>
+</table>
+<p>This means:</p>
+<ul>
+<li>If <code>Battery = 0</code> (dead), ( P(\text{Starter} = 0) = 0.8 ) and ( P(\text{Starter} = 1) = 0.2 ).</li>
+<li>If <code>Battery = 1</code> (working), ( P(\text{Starter} = 0) = 0.2 ) and ( P(\text{Starter} = 1) = 0.8 ).</li>
+</ul>
+<h4 id="Example-3:-Ignition">Example 3: Ignition<a class="anchor-link" href="#Example-3:-Ignition">¶</a></h4><div class="highlight"><pre><span></span><span class="n">cpd_ignition</span> <span class="o">=</span> <span class="n">TabularCPD</span><span class="p">(</span><span class="n">variable</span><span class="o">=</span><span class="s1">'Ignition'</span><span class="p">,</span> <span class="n">variable_card</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.7</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">]])</span>
+</pre></div>
+<ul>
+<li><strong>Variable</strong>: <code>Ignition</code>.</li>
+<li><strong>variable_card=2</strong>: <code>Ignition</code> is binary (0: Ignition is off, 1: Ignition is on).</li>
+<li><strong>values=[[0.7], [0.3]]</strong>: The probabilities are:<ul>
+<li>( P(\text{Ignition} = 0) = 0.7 )</li>
+<li>( P(\text{Ignition} = 1) = 0.3 )</li>
+</ul>
+</li>
+</ul>
+<h4 id="Example-4:-CarStarts">Example 4: CarStarts<a class="anchor-link" href="#Example-4:-CarStarts">¶</a></h4><div class="highlight"><pre><span></span><span class="n">cpd_carstarts</span> <span class="o">=</span> <span class="n">TabularCPD</span><span class="p">(</span><span class="n">variable</span><span class="o">=</span><span class="s1">'CarStarts'</span><span class="p">,</span> <span class="n">variable_card</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                           <span class="n">values</span><span class="o">=</span><span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> 
+                                   <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]],</span>
+                           <span class="n">evidence</span><span class="o">=</span><span class="p">[</span><span class="s1">'Starter'</span><span class="p">,</span> <span class="s1">'Ignition'</span><span class="p">],</span> 
+                           <span class="n">evidence_card</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+<ul>
+<li><strong>Variable</strong>: <code>CarStarts</code>.</li>
+<li><strong>variable_card=2</strong>: <code>CarStarts</code> is binary (0: Car does not start, 1: Car starts).</li>
+<li><strong>evidence=['Starter', 'Ignition']</strong>: <code>CarStarts</code> depends on both <code>Starter</code> and <code>Ignition</code>.</li>
+<li><strong>evidence_card=[2, 2]</strong>: Both <code>Starter</code> and <code>Ignition</code> are binary variables, meaning there are ( 2 \times 2 = 4 ) possible combinations of their states.</li>
+</ul>
+<p>The <code>values</code> table defines the conditional probabilities for each combination of <code>Starter</code> and <code>Ignition</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Starter</th>
+<th>Ignition</th>
+<th>P(CarStarts=0)</th>
+<th>P(CarStarts=1)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0.8</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0.9</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0.0</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<p>This means:</p>
+<ul>
+<li>If both <code>Starter = 0</code> and <code>Ignition = 0</code>, the car won’t start with probability 1.</li>
+<li>If <code>Starter = 1</code> and <code>Ignition = 1</code>, the car will start with probability 1.</li>
+<li>For other combinations, the car might or might not start with varying probabilities.</li>
+</ul>
+<h3 id="3.-Inference">3. <strong>Inference</strong><a class="anchor-link" href="#3.-Inference">¶</a></h3><p>After defining the Bayesian Network and CPDs, we can perform <strong>inference</strong> to calculate probabilities given evidence. In the example:</p>
+<div class="highlight"><pre><span></span><span class="n">inference</span> <span class="o">=</span> <span class="n">VariableElimination</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="s1">'CarStarts'</span><span class="p">],</span> <span class="n">evidence</span><span class="o">=</span><span class="p">{</span><span class="s1">'Battery'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'Ignition'</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+<p>Here:</p>
+<ul>
+<li>We want to compute the probability of the car starting (<code>CarStarts</code>) given that <code>Battery = 1</code> (working) and <code>Ignition = 1</code> (on).</li>
+</ul>
+<p>The inference algorithm (Variable Elimination) calculates the posterior probabilities for <code>CarStarts</code> based on this evidence.</p>
+<h3 id="Summary-of-Key-Points:">Summary of Key Points:<a class="anchor-link" href="#Summary-of-Key-Points:">¶</a></h3><ul>
+<li><strong><code>variable_card</code></strong>: Specifies how many states a variable can take (e.g., 2 for binary variables).</li>
+<li><strong>CPT (Conditional Probability Table)</strong>: Defines the probability distribution of a variable given its parent nodes (conditional probabilities).</li>
+<li><strong>Evidence</strong>: Shows how the variables are conditioned on each other, where a node’s probability depends on the states of its parent nodes.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>

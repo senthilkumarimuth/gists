@@ -1,0 +1,70 @@
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f92a636c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Online-K-Means">Online K-Means<a class="anchor-link" href="#Online-K-Means">¶</a></h2><p>Online K-Means (or Incremental K-Means) is a variant of K-Means that updates cluster centers incrementally as new data arrives, instead of reprocessing the full dataset each time.</p>
+<p>🔹 Key Idea</p>
+<p>formula:</p>
+<pre><code>   μₖ ← μₖ + η (x - μₖ)</code></pre>
+<p>where:</p>
+<p>• μₖ: current centroid of cluster k</p>
+<p>• x:  new data point assigned to cluster k</p>
+<p>• η:  learning rate, typically set as η = 1 / nₖ, with nₖ the number of samples assigned so far to cluster k</p>
+<p>This approach allows centroids to adjust incrementally to streaming or sequential data.</p>
+<p>🔹 Benefits</p>
+<pre><code>•	Handles streaming data
+
+•	Requires less memory
+
+•	Suitable for large datasets</code></pre>
+<p>🔹 Summary
+•	Batch K-Means: Recomputes centroids using all data each iteration.
+•	Online K-Means: Updates centroids incrementally — ideal for real-time or streaming ML.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0a6547a0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">MiniBatchKMeans</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_blobs</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">MiniBatchKMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="n">kmeans</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">batch</span><span class="p">:</span><span class="n">batch</span><span class="o">+</span><span class="mi">100</span><span class="p">])</span>  <span class="c1"># online update</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[[ 4.64247762  1.97434973]
+ [-6.86356135 -6.85601522]
+ [-2.51797296  9.01214406]]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>
