@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd gists-website && npm run build",
+  "outputDirectory": "gists-website/out",
+  "installCommand": "cd gists-website && npm install",
+  "framework": null
+}
