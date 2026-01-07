@@ -138,22 +138,22 @@ export function SearchBar() {
 
   return (
     <div ref={searchRef} className="relative w-full max-w-2xl">
-      <div className="relative">
+      <div className="relative group">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => query && setShowResults(true)}
           placeholder="Search notebooks..."
-          className="w-full px-4 py-3 pl-12 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-full px-5 py-4 pl-14 rounded-xl border-2 border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-300 shadow-sm hover:shadow-md"
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          strokeWidth={1.5}
+          strokeWidth={2}
           stroke="currentColor"
-          className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
+          className="w-5 h-5 absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors duration-300"
         >
           <path
             strokeLinecap="round"
@@ -161,12 +161,26 @@ export function SearchBar() {
             d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
           />
         </svg>
+        {query && (
+          <button
+            onClick={() => {
+              setQuery('')
+              setShowResults(false)
+            }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-secondary transition-colors"
+            aria-label="Clear search"
+          >
+            <svg className="w-5 h-5 text-muted-foreground hover:text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        )}
       </div>
 
       {/* Search Results */}
       {showResults && results.length > 0 && (
-        <div className="absolute z-50 w-full mt-2 bg-card border border-border rounded-lg shadow-lg max-h-96 overflow-y-auto">
-          {results.map((result) => (
+        <div className="absolute z-50 w-full mt-3 bg-card border border-border rounded-xl shadow-2xl max-h-96 overflow-y-auto backdrop-blur-sm">
+          {results.map((result, index) => (
             <Link
               key={result.id}
               href={`/notebooks${result.path}`}
@@ -174,16 +188,19 @@ export function SearchBar() {
                 setShowResults(false)
                 setQuery('')
               }}
-              className="block p-4 hover:bg-secondary transition-colors border-b border-border last:border-b-0"
+              className="block p-5 hover:bg-accent transition-all duration-200 border-b border-border last:border-b-0 first:rounded-t-xl last:rounded-b-xl group"
             >
-              <div className="font-semibold text-foreground mb-1">
+              <div className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
                 {result.title}
               </div>
-              <div className="text-sm text-muted-foreground mb-2">
+              <div className="text-sm text-primary mb-2 flex items-center gap-1">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                </svg>
                 {result.category}
                 {result.subcategory && ` › ${result.subcategory}`}
               </div>
-              <div className="text-sm text-muted-foreground line-clamp-2">
+              <div className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
                 {result.excerpt}
               </div>
             </Link>
@@ -193,8 +210,16 @@ export function SearchBar() {
 
       {/* No results */}
       {showResults && query && results.length === 0 && !isLoading && (
-        <div className="absolute z-50 w-full mt-2 bg-card border border-border rounded-lg shadow-lg p-4">
-          <p className="text-muted-foreground">No notebooks found for "{query}"</p>
+        <div className="absolute z-50 w-full mt-3 bg-card border border-border rounded-xl shadow-2xl p-6">
+          <div className="flex items-center justify-center text-center">
+            <div>
+              <svg className="w-12 h-12 text-muted-foreground mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-muted-foreground font-medium">No notebooks found for "{query}"</p>
+              <p className="text-sm text-muted-foreground mt-1">Try a different search term</p>
+            </div>
+          </div>
         </div>
       )}
     </div>
