@@ -126,11 +126,11 @@ export default async function NotebookPage({ params }: { params: Promise<{ slug?
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-10">
+      <div className="container mx-auto px-4 py-10 max-w-[1600px]">
         <SidebarLayout navigation={navigation}>
-          <div className="flex flex-col xl:flex-row gap-10">
+          <div className="flex flex-col xl:flex-row gap-12 relative">
             {/* Main Content */}
-            <div className="flex-1 max-w-4xl">
+            <div className="flex-1 min-w-0">
               {/* Breadcrumb */}
               <nav className="flex items-center space-x-2 text-sm text-muted-foreground mb-8">
                 <Link href="/" className="hover:text-primary hover:underline transition-colors">
@@ -176,7 +176,7 @@ export default async function NotebookPage({ params }: { params: Promise<{ slug?
 
             {/* Right Sidebar - Table of Contents */}
             {metadata.headings.length > 0 && (
-              <aside className="hidden xl:block xl:w-64 xl:flex-shrink-0">
+              <aside className="hidden xl:block">
                 <TableOfContents headings={metadata.headings} />
               </aside>
             )}
