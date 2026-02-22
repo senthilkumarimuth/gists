@@ -15,7 +15,7 @@
     "autoprefixer": "^10.4.23",
     "flexsearch": "^0.8.212",
     "gray-matter": "^4.0.3",
-    "next": "16.1.1",
+    "next": "^16.1.6",
     "next-themes": "^0.4.6",
     "postcss": "^8.5.6",
     "prismjs": "^1.30.0",
@@ -28,8 +28,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.1",
+    "eslint": "^10.0.1",
+    "eslint-config-next": "^0.2.4",
     "typescript": "^5"
   }
 }
