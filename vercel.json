@@ -1,6 +1,6 @@
 {
   "buildCommand": "cd gists-website && npm run convert && npm run index && npm run build",
   "outputDirectory": "gists-website/out",
-  "installCommand": "cd gists-website && npm install && pip install -r requirements.txt",
+  "installCommand": "cd gists-website && npm install && python3 -m pip install -r requirements.txt",
   "framework": null
 }
